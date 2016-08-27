@@ -30,7 +30,7 @@ public class SpawnerMgr : MonoBehaviour {
         {
             CanSpawn = false;
             StartCoroutine(ManageSpawn());
-            SpawnWave(Random.Range(20,40), Random.Range(5.0f, 15.0f), EPattern.SIN_RIGHT_TO_LEFT);
+            SpawnWave(Random.Range(20,30), Random.Range(5.0f, 15.0f), EPattern.SIN_RIGHT_TO_LEFT);
         }
 	}
 

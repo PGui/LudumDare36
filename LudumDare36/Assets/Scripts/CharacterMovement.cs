@@ -23,6 +23,16 @@ public class CharacterMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        var bottomLeft = Camera.main.ScreenToWorldPoint(Vector3.zero);
+        var topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight));
+
+        var cameraRect = new Rect(
+            bottomLeft.x,
+            bottomLeft.y,
+            topRight.x - bottomLeft.x,
+            topRight.y - bottomLeft.y);
+
+
         float HorizontalAxis = Input.GetAxis("Horizontal");
         float VerticalAxis = Input.GetAxis("Vertical");
         
@@ -54,5 +64,25 @@ public class CharacterMovement : MonoBehaviour {
         }
 
         this.transform.position += (IsShooting ? Speed/ShootingDiviser : Speed) * Time.deltaTime * new Vector3(AccelerationX, AccelerationY);
+
+        if(this.transform.position.x > cameraRect.x+ cameraRect.width)
+        {
+            this.transform.position = new Vector3(cameraRect.x + cameraRect.width, this.transform.position.y, transform.position.z);
+        }
+
+        if (this.transform.position.x < cameraRect.x)
+        {
+            this.transform.position = new Vector3(cameraRect.x, this.transform.position.y, transform.position.z);
+        }
+
+        if (this.transform.position.y > cameraRect.y + cameraRect.height)
+        {
+            this.transform.position = new Vector3(this.transform.position.x, cameraRect.y + cameraRect.height, transform.position.z);
+        }
+
+        if (this.transform.position.y < cameraRect.y)
+        {
+            this.transform.position = new Vector3(this.transform.position.x, cameraRect.y, transform.position.z);
+        }
     }
 }

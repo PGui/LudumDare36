@@ -592,7 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15348a746b495b4b99fa36e3b9e7ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DurationBetweenTwoSpawn: 60
+  DurationBetweenTwoSpawn: 40
   CameraComponent: {fileID: 0}
   SpawnableEnnemies:
   - {fileID: 1000011892488962, guid: 8159bcc7c12d20e4e80a706d18f4671c, type: 2}
