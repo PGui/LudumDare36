@@ -13,10 +13,10 @@ public class CharacterAction : MonoBehaviour {
     private CharacterMovement CharacMvt= null;
     private FreezeFrameMgr FreezeFrameMgr = null;
 
+    private Animator PlayerAnimator;
 
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         
         ShootDirection = new Vector2(1.0f, 0.0f);
         if(Camera)
@@ -26,7 +26,7 @@ public class CharacterAction : MonoBehaviour {
         }
 
         CharacMvt = GetComponent<CharacterMovement>();
-        
+        PlayerAnimator = GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
@@ -50,6 +50,8 @@ public class CharacterAction : MonoBehaviour {
         {
             CharacMvt.IsShooting = false;
         }
+
+        PlayerAnimator.SetBool("Shooting", CharacMvt.IsShooting);
     }
 
     IEnumerator Cooldown()

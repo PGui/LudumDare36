@@ -14,10 +14,15 @@ public class CharacterMovement : MonoBehaviour {
 
     public bool IsShooting { get; set; }
     public float ShootingDiviser = 2.0f;
+    private Animator PlayerAnimator;
 
+    private Vector3 PreviousPosition;
     // Use this for initialization
     void Start () {
         IsShooting = false;
+        PlayerAnimator = GetComponent<Animator>();
+
+        PreviousPosition = this.transform.position;
     }
 	
 	// Update is called once per frame
@@ -84,5 +89,39 @@ public class CharacterMovement : MonoBehaviour {
         {
             this.transform.position = new Vector3(this.transform.position.x, cameraRect.y, transform.position.z);
         }
+
+
+        Vector3 Direction = (PreviousPosition - this.transform.position).normalized;
+
+        if (Mathf.Abs(Direction.x) > Mathf.Abs(Direction.y) && Mathf.Abs(HorizontalAxis) > 0.0f)
+        {
+            //Priority left right
+            if(Direction.x > 0.0f)
+            {
+                PlayerAnimator.SetInteger("Direction", 1);
+            }
+            else
+            {
+                PlayerAnimator.SetInteger("Direction",2);
+            }
+        }
+        else if (Mathf.Abs(Direction.x) < Mathf.Abs(Direction.y) && Mathf.Abs(VerticalAxis) > 0.0f)
+        {
+            if (Direction.y > 0.0f)
+            {
+                PlayerAnimator.SetInteger("Direction", 4);
+            }
+            else
+            {
+                PlayerAnimator.SetInteger("Direction", 3);
+            }
+        }
+        else
+        {
+            PlayerAnimator.SetInteger("Direction", 0);
+        }
+
+        PreviousPosition = this.transform.position;
+
     }
 }
