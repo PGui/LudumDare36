@@ -9,8 +9,11 @@ public class CharacterAction : MonoBehaviour {
     public float CooldownDuration = 0.2f;
     private bool CanShoot = true;
     public GameObject Camera;
-    private ScreenshakeMgr SSMgr;
+
+
+    private ScreenshakeMgr SSMgr = null;
     private CharacterMovement CharacMvt= null;
+    private FreezeFrameMgr FreezeFrameMgr = null;
 
 	// Use this for initialization
 	void Start () {
@@ -19,13 +22,11 @@ public class CharacterAction : MonoBehaviour {
         if(Camera)
         {
             SSMgr = Camera.GetComponent<ScreenshakeMgr>();
-            if(!SSMgr)
-            {
-                Debug.Log("Error Getting SSMGR");
-            }
+            FreezeFrameMgr = Camera.GetComponent<FreezeFrameMgr>();
         }
 
         CharacMvt = GetComponent<CharacterMovement>();
+        
     }
 	
 	// Update is called once per frame

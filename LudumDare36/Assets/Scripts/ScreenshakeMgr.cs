@@ -42,7 +42,6 @@ public class ScreenshakeMgr : MonoBehaviour {
             
             yield return null;
         }
-        Debug.Log("Cocuocu");
         this.transform.position = originalCamPos;
     }
 }
