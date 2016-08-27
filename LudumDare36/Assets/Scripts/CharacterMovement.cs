@@ -107,7 +107,7 @@ public class CharacterMovement : MonoBehaviour {
         }
         else if (Mathf.Abs(Direction.x) < Mathf.Abs(Direction.y) && Mathf.Abs(VerticalAxis) > 0.0f)
         {
-            if (Direction.x > 0.0f)
+            if (Direction.y > 0.0f)
             {
                 PlayerAnimator.SetInteger("Direction", 4);
             }
