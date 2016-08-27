@@ -92,7 +92,9 @@ SubShader {
 				
 				col2.rgb = retro*i.color.rgb;
 
-				col.rgb = lerp(col.rgb, 0.8, 0.5);
+				float deg = 1.0f - saturate(abs((i.screen.y - 0.5)*2.0f));
+				float3 cdeg = lerp(0.8, float3(0.75, 0.95, 0.92), deg);
+				col.rgb = lerp(col.rgb, cdeg, deg*0.8);
 								
 				col = lerp(col, col2, ed);
 				//col = ed;
