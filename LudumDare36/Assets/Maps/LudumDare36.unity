@@ -99,11 +99,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000012049636146, guid: 1ec4f9bcef8b04c4e9f1ec1ddedc4676, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.94
+      value: -18.95
       objectReference: {fileID: 0}
     - target: {fileID: 4000012049636146, guid: 1ec4f9bcef8b04c4e9f1ec1ddedc4676, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.64
+      value: -10.5
       objectReference: {fileID: 0}
     - target: {fileID: 4000012049636146, guid: 1ec4f9bcef8b04c4e9f1ec1ddedc4676, type: 2}
       propertyPath: m_LocalPosition.z
@@ -132,6 +132,24 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ec4f9bcef8b04c4e9f1ec1ddedc4676, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1782911264 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011229231350, guid: 1ec4f9bcef8b04c4e9f1ec1ddedc4676,
+    type: 2}
+  m_PrefabInternal: {fileID: 645739569}
+--- !u!114 &1782911265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1782911264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c9a28807e830194ea369efb3573e052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectToShoot: {fileID: 1000011260236164, guid: fc4daf1906d291c44bd7b2827fa4dbb5,
+    type: 2}
 --- !u!1 &1838031197
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +210,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 15.422014
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
