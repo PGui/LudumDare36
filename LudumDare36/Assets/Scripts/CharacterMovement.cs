@@ -6,7 +6,6 @@ public class CharacterMovement : MonoBehaviour {
 
 
     public float Speed = 20.0f;
-    public Vector2 MaxVelocity = new Vector2(100,100);
     public AnimationCurve AccelerationCurve;
     public float Inertia = 350.0f;
 
