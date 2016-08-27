@@ -13,19 +13,20 @@ public class CharacterMovement : MonoBehaviour {
     private float AccelerationX = 0.0f;
     private float AccelerationY = 0.0f;
 
+    public bool IsShooting { get; set; }
+    public float ShootingDiviser = 2.0f;
+
     // Use this for initialization
     void Start () {
-	
-	}
+        IsShooting = false;
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
         float HorizontalAxis = Input.GetAxis("Horizontal");
         float VerticalAxis = Input.GetAxis("Vertical");
-
         
-
         if (HorizontalAxis > 0.1f && Input.GetAxisRaw("Horizontal") != 0)
         {
             AccelerationX = AccelerationCurve.Evaluate(HorizontalAxis);
@@ -53,6 +54,6 @@ public class CharacterMovement : MonoBehaviour {
             AccelerationY = Mathf.Lerp(AccelerationY, 0.0f, Inertia * Time.deltaTime);
         }
 
-        this.transform.position += Speed * Time.deltaTime * new Vector3(AccelerationX, AccelerationY);
+        this.transform.position += (IsShooting ? Speed/ShootingDiviser : Speed) * Time.deltaTime * new Vector3(AccelerationX, AccelerationY);
     }
 }

@@ -10,9 +10,11 @@ public class CharacterAction : MonoBehaviour {
     private bool CanShoot = true;
     public GameObject Camera;
     private ScreenshakeMgr SSMgr;
+    private CharacterMovement CharacMvt= null;
 
 	// Use this for initialization
 	void Start () {
+        
         ShootDirection = new Vector2(1.0f, 0.0f);
         if(Camera)
         {
@@ -22,20 +24,30 @@ public class CharacterAction : MonoBehaviour {
                 Debug.Log("Error Getting SSMGR");
             }
         }
+
+        CharacMvt = GetComponent<CharacterMovement>();
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(Input.GetButton("Fire1") && CanShoot)
+        if(Input.GetButton("Fire1"))
         {
-            StartCoroutine("Cooldown");
-            CanShoot = false;
-            ShootDirection = ShootDirection.normalized;
-            GameObject Projectile = GameObject.Instantiate(ObjectToShoot, this.transform.position, Quaternion.identity) as GameObject;
-            Projectile.GetComponent<Rigidbody2D>().AddForce(ShootDirection * Force, ForceMode2D.Impulse);
-            SSMgr.StartShake(0.3f, 0.8f, 8.0f);
+            CharacMvt.IsShooting = true;
+            if (CanShoot)
+            {
+                StartCoroutine("Cooldown");
+                CanShoot = false;
+                ShootDirection = ShootDirection.normalized;
+                GameObject Projectile = GameObject.Instantiate(ObjectToShoot, this.transform.position, Quaternion.identity) as GameObject;
+                Projectile.GetComponent<Rigidbody2D>().AddForce(ShootDirection * Force, ForceMode2D.Impulse);
+                SSMgr.StartShake(0.3f, 0.8f, 8.0f);
+            }
+        }
 
+        if (Input.GetButtonUp("Fire1"))
+        {
+            CharacMvt.IsShooting = false;
         }
     }
 
