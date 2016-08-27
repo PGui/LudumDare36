@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5d993bb0b73c7ec4d8b0fdb0f4500890
-timeCreated: 1472319461
+timeCreated: 1472324173
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,8 @@ TextureImporter:
     21300006: Background01_3
     21300008: Background01_4
     21300010: Background01_5
+    21300012: Background01_6
+    21300014: Background01_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -106,7 +108,7 @@ TextureImporter:
         width: 181
         height: 187
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -119,7 +121,7 @@ TextureImporter:
         width: 181
         height: 182
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -132,7 +134,33 @@ TextureImporter:
         width: 198
         height: 196
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_6
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 1072
+        width: 535
+        height: 59
+      alignment: 9
+      pivot: {x: 0.51117307, y: 0.54363704}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_7
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1016
+        width: 435
+        height: 104
+      alignment: 9
+      pivot: {x: 0.482871, y: 0.73205096}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
