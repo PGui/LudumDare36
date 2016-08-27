@@ -87,10 +87,12 @@ SubShader {
 				//avgcol *= (0.8 + ed2*0.2);
 				avgcol = max(avgcol, ed2*0.3);
 
-				float3 retro = lerp(float3(0.16, 0.25, 0), float3(0.6, 0.77, 0), avgcol);
+				float3 retro = lerp(float3(0.16, 0.25, 0), float3(0.6, 0.77, 0)*0.5f + 0.5f, avgcol);
 				retro *= Assom;
 				
 				col2.rgb = retro*i.color.rgb;
+
+				col.rgb = lerp(col.rgb, 0.8, 0.5);
 								
 				col = lerp(col, col2, ed);
 				//col = ed;
