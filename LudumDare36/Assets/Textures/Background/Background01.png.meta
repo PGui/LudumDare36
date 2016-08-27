@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 5d993bb0b73c7ec4d8b0fdb0f4500890
+timeCreated: 1472316638
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Background01_0
+    21300002: Background01_1
+    21300004: Background01_2
+    21300006: Background01_3
+    21300008: Background01_4
+    21300010: Background01_5
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Background01_0
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 1659
+        width: 525
+        height: 338
+      alignment: 9
+      pivot: {x: 0.50651467, y: 0.12559663}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_1
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 1791
+        width: 626
+        height: 153
+      alignment: 9
+      pivot: {x: 0.4981787, y: 0.22429582}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 1242
+        width: 1112
+        height: 322
+      alignment: 9
+      pivot: {x: 0.5, y: 0.22737339}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_3
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 1787
+        width: 181
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_4
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 1370
+        width: 181
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_5
+      rect:
+        serializedVersion: 2
+        x: 1624
+        y: 918
+        width: 198
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
