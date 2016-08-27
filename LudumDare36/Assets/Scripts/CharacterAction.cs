@@ -9,14 +9,16 @@ public class CharacterAction : MonoBehaviour {
     public float CooldownDuration = 0.2f;
     private bool CanShoot = true;
     public GameObject Camera;
-
-
     private ScreenshakeMgr SSMgr = null;
     private CharacterMovement CharacMvt= null;
     private FreezeFrameMgr FreezeFrameMgr = null;
 
-	// Use this for initialization
-	void Start () {
+    private Animator PlayerAnimator;
+
+    private PlayerState CurrentPlayerState;
+
+    // Use this for initialization
+    void Start () {
         
         ShootDirection = new Vector2(1.0f, 0.0f);
         if(Camera)
@@ -26,11 +28,16 @@ public class CharacterAction : MonoBehaviour {
         }
 
         CharacMvt = GetComponent<CharacterMovement>();
-        
+        PlayerAnimator = GetComponent<Animator>();
+
+        CurrentPlayerState = FindObjectOfType<PlayerState>().GetComponent<PlayerState>();
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (CurrentPlayerState.CurrentState == PlayerState.EPlayerState.DEAD)
+            return;
 
         if(Input.GetButton("Fire1"))
         {
@@ -41,8 +48,8 @@ public class CharacterAction : MonoBehaviour {
                 CanShoot = false;
                 ShootDirection = ShootDirection.normalized;
                 GameObject Projectile = GameObject.Instantiate(ObjectToShoot, this.transform.position, Quaternion.identity) as GameObject;
-                Projectile.GetComponent<Rigidbody2D>().AddForce(ShootDirection * Force, ForceMode2D.Impulse);
-                SSMgr.StartShake(0.3f, 0.8f, 8.0f);
+                //Projectile.GetComponent<Rigidbody2D>().AddForce(ShootDirection * Force, ForceMode2D.Impulse);
+                SSMgr.StartShake(0.3f, 0.8f, 2.0f);
             }
         }
 
@@ -50,6 +57,8 @@ public class CharacterAction : MonoBehaviour {
         {
             CharacMvt.IsShooting = false;
         }
+
+        PlayerAnimator.SetBool("Shooting", CharacMvt.IsShooting);
     }
 
     IEnumerator Cooldown()

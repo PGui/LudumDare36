@@ -29,7 +29,7 @@ public class BackSpawner : MonoBehaviour {
             while (x < transform.position.x)
             {
                 Vector3 Pos = transform.position;
-                SpawnItem(new Vector3(x, Pos.y + Random.Range(0, RandHeight), 0));
+                SpawnItem(new Vector3(x, Pos.y + Random.Range(-RandHeight, RandHeight) * 0.5f, 0));
 
                 x += Random.Range(MinDist, MaxDist);
             }
@@ -63,7 +63,7 @@ public class BackSpawner : MonoBehaviour {
             if (Enable && ToSpawn.Count > 0)
             {
                 Vector3 Pos = transform.position;
-                SpawnItem(new Vector3(Pos.x, Pos.y + Random.Range(0,RandHeight), 0));
+                SpawnItem(new Vector3(Pos.x, Pos.y + Random.Range(-RandHeight, RandHeight)*0.5f, 0));
             }
             ComputeNextSpawn();
         }

@@ -18,6 +18,10 @@ public class ScreenshakeMgr : MonoBehaviour {
         StartCoroutine(Shake(Duration, Magnitude, Speed));
     }
 
+    public void Update()
+    {
+        //StartCoroutine(Shake(10.0f, 3.0f, 10.0f));
+    }
 
     IEnumerator Shake(float Duration, float Magnitude, float Speed)
     {

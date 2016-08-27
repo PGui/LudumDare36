@@ -22,9 +22,12 @@ GameObject:
   - 212: {fileID: 212000010330283484}
   - 114: {fileID: 114000010506555510}
   - 58: {fileID: 58000011299395722}
-  m_Layer: 0
+  - 114: {fileID: 114000010156171918}
+  - 114: {fileID: 114000012530240180}
+  - 95: {fileID: 95000013487898482}
+  m_Layer: 9
   m_Name: HeroNokia
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,11 +54,44 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.9
+--- !u!95 &95000013487898482
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011229231350}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6f3de644007410442a15200f01d2b2a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010156171918
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011229231350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c9a28807e830194ea369efb3573e052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectToShoot: {fileID: 1000011260236164, guid: fc4daf1906d291c44bd7b2827fa4dbb5,
+    type: 2}
+  Force: 80
+  CooldownDuration: 0.1
+  Camera: {fileID: 0}
 --- !u!114 &114000010506555510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,9 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7b574c825da9a45a246f3c69501e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 20
-  Inertia: 1.5
-  MaxVelocity: {x: 100, y: 100}
+  Speed: 40
   AccelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -86,27 +120,27 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  DecelerationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0.9999999
-      inSlope: -9.130121
-      outSlope: -9.130121
-      tangentMode: 10
-    - time: 0.075241245
-      value: 0.31303817
-      inSlope: -1.0678924
-      outSlope: -1.0678924
-      tangentMode: 0
-    - time: 0.9997312
-      value: -0.003009175
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
+  Inertia: 12
+  ShootingDiviser: 2
+--- !u!114 &114000012530240180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011229231350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7493f7b913bebc9498d91d746e66f846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitialLife: 100
+  InvicibilityFrame: 0
+  InvicibilityFrameDuration: 0.5
+  Score: 0
+  UIScore: {fileID: 0}
+  UILife: {fileID: 0}
+  KillEnnemyCount: 0
+  UI: {fileID: 0}
 --- !u!212 &212000010330283484
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -136,7 +170,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 769d3ba965277c145a0c38b14348625c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 39413e87cf5b04d4f9a22766c3ef59b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
