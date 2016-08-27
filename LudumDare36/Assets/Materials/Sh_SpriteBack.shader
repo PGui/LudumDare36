@@ -65,7 +65,9 @@ SubShader {
 				float avgcol = dot(col2.rgb, 0.333);
 				avgcol = saturate((avgcol - 0.01f)*1000.0f); // 0.7f
 
-				float3 retro = lerp(float3(0.16, 0.25, 0), float3(0.6, 0.77, 0), avgcol);
+				col2.rgb = lerp(col2.rgb, 0.8, 0.5);
+
+				float3 retro = lerp(float3(0.16, 0.25, 0), float3(0.6, 0.77, 0)*0.5f+0.5f, avgcol);
 				retro *= Assom;
 				col2.rgb = lerp(retro, col2.rgb, Blend);
 							

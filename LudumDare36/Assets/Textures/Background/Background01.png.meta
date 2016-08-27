@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5d993bb0b73c7ec4d8b0fdb0f4500890
-timeCreated: 1472324173
+timeCreated: 1472326155
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -12,6 +12,9 @@ TextureImporter:
     21300010: Background01_5
     21300012: Background01_6
     21300014: Background01_7
+    21300016: Background01_8
+    21300018: Background01_9
+    21300020: Background01_10
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -56,7 +59,12 @@ TextureImporter:
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 512
+    textureFormat: -1
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -161,6 +169,45 @@ TextureImporter:
         height: 104
       alignment: 9
       pivot: {x: 0.482871, y: 0.73205096}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_8
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 799
+        width: 488
+        height: 185
+      alignment: 9
+      pivot: {x: 0.49065512, y: 0.30896062}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_9
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 814
+        width: 556
+        height: 167
+      alignment: 9
+      pivot: {x: 0.5061514, y: 0.26788914}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_10
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 596
+        width: 440
+        height: 158
+      alignment: 9
+      pivot: {x: 0.49999994, y: 0.35568663}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
