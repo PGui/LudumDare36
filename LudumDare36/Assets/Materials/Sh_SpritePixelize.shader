@@ -2,12 +2,13 @@
 {
 Properties {
 	_MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
-	_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
 }
 SubShader {
-	Tags {"Queue"="AlphaTest" "IgnoreProjector"="True" "RenderType"="TransparentCutout"}
+	Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
 	LOD 100
 
+	ZWrite Off
+	Blend SrcAlpha OneMinusSrcAlpha
 	Lighting Off
 
 	Pass {  
@@ -61,25 +62,28 @@ SubShader {
 				float av = 0.5f;
 				fixed4 col = tex2Dlod(_MainTex, float4(uv,0,0));
 				fixed4 col2 = tex2Dlod(_MainTex, float4(uv2, 0, 0));
-				col2 += tex2Dlod(_MainTex, float4(uv2 + float2(av / ppix,0), 0, 0));
-				col2 += tex2Dlod(_MainTex, float4(uv2 + float2(0,av / ppix), 0, 0));
-				col2 /= 3;
-				
+				col2.rgb += tex2Dlod(_MainTex, float4(uv2 + float2(av / ppix,0), 0, 0)).rgb;
+				col2.rgb += tex2Dlod(_MainTex, float4(uv2 + float2(0,av / ppix), 0, 0)).rgb;
+				col2.rgb /= 3;
+				col2.a = saturate((col2.a - 0.01f)*1000.0f);
+								
 				col = lerp(col, col2, ed);
 				//col = ed;
 
 				float avgcol = dot(col, 0.333);
 				avgcol = saturate((avgcol - 0.7f)*1000.0f);
 
-				float2 CenterDir = (i.screen - 0.5f) * float2(2.2f,2.0f);
-				float Assom = 1.0f - pow(saturate(dot(CenterDir, CenterDir)-0.8f),1.0f);
+				float2 CenterDir = (i.screen - 0.5f) * float2(2.2f,2.1f);
+				
+				//float Assom = 1.0f - pow(saturate(dot(CenterDir, CenterDir)-0.8f),1.0f);
+				float Assom = 1.0f - saturate(CenterDir.x*CenterDir.x - 0.8f);
+				Assom *= 1.0f - saturate(CenterDir.y*CenterDir.y - 0.8f);
 
 				float3 retro = lerp(float3(0.16,0.25,0), float3(0.6,0.77,0), avgcol);
 				retro *= Assom;
-				//retro *= ed2;
 				col.rgb = lerp(retro,col.rgb, Blend);
-
-				clip(col.a - _Cutoff);
+				
+				//clip(col.a - _Cutoff);
 				UNITY_APPLY_FOG(i.fogCoord, col);
 
 				//col.xyz = col2.xyz;
