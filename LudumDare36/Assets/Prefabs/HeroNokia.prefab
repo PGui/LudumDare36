@@ -24,6 +24,7 @@ GameObject:
   - 58: {fileID: 58000011299395722}
   - 114: {fileID: 114000010156171918}
   - 114: {fileID: 114000012530240180}
+  - 95: {fileID: 95000013487898482}
   m_Layer: 9
   m_Name: HeroNokia
   m_TagString: Player
@@ -53,11 +54,28 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.9
+--- !u!95 &95000013487898482
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011229231350}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6f3de644007410442a15200f01d2b2a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000010156171918
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,6 +137,10 @@ MonoBehaviour:
   InvicibilityFrame: 0
   InvicibilityFrameDuration: 0.5
   Score: 0
+  UIScore: {fileID: 0}
+  UILife: {fileID: 0}
+  KillEnnemyCount: 0
+  UI: {fileID: 0}
 --- !u!212 &212000010330283484
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -148,7 +170,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 769d3ba965277c145a0c38b14348625c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 39413e87cf5b04d4f9a22766c3ef59b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

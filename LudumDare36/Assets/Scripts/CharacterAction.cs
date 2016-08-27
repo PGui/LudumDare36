@@ -15,6 +15,8 @@ public class CharacterAction : MonoBehaviour {
 
     private Animator PlayerAnimator;
 
+    private PlayerState CurrentPlayerState;
+
     // Use this for initialization
     void Start () {
         
@@ -27,10 +29,15 @@ public class CharacterAction : MonoBehaviour {
 
         CharacMvt = GetComponent<CharacterMovement>();
         PlayerAnimator = GetComponent<Animator>();
+
+        CurrentPlayerState = FindObjectOfType<PlayerState>().GetComponent<PlayerState>();
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (CurrentPlayerState.CurrentState == PlayerState.EPlayerState.DEAD)
+            return;
 
         if(Input.GetButton("Fire1"))
         {
