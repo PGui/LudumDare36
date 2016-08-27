@@ -117,9 +117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbc943348726dc41b9a555a7018a50e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackA: {fileID: 8300000, guid: e04a4ffb9bb70bf42a56100a7ea0744a, type: 3}
-  trackAB: {fileID: 8300000, guid: 465483b2aa2d8d44ead9b678ecd0ec45, type: 3}
-  trackB: {fileID: 8300000, guid: 7b5ec79880211964a8018b2934ea4ffa, type: 3}
+  ambientWind: {fileID: 8300000, guid: 264f66cf232bb624ea63e22606acbb02, type: 3}
+  sfx3310: {fileID: 8300000, guid: dc6680832e166d54e8a105bfb133b852, type: 3}
+  trackAwaken: {fileID: 0}
+  trackFightA: {fileID: 8300000, guid: f62f66a6aa3dba740a7f74bdcb4f9da1, type: 3}
+  trackBossA: {fileID: 8300000, guid: dd4ecf3cccb62794e9d1590fb1dc4fb6, type: 3}
 --- !u!4 &315727616
 Transform:
   m_ObjectHideFlags: 0

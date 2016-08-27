@@ -17,9 +17,9 @@ public class PlayerState : MonoBehaviour {
 
     public int Score = 0;
     public GameObject UIScore;
-
+    public GameObject UILife;
     private Text ScoreText;
-
+    private Text LifeText;
     public int KillEnnemyCount = 0;
 
     public EPlayerState CurrentState { get; set; }
@@ -28,11 +28,13 @@ public class PlayerState : MonoBehaviour {
     private Animator AnimatorUI;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         CurrentState = EPlayerState.ALIVE;
         ScoreText = UIScore.GetComponent<Text>();
         ScoreText.text = Score.ToString();
-
+        LifeText = UILife.GetComponent<Text>();
+        LifeText.text = InitialLife.ToString();
         AnimatorUI = UI.GetComponent<Animator>();
     }
 	
@@ -49,11 +51,24 @@ public class PlayerState : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "ennemyprojectile" && CurrentState == EPlayerState.ALIVE)
+
+        if ((other.tag == "Ennemy" || other.tag == "ennemyprojectile") && CurrentState == EPlayerState.ALIVE)
         {
-            CurrentState = EPlayerState.INVINCIBLE;
-            //RemoveLife
-            StartCoroutine(CooldownInvincible());
+
+            InitialLife -= 10.0f;
+            InitialLife = InitialLife < 0 ? 0 : InitialLife;
+            LifeText.text = InitialLife.ToString();
+
+            CurrentState = InitialLife == 0 ? EPlayerState.DEAD : EPlayerState.INVINCIBLE;
+            if(CurrentState == EPlayerState.INVINCIBLE)
+            {
+                //RemoveLife
+                StartCoroutine(CooldownInvincible());
+            }
+
+            other.gameObject.GetComponent<EnnemyBehavior>().DestroyEnnemy(null);
+
+
         }
     }
 

@@ -54,15 +54,22 @@ public class EnnemyBehavior : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Projectile")
         {
-            if(DestructionParticles)
-            {
-                GameObject.Instantiate(DestructionParticles, this.transform.position, Quaternion.identity);
-                
-            }
-            FindObjectOfType<PlayerState>().SendMessage("AddScore", ScoreToGive);
-            GameObject.Destroy(this.gameObject);
-            GameObject.Destroy(coll.gameObject);
+            DestroyEnnemy(coll.gameObject, true);
         }
+    }
+
+    public void DestroyEnnemy(GameObject other, bool AddScore = false)
+    {
+        if (DestructionParticles)
+        {
+            GameObject.Instantiate(DestructionParticles, this.transform.position, Quaternion.identity);
+
+        }
+        if(AddScore)
+            FindObjectOfType<PlayerState>().SendMessage("AddScore", ScoreToGive);
+        GameObject.Destroy(this.gameObject);
+        if(other)
+            GameObject.Destroy(other);
     }
 
 }

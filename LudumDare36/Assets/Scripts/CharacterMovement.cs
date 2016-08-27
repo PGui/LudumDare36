@@ -17,17 +17,25 @@ public class CharacterMovement : MonoBehaviour {
     private Animator PlayerAnimator;
 
     private Vector3 PreviousPosition;
+
+    private PlayerState PlayerState;
     // Use this for initialization
     void Start () {
         IsShooting = false;
         PlayerAnimator = GetComponent<Animator>();
 
         PreviousPosition = this.transform.position;
+
+        PlayerState = FindObjectOfType<PlayerState>().GetComponent<PlayerState>();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+
+        if (PlayerState.CurrentState == PlayerState.EPlayerState.DEAD)
+            return;
+
         var bottomLeft = Camera.main.ScreenToWorldPoint(Vector3.zero);
         var topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight));
 
