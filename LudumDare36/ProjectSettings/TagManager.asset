@@ -7,6 +7,8 @@ TagManager:
   - Player
   - Projectile
   - Ennemy
+  - Snake
+  - Egg
   layers:
   - Default
   - TransparentFX
