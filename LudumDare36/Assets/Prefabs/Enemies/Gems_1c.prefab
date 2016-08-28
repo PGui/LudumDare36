@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentPattern: 0
-  MoveSpeed: 8
+  MoveSpeed: 5
   Frequency: 1
   Magnitude: 10
   DestructionParticles: {fileID: 1000012944991680, guid: e9bf3b9079366704aacd311ae1e40863,

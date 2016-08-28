@@ -7,6 +7,11 @@ public enum EEnemyType
 	JewelA,
 	JewelB,
 	JewelC,
+	JewelD,
+	BonbonA,
+	BonbonB,
+	BonbonC,
+	BonbonD,
 }
 
 public enum EPattern
@@ -44,6 +49,11 @@ public class SpawnerMgr : MonoBehaviour {
     public GameObject JewelA;
     public GameObject JewelB;
     public GameObject JewelC;
+    public GameObject JewelD;
+    public GameObject BonbonA;
+    public GameObject BonbonB;
+    public GameObject BonbonC;
+    public GameObject BonbonD;
     public GameObject Egg;
     public GameObject FXEggSpawn;
 
@@ -83,6 +93,11 @@ public class SpawnerMgr : MonoBehaviour {
 				case EEnemyType.JewelA: GoToSpawn = JewelA; break;
 				case EEnemyType.JewelB: GoToSpawn = JewelB; break;
 				case EEnemyType.JewelC: GoToSpawn = JewelC; break;
+				case EEnemyType.JewelD: GoToSpawn = JewelD; break;
+				case EEnemyType.BonbonA: GoToSpawn = BonbonA; break;
+				case EEnemyType.BonbonB: GoToSpawn = BonbonB; break;
+				case EEnemyType.BonbonC: GoToSpawn = BonbonC; break;
+				case EEnemyType.BonbonD: GoToSpawn = BonbonD; break;
 			}
 
             GameObject NewEnnemy = GameObject.Instantiate(GoToSpawn, SpawnPosition, Quaternion.identity) as GameObject;
