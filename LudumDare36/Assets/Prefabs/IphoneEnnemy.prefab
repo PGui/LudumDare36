@@ -22,8 +22,8 @@ GameObject:
   - 212: {fileID: 212000013518334778}
   - 114: {fileID: 114000010703792154}
   - 114: {fileID: 114000013315381436}
-  - 58: {fileID: 58000011608332602}
   - 50: {fileID: 50000012436326082}
+  - 61: {fileID: 61000010418608674}
   m_Layer: 0
   m_Name: IphoneEnnemy
   m_TagString: Ennemy
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011892488962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.16, y: 0.4, z: 0}
+  m_LocalPosition: {x: 258.61594, y: -60.292755, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -61,8 +61,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &58000011608332602
-CircleCollider2D:
+--- !u!61 &61000010418608674
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -74,7 +74,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.85
+  m_Size: {x: 1.5, y: 3}
 --- !u!114 &114000010703792154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,7 +89,7 @@ MonoBehaviour:
   CurrentPattern: 0
   Frequency: 1
   Magnitude: 10
-  DestructionParticles: {fileID: 1000012944991680, guid: 49b5a4fd6882a1242881e7c61ecba27e,
+  DestructionParticles: {fileID: 1000012944991680, guid: e9bf3b9079366704aacd311ae1e40863,
     type: 2}
 --- !u!114 &114000013315381436
 MonoBehaviour:

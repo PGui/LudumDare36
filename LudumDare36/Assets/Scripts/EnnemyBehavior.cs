@@ -5,7 +5,7 @@ public class EnnemyBehavior : MonoBehaviour {
 
 
     public int ScoreToGive {get; set;}
-    private SpawnerMgr SpawnerMgr;
+    //private SpawnerMgr SpawnerMgr;
     private float Elapsed = 0.0f;
     public EPattern CurrentPattern;
 
@@ -21,8 +21,9 @@ public class EnnemyBehavior : MonoBehaviour {
     private Vector3 RandomPointOnScreen;
 
     // Use this for initialization
-    void Start () {
-        SpawnerMgr = Object.FindObjectOfType<SpawnerMgr>().GetComponent< SpawnerMgr>();
+    void Start ()
+	{
+        //SpawnerMgr = Object.FindObjectOfType<SpawnerMgr>().GetComponent< SpawnerMgr>();
         InitPosition = this.transform.position;
 
         AxisRight = transform.up;
@@ -80,8 +81,10 @@ public class EnnemyBehavior : MonoBehaviour {
         if (DestructionParticles)
         {
             GameObject.Instantiate(DestructionParticles, this.transform.position, Quaternion.identity);
-
+			
+			GameAudio.instance.PlaySFx(ESFx.Explode);
         }
+
         if(AddScore)
             FindObjectOfType<PlayerState>().SendMessage("AddScore", ScoreToGive);
         GameObject.Destroy(this.gameObject);

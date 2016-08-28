@@ -14,7 +14,7 @@ public class SnakeMovement : MonoBehaviour {
 
     public bool SpawnBodyPart { get; set; }
 
-    private bool ShieldBonusOn = false;
+    //private bool ShieldBonusOn = false;
 
     public float DurationSpeedBonus = 8.0f;
 

@@ -762,6 +762,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010506555510, guid: 1ec4f9bcef8b04c4e9f1ec1ddedc4676,
+        type: 2}
+      propertyPath: ShootingDiviser
+      value: 1.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ec4f9bcef8b04c4e9f1ec1ddedc4676, type: 2}
   m_IsPrefabParent: 0
@@ -1813,8 +1818,11 @@ MonoBehaviour:
   DurationBetweenTwoSpawn: 40
   CameraComponent: {fileID: 0}
   DebugSpawnEnnemy: 0
+  TimeBetweenTwoEggs: 10
   SpawnableEnnemies:
   - {fileID: 1000011892488962, guid: 8159bcc7c12d20e4e80a706d18f4671c, type: 2}
+  Egg: {fileID: 0}
+  FXEggSpawn: {fileID: 0}
 --- !u!114 &1838031206
 MonoBehaviour:
   m_ObjectHideFlags: 0

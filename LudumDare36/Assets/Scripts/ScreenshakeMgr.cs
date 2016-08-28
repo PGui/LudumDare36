@@ -48,4 +48,20 @@ public class ScreenshakeMgr : MonoBehaviour {
         }
         this.transform.position = originalCamPos;
     }
+
+
+    private static ScreenshakeMgr s_instance = null;
+    public static ScreenshakeMgr instance
+    {
+        get
+        {
+            //Get instance in current scene
+            if (s_instance == null)
+            {
+                s_instance = FindObjectOfType(typeof(ScreenshakeMgr)) as ScreenshakeMgr;
+            }
+
+            return s_instance;
+        }
+    }
 }
