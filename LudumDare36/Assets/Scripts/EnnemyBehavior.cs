@@ -10,7 +10,7 @@ public class EnnemyBehavior : MonoBehaviour {
     public EPattern CurrentPattern;
 
     private Vector3 InitPosition;
-    private float MoveSpeed = 5.0f;
+    public float MoveSpeed = 5.0f;
     public float Frequency = 20.0f;  // Speed of sine movement
     public float Magnitude = 0.5f;   // Size of sine movement
 
@@ -44,6 +44,12 @@ public class EnnemyBehavior : MonoBehaviour {
             case EPattern.SIN_RIGHT_TO_LEFT_REVERSED:
                 DoSinRightToLeft(true);
                 break;
+            case EPattern.COS_RIGHT_TO_LEFT:
+                DoCosRightToLeft(false);
+                break;
+            case EPattern.COS_RIGHT_TO_LEFT_REVERSED:
+                DoCosRightToLeft(true);
+                break;
             case EPattern.RANDOMPOINT:
                 RandomPoint();
                 break;
@@ -51,14 +57,20 @@ public class EnnemyBehavior : MonoBehaviour {
                 DoSinRightToLeft(false);
                 break;
         }
-
-
     }
 
     void DoSinRightToLeft(bool reverseY)
     {
         InitPosition += -transform.right * Time.deltaTime * MoveSpeed;
 		float y = Mathf.Sin(Elapsed * Frequency);
+		if (reverseY) y = -y;
+        transform.position = InitPosition + AxisRight * y * Magnitude;
+    }
+
+    void DoCosRightToLeft(bool reverseY)
+    {
+        InitPosition += -transform.right * Time.deltaTime * MoveSpeed;
+		float y = Mathf.Cos(Elapsed * Frequency);
 		if (reverseY) y = -y;
         transform.position = InitPosition + AxisRight * y * Magnitude;
     }

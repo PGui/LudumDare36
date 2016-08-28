@@ -1100,7 +1100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugRoutine: 0
-  skipTutorial: 0
+  skipTutorial: 1
   startArea: {fileID: 1823311497}
   textTitle: {fileID: 179923708}
   textInput: {fileID: 428604877}
@@ -1821,8 +1821,11 @@ MonoBehaviour:
   TimeBetweenTwoEggs: 10
   SpawnableEnnemies:
   - {fileID: 1000011892488962, guid: 8159bcc7c12d20e4e80a706d18f4671c, type: 2}
-  Egg: {fileID: 0}
-  FXEggSpawn: {fileID: 0}
+  JewelA: {fileID: 1000013009657162, guid: ef5da5eb3dca96842968e8152ad10012, type: 2}
+  JewelB: {fileID: 1000013009657162, guid: 1924c45473d9f3f4582e34d6ed2326a5, type: 2}
+  JewelC: {fileID: 1000011892488962, guid: 8159bcc7c12d20e4e80a706d18f4671c, type: 2}
+  Egg: {fileID: 1000013635487484, guid: 6e3b180b227c6d44eaa1beff6c5e9b08, type: 2}
+  FXEggSpawn: {fileID: 1000012953100052, guid: ad8bbe408f8eff143853469e385a94df, type: 2}
 --- !u!114 &1838031206
 MonoBehaviour:
   m_ObjectHideFlags: 0

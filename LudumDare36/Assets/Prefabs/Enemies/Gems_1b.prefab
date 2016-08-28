@@ -42,7 +42,7 @@ GameObject:
   - 212: {fileID: 212000014011763406}
   - 114: {fileID: 114000011783115788}
   m_Layer: 0
-  m_Name: Gems_1
+  m_Name: Gems_1b
   m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,10 +148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BaseColors:
-  - {r: 0.18039216, g: 1, b: 0.8666667, a: 1}
-  - {r: 0.019607844, g: 1, b: 0.09019608, a: 1}
-  - {r: 1, g: 0.954, b: 0, a: 1}
-  - {r: 1, g: 0.5034602, b: 0.17647058, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.9903972, g: 0.347, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.591, g: 0.591, b: 0.591, a: 1}
   BaseSprites:
   - {fileID: 21300000, guid: ee3c4ab33b6260248858dcd4ebd2cedf, type: 3}
   - {fileID: 21300002, guid: ee3c4ab33b6260248858dcd4ebd2cedf, type: 3}
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentPattern: 0
-  MoveSpeed: 5
+  MoveSpeed: 8
   Frequency: 1
   Magnitude: 10
   DestructionParticles: {fileID: 1000012944991680, guid: e9bf3b9079366704aacd311ae1e40863,

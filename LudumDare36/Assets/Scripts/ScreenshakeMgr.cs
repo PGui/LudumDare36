@@ -3,9 +3,9 @@ using System.Collections;
 
 public class ScreenshakeMgr : MonoBehaviour {
 
-    private float Speed = 5.0f;
+    //private float Speed = 5.0f;
     private Vector3 originalCamPos;
-    private bool Shaking = false;
+    //private bool Shaking = false;
 
     // Use this for initialization
     void Start () {

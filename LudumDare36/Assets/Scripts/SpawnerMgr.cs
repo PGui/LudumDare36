@@ -2,10 +2,19 @@
 using System.Collections;
 
 
+public enum EEnemyType
+{
+	JewelA,
+	JewelB,
+	JewelC,
+}
+
 public enum EPattern
 {
     SIN_RIGHT_TO_LEFT,
 	SIN_RIGHT_TO_LEFT_REVERSED,
+    COS_RIGHT_TO_LEFT,
+	COS_RIGHT_TO_LEFT_REVERSED,
     RANDOMPOINT,
     COUNT,
 }
@@ -32,6 +41,9 @@ public class SpawnerMgr : MonoBehaviour {
     public float TimeBetweenTwoEggs = 10.0f;
 
     public GameObject[] SpawnableEnnemies;
+    public GameObject JewelA;
+    public GameObject JewelB;
+    public GameObject JewelC;
     public GameObject Egg;
     public GameObject FXEggSpawn;
 
@@ -58,12 +70,21 @@ public class SpawnerMgr : MonoBehaviour {
         //CanSpawn = true;
     }
 
-    IEnumerator SpawnEnnemies(float TimeBetweenTwoEnnemies , int EnnemyAmout, EPattern Pattern, Vector3 SpawnPosition)
+    IEnumerator SpawnEnnemies(EEnemyType type, float TimeBetweenTwoEnnemies , int EnnemyAmout, EPattern Pattern, Vector3 SpawnPosition)
     {
         int EnnemiesSpawned = 0;
         while(EnnemiesSpawned != EnnemyAmout)
         {
-            GameObject GoToSpawn = SpawnableEnnemies[Random.Range(0, SpawnableEnnemies.Length - 1)];
+            //GameObject GoToSpawn = SpawnableEnnemies[Random.Range(0, SpawnableEnnemies.Length - 1)];
+			GameObject GoToSpawn;
+			switch (type)
+			{
+				default:
+				case EEnemyType.JewelA: GoToSpawn = JewelA; break;
+				case EEnemyType.JewelB: GoToSpawn = JewelB; break;
+				case EEnemyType.JewelC: GoToSpawn = JewelC; break;
+			}
+
             GameObject NewEnnemy = GameObject.Instantiate(GoToSpawn, SpawnPosition, Quaternion.identity) as GameObject;
             NewEnnemy.GetComponent<EnnemyBehavior>().CurrentPattern = Pattern;
             ++EnnemiesSpawned;
@@ -72,7 +93,7 @@ public class SpawnerMgr : MonoBehaviour {
 
     }
 
-    public void SpawnWave(int EnnemyAmout, float SpawnDuration, EPattern Pattern, ESpawnLocation location)
+    public void SpawnWave(EEnemyType type, int EnnemyAmout, float SpawnDuration, EPattern Pattern, ESpawnLocation location)
     {
         int EnnemiesPerSecond = EnnemyAmout / (int)SpawnDuration;
         float TimeBetweenTwoEnnemies = 1.0f / (float)EnnemiesPerSecond;
@@ -95,18 +116,19 @@ public class SpawnerMgr : MonoBehaviour {
                 break;
 		}
 
-        switch (Pattern)
+        StartCoroutine(SpawnEnnemies(type, TimeBetweenTwoEnnemies, EnnemyAmout, Pattern, StartPosition));
+
+        /*switch (Pattern)
         {
             case EPattern.SIN_RIGHT_TO_LEFT:
 			case EPattern.SIN_RIGHT_TO_LEFT_REVERSED:
-                StartCoroutine(SpawnEnnemies(TimeBetweenTwoEnnemies, EnnemyAmout, Pattern, StartPosition));
                 break;
             case EPattern.RANDOMPOINT:
                 StartCoroutine(SpawnEnnemies(TimeBetweenTwoEnnemies, EnnemyAmout, Pattern, StartPosition));
                 break;
             default:
                 break;
-        }
+        }*/
     }
 
     IEnumerator SpawnEggsCouroutine(float TimeBetweenTwoEggs, int EggsAmout)
