@@ -90,48 +90,6 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &43438567
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4000014195642940, guid: 6e3b180b227c6d44eaa1beff6c5e9b08, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -19.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000014195642940, guid: 6e3b180b227c6d44eaa1beff6c5e9b08, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 8.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000014195642940, guid: 6e3b180b227c6d44eaa1beff6c5e9b08, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000014195642940, guid: 6e3b180b227c6d44eaa1beff6c5e9b08, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000014195642940, guid: 6e3b180b227c6d44eaa1beff6c5e9b08, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000014195642940, guid: 6e3b180b227c6d44eaa1beff6c5e9b08, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000014195642940, guid: 6e3b180b227c6d44eaa1beff6c5e9b08, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000014195642940, guid: 6e3b180b227c6d44eaa1beff6c5e9b08, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6e3b180b227c6d44eaa1beff6c5e9b08, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &63451029
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +228,7 @@ Transform:
   - {fileID: 644368863}
   - {fileID: 1814045835}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1001 &644368861
 Prefab:
   m_ObjectHideFlags: 0
@@ -391,11 +349,6 @@ Prefab:
         type: 2}
       propertyPath: AllowShoot
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010156171918, guid: 1ec4f9bcef8b04c4e9f1ec1ddedc4676,
-        type: 2}
-      propertyPath: ArmsNotShooting
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ec4f9bcef8b04c4e9f1ec1ddedc4676, type: 2}
@@ -685,7 +638,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013033370674, guid: 1d4baf16db9a76a4fbd720e11803ed22, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d4baf16db9a76a4fbd720e11803ed22, type: 2}
@@ -850,7 +803,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011522068794, guid: 8ca078ea7ce448842b93b472e1b718e9, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1000012120283614, guid: 8ca078ea7ce448842b93b472e1b718e9, type: 2}
       propertyPath: m_IsActive
@@ -1057,7 +1010,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010963916824, guid: d8568307ca4a72346b09858b45127af0, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 212000014163704714, guid: d8568307ca4a72346b09858b45127af0,
         type: 2}
@@ -1078,6 +1031,46 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012144684350, guid: d8568307ca4a72346b09858b45127af0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -9.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012144684350, guid: d8568307ca4a72346b09858b45127af0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -12.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011545188808, guid: d8568307ca4a72346b09858b45127af0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -8.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011545188808, guid: d8568307ca4a72346b09858b45127af0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010963916824, guid: d8568307ca4a72346b09858b45127af0, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010963916824, guid: d8568307ca4a72346b09858b45127af0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010963916824, guid: d8568307ca4a72346b09858b45127af0, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011852467608, guid: d8568307ca4a72346b09858b45127af0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011852467608, guid: d8568307ca4a72346b09858b45127af0, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011545188808, guid: d8568307ca4a72346b09858b45127af0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8568307ca4a72346b09858b45127af0, type: 2}
@@ -1353,5 +1346,8 @@ MonoBehaviour:
   DurationBetweenTwoSpawn: 40
   CameraComponent: {fileID: 0}
   DebugSpawnEnnemy: 1
+  TimeBetweenTwoEggs: 10
   SpawnableEnnemies:
   - {fileID: 1000011892488962, guid: 8159bcc7c12d20e4e80a706d18f4671c, type: 2}
+  Egg: {fileID: 1000013635487484, guid: 6e3b180b227c6d44eaa1beff6c5e9b08, type: 2}
+  FXEggSpawn: {fileID: 1000012953100052, guid: ad8bbe408f8eff143853469e385a94df, type: 2}
