@@ -392,6 +392,11 @@ Prefab:
       propertyPath: AllowShoot
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010156171918, guid: 1ec4f9bcef8b04c4e9f1ec1ddedc4676,
+        type: 2}
+      propertyPath: ArmsNotShooting
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ec4f9bcef8b04c4e9f1ec1ddedc4676, type: 2}
   m_IsPrefabParent: 0
