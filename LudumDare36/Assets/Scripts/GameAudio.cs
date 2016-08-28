@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 
+public enum ESFx
+{
+	Ring3310,
+}
+
 public enum EAudioLayer
 {
 	Wind,
@@ -364,6 +369,19 @@ public class GameAudio : MonoBehaviour
 		{
 			layer.command = (fade) ? EAudioLayerState.FadeOut : EAudioLayerState.Idle;
 		}
+	}
+
+	public void PlaySFx(ESFx sfx)
+	{
+		if (sfx == ESFx.Ring3310)
+			PlaySFx(sfx3310);
+	}
+
+	public AudioSource PlaySFxLoop(ESFx sfx)
+	{
+		if (sfx == ESFx.Ring3310)
+			return PlaySFxLoop(sfx3310);
+		return null;
 	}
 
 	public void PlaySFx(AudioClip _pClip)
