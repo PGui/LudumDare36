@@ -17,6 +17,9 @@ public class CharacterAction : MonoBehaviour {
 
     private PlayerState CurrentPlayerState;
 
+    public GameObject ArmsFront;
+    public GameObject ArmsBack;
+
     // Use this for initialization
     void Start () {
         
@@ -42,6 +45,8 @@ public class CharacterAction : MonoBehaviour {
         if(Input.GetButton("Fire1"))
         {
             CharacMvt.IsShooting = true;
+            ArmsFront.SetActive(true);
+            ArmsBack.SetActive(true);
             if (CanShoot)
             {
                 StartCoroutine("Cooldown");
@@ -56,6 +61,8 @@ public class CharacterAction : MonoBehaviour {
         if (Input.GetButtonUp("Fire1"))
         {
             CharacMvt.IsShooting = false;
+            ArmsFront.SetActive(false);
+            ArmsBack.SetActive(false);
         }
 
         PlayerAnimator.SetBool("Shooting", CharacMvt.IsShooting);
