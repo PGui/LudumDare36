@@ -119,7 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ambientWind: {fileID: 8300000, guid: 264f66cf232bb624ea63e22606acbb02, type: 3}
   sfx3310: {fileID: 8300000, guid: dc6680832e166d54e8a105bfb133b852, type: 3}
-  trackAwaken: {fileID: 0}
+  trackAwakenA: {fileID: 8300000, guid: 1253919f7af0ca244b239825f978af73, type: 3}
+  trackAwakenB: {fileID: 8300000, guid: b87f13ffdb117b841adbe39bfc9eafb5, type: 3}
   trackFightA: {fileID: 8300000, guid: f62f66a6aa3dba740a7f74bdcb4f9da1, type: 3}
   trackBossA: {fileID: 8300000, guid: dd4ecf3cccb62794e9d1590fb1dc4fb6, type: 3}
 --- !u!4 &315727616
