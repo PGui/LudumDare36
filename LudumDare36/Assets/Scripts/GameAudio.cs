@@ -6,7 +6,8 @@ using System.Collections.Generic;
 public enum EAudioLayer
 {
 	Wind,
-	Awaken,
+	AwakenA,
+	AwakenB,
 	FightA,
 	BossA,
 }
@@ -41,7 +42,8 @@ public class GameAudio : MonoBehaviour
 	
 	public AudioClip sfx3310;
 
-	public AudioClip trackAwaken;
+	public AudioClip trackAwakenA;
+	public AudioClip trackAwakenB;
 	public AudioClip trackFightA;
 	public AudioClip trackBossA;
 
@@ -143,6 +145,34 @@ public class GameAudio : MonoBehaviour
 		{
 			StopLayerOnBeatSync(EAudioLayer.BossA, true);
 		}
+		
+		x  = 0;
+		y += h+5;
+        if (GUI.Button(new Rect(x, y, w, h), "Play Awaken A"))
+		{
+			PlayLayerOnBeatSync(EAudioLayer.AwakenA, false);
+		}
+		
+		x += w+5;
+		y += 0;
+        if (GUI.Button(new Rect(x, y, w, h), "Stop Awaken A"))
+		{
+			StopLayerOnBeatSync(EAudioLayer.AwakenA, false);
+		}
+		
+		x  = 0;
+		y += h+5;
+        if (GUI.Button(new Rect(x, y, w, h), "Play Awaken B"))
+		{
+			PlayLayerOnBeatSync(EAudioLayer.AwakenB, true);
+		}
+		
+		x += w+5;
+		y += 0;
+        if (GUI.Button(new Rect(x, y, w, h), "Stop Awaken B"))
+		{
+			StopLayerOnBeatSync(EAudioLayer.AwakenB, false);
+		}
     }
 	
 	//--------------------------------------------------------------
@@ -150,6 +180,8 @@ public class GameAudio : MonoBehaviour
 	void Awake ()
 	{
 		layers.Add(new AudioLayer() { layer = EAudioLayer.Wind, clip = ambientWind } );
+		layers.Add(new AudioLayer() { layer = EAudioLayer.AwakenA, clip = trackAwakenA } );
+		layers.Add(new AudioLayer() { layer = EAudioLayer.AwakenB, clip = trackAwakenB } );
 		layers.Add(new AudioLayer() { layer = EAudioLayer.FightA, clip = trackFightA } );
 		layers.Add(new AudioLayer() { layer = EAudioLayer.BossA, clip = trackBossA } );
 
