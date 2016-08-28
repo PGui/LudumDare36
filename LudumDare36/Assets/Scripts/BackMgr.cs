@@ -121,4 +121,24 @@ public class BackMgr : MonoBehaviour {
 	void Update () {
         UpdateBack();
     }
+
+    //--------------------------------------------------------------
+
+    //Singleton variable
+    private static BackMgr s_instance = null;
+
+    //GameManager singleton declaration
+    public static BackMgr instance
+    {
+        get
+        {
+            //Get instance in current scene
+            if (s_instance == null)
+            {
+                s_instance = FindObjectOfType(typeof(BackMgr)) as BackMgr;
+            }
+
+            return s_instance;
+        }
+    }
 }
