@@ -12,7 +12,7 @@ public class BackSpawner : MonoBehaviour {
     public float RandHeight = 10.0f;
     public float Scaler = 1.0f;
 
-    public bool Enable = true;
+    public bool Enable = false;
 
     private float NextSpawn;
 
