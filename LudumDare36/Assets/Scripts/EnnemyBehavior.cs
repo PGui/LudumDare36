@@ -80,8 +80,10 @@ public class EnnemyBehavior : MonoBehaviour {
         if (DestructionParticles)
         {
             GameObject.Instantiate(DestructionParticles, this.transform.position, Quaternion.identity);
-
+			
+			GameAudio.instance.PlaySFx(ESFx.Explode);
         }
+
         if(AddScore)
             FindObjectOfType<PlayerState>().SendMessage("AddScore", ScoreToGive);
         GameObject.Destroy(this.gameObject);

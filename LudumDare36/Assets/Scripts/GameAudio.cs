@@ -6,6 +6,8 @@ using System.Collections.Generic;
 public enum ESFx
 {
 	Ring3310,
+	Whoosh,
+	Explode,
 }
 
 public enum EAudioLayer
@@ -48,6 +50,8 @@ public class GameAudio : MonoBehaviour
 	public AudioClip ambientWind;
 	
 	public AudioClip sfx3310;
+	public AudioClip sfxWhoosh;
+	public AudioClip sfxExplode;
 
 	public AudioClip trackAwakenA;
 	public AudioClip trackAwakenB;
@@ -68,122 +72,6 @@ public class GameAudio : MonoBehaviour
 	private int indexSFxLoop = 0;
 
 	private List<AudioSource> listSfxConst;
-	
-	//--------------------------------------------------------------
-	
-	void OnGUI()
-	{
-		if (!debugAudio)
-			return;
-
-		int x = 0;
-		int y = 0;
-		int w = 150;
-		int h = 40;
-		
-        if (GUI.Button(new Rect(x, y, w, h), "Play Wind (fade)"))
-		{
-			PlayLayer(EAudioLayer.Wind, true);
-		}
-		
-		x += w+5;
-		y += 0;
-        if (GUI.Button(new Rect(x, y, w, h), "Stop Wind (fade)"))
-		{
-			StopLayer(EAudioLayer.Wind, true);
-		}
-
-		x  = 0;
-		y += h+5;
-        if (GUI.Button(new Rect(x, y, w, h), "3310"))
-		{
-			PlaySFx(sfx3310);
-		}
-		
-		x  = 0;
-		y += h+5;
-        if (GUI.Button(new Rect(x, y, w, h), "Play Fight (no fade)"))
-		{
-			PlayLayerOnBeatSync(EAudioLayer.FightA, false);
-		}
-		
-		x += w+5;
-		y += 0;
-        if (GUI.Button(new Rect(x, y, w, h), "Stop Fight (no fade)"))
-		{
-			StopLayerOnBeatSync(EAudioLayer.FightA, false);
-		}
-		
-		x += w+5;
-		y += 0;
-        if (GUI.Button(new Rect(x, y, w, h), "Play Fight (fade)"))
-		{
-			PlayLayerOnBeatSync(EAudioLayer.FightA, true);
-		}
-		
-		x += w+5;
-		y += 0;
-        if (GUI.Button(new Rect(x, y, w, h), "Stop Fight (fade)"))
-		{
-			StopLayerOnBeatSync(EAudioLayer.FightA, true);
-		}
-
-		x  = 0;
-		y += h+5;
-        if (GUI.Button(new Rect(x, y, w, h), "Play Boss (no fade)"))
-		{
-			PlayLayerOnBeatSync(EAudioLayer.BossA, false);
-		}
-		
-		x += w+5;
-		y += 0;
-        if (GUI.Button(new Rect(x, y, w, h), "Stop Boss (no fade)"))
-		{
-			StopLayerOnBeatSync(EAudioLayer.BossA, false);
-		}
-		
-		x += w+5;
-		y += 0;
-        if (GUI.Button(new Rect(x, y, w, h), "Play Boss (fade)"))
-		{
-			PlayLayerOnBeatSync(EAudioLayer.BossA, true);
-		}
-		
-		x += w+5;
-		y += 0;
-        if (GUI.Button(new Rect(x, y, w, h), "Stop Boss (fade)"))
-		{
-			StopLayerOnBeatSync(EAudioLayer.BossA, true);
-		}
-		
-		x  = 0;
-		y += h+5;
-        if (GUI.Button(new Rect(x, y, w, h), "Play Awaken A"))
-		{
-			PlayLayerOnBeatSync(EAudioLayer.AwakenA, false);
-		}
-		
-		x += w+5;
-		y += 0;
-        if (GUI.Button(new Rect(x, y, w, h), "Stop Awaken A"))
-		{
-			StopLayerOnBeatSync(EAudioLayer.AwakenA, false);
-		}
-		
-		x  = 0;
-		y += h+5;
-        if (GUI.Button(new Rect(x, y, w, h), "Play Awaken B"))
-		{
-			PlayLayerOnBeatSync(EAudioLayer.AwakenB, true);
-		}
-		
-		x += w+5;
-		y += 0;
-        if (GUI.Button(new Rect(x, y, w, h), "Stop Awaken B"))
-		{
-			StopLayerOnBeatSync(EAudioLayer.AwakenB, false);
-		}
-    }
 	
 	//--------------------------------------------------------------
 	
@@ -374,17 +262,23 @@ public class GameAudio : MonoBehaviour
 	public void PlaySFx(ESFx sfx)
 	{
 		if (sfx == ESFx.Ring3310)
-			PlaySFx(sfx3310);
+			PlaySFx(sfx3310, 0.5f);
+		else if (sfx == ESFx.Whoosh)
+			PlaySFx(sfxWhoosh, 0.3f);
+		else if (sfx == ESFx.Explode)
+			PlaySFx(sfxExplode, 0.2f);
 	}
 
 	public AudioSource PlaySFxLoop(ESFx sfx)
 	{
 		if (sfx == ESFx.Ring3310)
 			return PlaySFxLoop(sfx3310);
+		else if (sfx == ESFx.Whoosh)
+			return PlaySFxLoop(sfxWhoosh);
 		return null;
 	}
 
-	public void PlaySFx(AudioClip _pClip)
+	public void PlaySFx(AudioClip _pClip, float volume)
 	{
 		if (_pClip)
 		{
@@ -395,6 +289,7 @@ public class GameAudio : MonoBehaviour
 
 			pSource.clip = _pClip;
 			pSource.loop = false;
+			pSource.volume = volume;
 			pSource.Play();
 		}
 	}
@@ -431,6 +326,115 @@ public class GameAudio : MonoBehaviour
 			pSource.Stop();
 		}
 	}
+	
+	//--------------------------------------------------------------
+	
+	void OnGUI()
+	{
+		if (!debugAudio)
+			return;
+
+		int x = 0;
+		int y = 0;
+		int w = 150;
+		int h = 40;
+		
+        if (GUI.Button(new Rect(x, y, w, h), "Play Wind (fade)"))
+		{
+			PlayLayer(EAudioLayer.Wind, true);
+		}
+		
+		x += w+5;
+		y += 0;
+        if (GUI.Button(new Rect(x, y, w, h), "Stop Wind (fade)"))
+		{
+			StopLayer(EAudioLayer.Wind, true);
+		}
+
+		x  = 0;
+		y += h+5;
+        if (GUI.Button(new Rect(x, y, w, h), "Play Fight (no fade)"))
+		{
+			PlayLayerOnBeatSync(EAudioLayer.FightA, false);
+		}
+		
+		x += w+5;
+		y += 0;
+        if (GUI.Button(new Rect(x, y, w, h), "Stop Fight (no fade)"))
+		{
+			StopLayerOnBeatSync(EAudioLayer.FightA, false);
+		}
+		
+		x += w+5;
+		y += 0;
+        if (GUI.Button(new Rect(x, y, w, h), "Play Fight (fade)"))
+		{
+			PlayLayerOnBeatSync(EAudioLayer.FightA, true);
+		}
+		
+		x += w+5;
+		y += 0;
+        if (GUI.Button(new Rect(x, y, w, h), "Stop Fight (fade)"))
+		{
+			StopLayerOnBeatSync(EAudioLayer.FightA, true);
+		}
+
+		x  = 0;
+		y += h+5;
+        if (GUI.Button(new Rect(x, y, w, h), "Play Boss (no fade)"))
+		{
+			PlayLayerOnBeatSync(EAudioLayer.BossA, false);
+		}
+		
+		x += w+5;
+		y += 0;
+        if (GUI.Button(new Rect(x, y, w, h), "Stop Boss (no fade)"))
+		{
+			StopLayerOnBeatSync(EAudioLayer.BossA, false);
+		}
+		
+		x += w+5;
+		y += 0;
+        if (GUI.Button(new Rect(x, y, w, h), "Play Boss (fade)"))
+		{
+			PlayLayerOnBeatSync(EAudioLayer.BossA, true);
+		}
+		
+		x += w+5;
+		y += 0;
+        if (GUI.Button(new Rect(x, y, w, h), "Stop Boss (fade)"))
+		{
+			StopLayerOnBeatSync(EAudioLayer.BossA, true);
+		}
+		
+		x  = 0;
+		y += h+5;
+        if (GUI.Button(new Rect(x, y, w, h), "Play Awaken A"))
+		{
+			PlayLayerOnBeatSync(EAudioLayer.AwakenA, false);
+		}
+		
+		x += w+5;
+		y += 0;
+        if (GUI.Button(new Rect(x, y, w, h), "Stop Awaken A"))
+		{
+			StopLayerOnBeatSync(EAudioLayer.AwakenA, false);
+		}
+		
+		x  = 0;
+		y += h+5;
+        if (GUI.Button(new Rect(x, y, w, h), "Play Awaken B"))
+		{
+			PlayLayerOnBeatSync(EAudioLayer.AwakenB, true);
+		}
+		
+		x += w+5;
+		y += 0;
+        if (GUI.Button(new Rect(x, y, w, h), "Stop Awaken B"))
+		{
+			StopLayerOnBeatSync(EAudioLayer.AwakenB, false);
+		}
+    }
 	
 	//--------------------------------------------------------------
 	

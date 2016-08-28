@@ -182,7 +182,10 @@ public class Scenario : MonoBehaviour
 		//////// Wave 1 ////////
 
 		//Fight wave
+
 		//SpawnerMgr.instance.SpawnWave(Random.Range(20,30), Random.Range(5.0f, 15.0f), (EPattern)Random.Range((int)EPattern.SIN_RIGHT_TO_LEFT, (int)EPattern.COUNT));
+		//SpawnerMgr.instance.SpawnEggs(2, 10.0f);
+
 		SpawnerMgr.instance.SpawnWave(30, 10.0f, EPattern.SIN_RIGHT_TO_LEFT);
 		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenA, true);
 		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenB, true);
@@ -193,9 +196,10 @@ public class Scenario : MonoBehaviour
 		yield return new WaitForSeconds(12.0f);
 		
 		BackMgr.instance.SetBack(EBackground.URBAN);
+		SpawnerMgr.instance.SpawnEggs(2, 10.0f);
 		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.SIN_RIGHT_TO_LEFT);
 		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED);
-		//SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.RANDOMPOINT);
+		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.RANDOMPOINT);
 		yield return new WaitForSeconds(3.0f);
 
 		//////// Boss 1 ////////

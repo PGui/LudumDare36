@@ -73,11 +73,11 @@ public class SpawnerMgr : MonoBehaviour {
         {
             case EPattern.SIN_RIGHT_TO_LEFT:
 			case EPattern.SIN_RIGHT_TO_LEFT_REVERSED:
-                StartPosition = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, 0.5f, 10));
+                StartPosition = Camera.main.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 10));
                 StartCoroutine(SpawnEnnemies(TimeBetweenTwoEnnemies, EnnemyAmout, Pattern, StartPosition));
                 break;
             case EPattern.RANDOMPOINT:
-                StartPosition = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, Random.Range(0.0f,1.0f), 10));
+                StartPosition = Camera.main.ViewportToWorldPoint(new Vector3(1.0f, Random.Range(0.0f,1.0f), 10));
                 StartCoroutine(SpawnEnnemies(TimeBetweenTwoEnnemies, EnnemyAmout, Pattern, StartPosition));
                 break;
             default:
