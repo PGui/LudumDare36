@@ -7,7 +7,7 @@ public class EnnemyBehavior : MonoBehaviour {
     public int ScoreToGive {get; set;}
     private SpawnerMgr SpawnerMgr;
     private float Elapsed = 0.0f;
-    public SpawnerMgr.EPattern CurrentPattern;
+    public EPattern CurrentPattern;
 
     private Vector3 InitPosition;
     private float MoveSpeed = 5.0f;
@@ -37,10 +37,10 @@ public class EnnemyBehavior : MonoBehaviour {
 
         switch(CurrentPattern)
         {
-            case SpawnerMgr.EPattern.SIN_RIGHT_TO_LEFT:
+            case EPattern.SIN_RIGHT_TO_LEFT:
                 DoSinRightToLeft();
                 break;
-            case SpawnerMgr.EPattern.RANDOMPOINT:
+            case EPattern.RANDOMPOINT:
                 RandomPoint();
                 break;
             default:
