@@ -19,6 +19,9 @@ public class CharacterMovement : MonoBehaviour {
     private Vector3 PreviousPosition;
 
     private PlayerState PlayerState;
+
+    public bool CanMove = false;
+
     // Use this for initialization
     void Start () {
         IsShooting = false;
@@ -33,7 +36,7 @@ public class CharacterMovement : MonoBehaviour {
 	void Update ()
     {
 
-        if (PlayerState.CurrentState == PlayerState.EPlayerState.DEAD)
+        if (PlayerState.CurrentState == PlayerState.EPlayerState.DEAD || !CanMove)
             return;
 
         var bottomLeft = Camera.main.ScreenToWorldPoint(Vector3.zero);
@@ -48,6 +51,12 @@ public class CharacterMovement : MonoBehaviour {
 
         float HorizontalAxis = Input.GetAxis("Horizontal");
         float VerticalAxis = Input.GetAxis("Vertical");
+
+        if(Mathf.Abs(HorizontalAxis) + Mathf.Abs(VerticalAxis) > 0 && PlayerState.instance.FirstMove)
+        {
+            PlayerState.instance.FirstMove = false;
+            Scenario.instance.PlayNextStep();
+        }
         
         if (HorizontalAxis > 0.1f && Input.GetAxisRaw("Horizontal") != 0)
         {
