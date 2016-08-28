@@ -94,12 +94,12 @@ public class PlayerState : MonoBehaviour {
         AnimatorUI.SetTrigger("AddScore");
 
         ++KillEnnemyCount;
-        if(KillEnnemyCount == 10)
+        if(KillEnnemyCount == 50)
         {
             KillEnnemyCount = 0;
             AnimatorUI.SetTrigger("BigScore");
-            Camera.main.GetComponent<ScreenshakeMgr>().StartShake(0.4f, 3.5f, 4.0f);
-            Camera.main.GetComponent<FreezeFrameMgr>().FreezeFrame(0.5f, 0.2f, 0.2f);
+            Camera.main.GetComponent<ScreenshakeMgr>().StartShake(0.4f, 4.5f, 4.0f);
+            Camera.main.GetComponent<FreezeFrameMgr>().FreezeFrame(0.2f, 0.3f, 0.3f);
         }
     }
 
