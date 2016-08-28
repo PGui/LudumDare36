@@ -14,6 +14,12 @@ public class SnakeMovement : MonoBehaviour {
 
     public bool SpawnBodyPart { get; set; }
 
+    private bool ShieldBonusOn = false;
+
+    public float DurationSpeedBonus = 8.0f;
+
+    public bool TargetChanged = false;
+
     // Use this for initialization
     void Start ()
     {
@@ -35,7 +41,7 @@ public class SnakeMovement : MonoBehaviour {
 	void Update () {
 	    if(CanMove)
         {
-            
+            TargetChanged = false;
             CanMove = false;
             StartCoroutine(Move());
             int offsetX = (int)((Target.x - Head.transform.position.x) / SizeSnakePart);
@@ -53,7 +59,7 @@ public class SnakeMovement : MonoBehaviour {
                 {
                     Target = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 10));
                 }
-                
+                TargetChanged = true;
                 return;
             }
 
@@ -72,7 +78,6 @@ public class SnakeMovement : MonoBehaviour {
             {
                 if((Random.Range(0, 2) == 1))
                 {
-                    //MoveHead
                     for(int i = BodyParts.Count - 1; i >= 1; --i)
                     {
                         BodyParts[i].transform.position = BodyParts[i - 1].transform.position;
@@ -111,6 +116,7 @@ public class SnakeMovement : MonoBehaviour {
                 Head.transform.position = new Vector3(Head.transform.position.x, Head.transform.position.y + Mathf.Sign(offsetY) * SizeSnakePart, Head.transform.position.z);
             }
         }
+
 	}
 
     List<Transform> GetSnakeParts()
@@ -154,4 +160,67 @@ public class SnakeMovement : MonoBehaviour {
 
         return bestTarget;
     }
+
+    public void SetBonus(EEggBonus Bonus)
+    {
+        switch(Bonus)
+        {
+            case EEggBonus.DASH:
+                break;
+            case EEggBonus.SHIELD:
+                StartCoroutine(ShieldBonus());
+                break;
+            case EEggBonus.SPEED:
+                StartCoroutine(SpeedBonus());
+                break;
+            default:
+                StartCoroutine(SpeedBonus());
+                break;
+        }
+    }
+
+    IEnumerator SpeedBonus()
+    {
+        TimeBetweenTwoMove /= 2.0f;
+        yield return new WaitForSeconds(DurationSpeedBonus);
+        TimeBetweenTwoMove *= 2.0f;
+    }
+
+    IEnumerator ShieldBonus()
+    {
+        //ShieldBonusOn = true;
+        //Vector3 CurrentHeadViewport = Camera.main.WorldToViewportPoint(Head.transform.position);
+        //Target = Camera.main.ViewportToWorldPoint(new Vector3(CurrentHeadViewport.x, 0.95f, 10));
+        //Debug.DrawLine(Target, Target + Target * 0.5f,Color.magenta, 5.0f);
+        //Debug.Log(Target + "," + Head.transform.position);
+
+
+        //while(!TargetChanged)
+        //{
+        //    yield return null;
+        //}
+
+        //CurrentHeadViewport = Camera.main.WorldToViewportPoint(Head.transform.position);
+        //Target = Camera.main.ViewportToWorldPoint(new Vector3(CurrentHeadViewport.x + 2.5f, 0.95f, 10));
+        //Debug.Log(Target + "," + Head.transform.position +"dhdilfdui");
+        //Debug.DrawLine(Target, Target + Target * 0.5f, Color.green, 5.0f);
+        //while (!TargetChanged)
+        //{
+        //    yield return null;
+        //}
+
+        //CurrentHeadViewport = Camera.main.WorldToViewportPoint(Head.transform.position);
+        //Target = Camera.main.ViewportToWorldPoint(new Vector3(CurrentHeadViewport.x, 0.1f, 10));
+        //Debug.Log(Target + "," + Head.transform.position + "qsddfdf");
+        //Debug.DrawLine(Target, Target + Target * 0.5f, Color.yellow, 5.0f);
+        //while (!TargetChanged)
+        //{
+        //    yield return null;
+        //}
+
+        yield return null;
+
+    }
 }
+
+

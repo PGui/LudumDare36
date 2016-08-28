@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 public class HandleEgg : MonoBehaviour {
+
+    public EEggBonus Bonus;
 
 	// Use this for initialization
 	void Start () {
@@ -17,8 +21,14 @@ public class HandleEgg : MonoBehaviour {
     {
         if (other.tag == "Egg")
         {
+            EEggBonus EggBonus = other.gameObject.GetComponent<EggBonus>().Bonus;
             gameObject.transform.parent.GetComponent<SnakeMovement>().SpawnBodyPart = true;
+            gameObject.transform.parent.GetComponent<SnakeMovement>().SetBonus(EggBonus);
             GameObject.Destroy(other.gameObject);
+        }
+        else if (other.tag == "Ennemy")
+        {
+            other.gameObject.GetComponent<EnnemyBehavior>().DestroyEnnemy(null);
         }
     }
 }

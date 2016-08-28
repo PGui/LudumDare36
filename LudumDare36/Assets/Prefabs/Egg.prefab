@@ -22,6 +22,7 @@ GameObject:
   - 212: {fileID: 212000011853301332}
   - 61: {fileID: 61000013371030584}
   - 50: {fileID: 50000013878544034}
+  - 114: {fileID: 114000011539407010}
   m_Layer: 0
   m_Name: Egg
   m_TagString: Egg
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013635487484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.23, y: -3.65, z: 0}
+  m_LocalPosition: {x: -0.9, y: 3.9, z: 0}
   m_LocalScale: {x: 8, y: 10, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -73,6 +74,18 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2}
+--- !u!114 &114000011539407010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013635487484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46aa5bf6fcd412044be64e91861cd68b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bonus: 1
 --- !u!212 &212000011853301332
 SpriteRenderer:
   m_ObjectHideFlags: 1

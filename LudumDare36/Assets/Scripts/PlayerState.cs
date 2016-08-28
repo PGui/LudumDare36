@@ -99,7 +99,7 @@ public class PlayerState : MonoBehaviour {
             KillEnnemyCount = 0;
             AnimatorUI.SetTrigger("BigScore");
             Camera.main.GetComponent<ScreenshakeMgr>().StartShake(0.4f, 4.5f, 4.0f);
-            Camera.main.GetComponent<FreezeFrameMgr>().FreezeFrame(0.2f, 0.3f, 0.3f);
+            //Camera.main.GetComponent<FreezeFrameMgr>().FreezeFrame(0.2f, 0.3f, 0.3f);
         }
     }
 
