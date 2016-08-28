@@ -59,7 +59,7 @@ SubShader {
 				
 				float4 nois = tex2D(_NoiseTex, i.screen.xy*float2(2.0f,1.0f) - float2(0.0f,_Time.x*1.0f));
 
-				float Blend = saturate((i.screen.x-0.6f + nois.x*0.4)*5.0f);
+				float Blend = saturate((i.screen.x-0.3f - 0.2f + nois.x*0.4)*5.0f);
 
 				float2 uv = i.texcoord;
 				float ppix = 96.0f;

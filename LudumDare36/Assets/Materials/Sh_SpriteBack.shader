@@ -50,7 +50,7 @@ SubShader {
 			fixed4 frag (v2f i) : SV_Target
 			{
 				
-				float Blend = saturate((i.screen.x-0.4f)*5.0f);
+				float Blend = saturate((i.screen.x-0.3f)*5.0f);
 
 				float2 uv = i.texcoord;
 				fixed4 col = tex2Dlod(_MainTex, float4(uv,0,0));

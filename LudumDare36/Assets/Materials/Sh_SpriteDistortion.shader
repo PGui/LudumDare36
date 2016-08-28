@@ -29,12 +29,14 @@ Properties{
 		struct appdata_t {
 			float4 vertex : POSITION;
 			float2 texcoord : TEXCOORD0;
+			fixed4 color : COLOR;
 		};
 
 		struct v2f {
 			float4 vertex : SV_POSITION;
 			half2 texcoord : TEXCOORD0;
 			float4 screen : TEXCOORD1;
+			float4 color : TEXCOORD02;
 		};
 
 		sampler2D _MainTex;
@@ -49,26 +51,34 @@ Properties{
 
 			o.vertex = UnityObjectToClipPos(v.vertex);
 			o.texcoord = v.texcoord;
-			//o.screen = ComputeScreenPos(o.vertex);
 			o.screen = 0.0f;
 			o.screen.xy = o.vertex.xy/ o.vertex.w *float2(0.5f,-0.5f)+0.5f;
+			o.color = v.color;
 			return o;
 		}
 
 		fixed4 frag(v2f i) : SV_Target
 		{
-			float4 nois = tex2D(_DistortTex, i.screen.xy*float2(2.0f,1.0f)*5.0f);
+			float4 nois = tex2D(_DistortTex, i.screen.xy*float2(2.0f,1.0f)*1.0f + _Time.x*30.0f);
 
-			float2 Dir = i.texcoord.xy;
+			float2 uv = i.texcoord.xy;
+
+			uv += nois.xy*0.3f;
+
+			float2 Dir = uv - 0.5f;
 			float Dist = sqrt(dot(Dir, Dir));
-			//Dir /= Dist;
 
-			float4 refrColor = tex2D(_GrabTexture, i.screen.xy + Dir*0.0f + nois.xy*0.03f);
+			float Fact = max(0.0f, sin(Dist*30.0f - _Time.x*300.0f) - 0.1)*0.5f;
+			Fact *= saturate(1.0f-Dist*2.5f) * i.color.a;
+
+			float4 refrColor = tex2D(_GrabTexture, i.screen.xy + Dir * Fact);
+
+			refrColor.rgb = lerp(refrColor.rgb, i.color.rgb, Fact);
 
 			//col.xyz = col.xyz;
 			//refrColor = 0;
 			//refrColor.xy = Dir.xy;
-
+			
 			return float4(refrColor.rgb,1.0f);
 		}
 			ENDCG
