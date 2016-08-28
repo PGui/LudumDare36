@@ -84,6 +84,8 @@ public class Scenario : MonoBehaviour
 		imageAvatar.CrossFadeAlpha(0.0f, 0.0f, false);
 		textAvatar.CrossFadeAlpha(0.0f, 0.0f, false);
 
+		textInput.color = new Color(245,245,245);
+
         PlayerState.instance.AllowPlayerMove(false);
         PlayerState.instance.AllowPlayerShoot(false);
         PlayerState.instance.InitialLife = 100.0f;
@@ -174,6 +176,7 @@ public class Scenario : MonoBehaviour
 			PlayerState.instance.FirstShoot = true;
 			textInput.text = "Press Spacebar to attack...";
 			textInput.CrossFadeAlpha(1.0f, 1.0f, false);
+			textInput.color = new Color(0,0,0);
 			yield return PauseRoutine();
 
 			//Awaken
