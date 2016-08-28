@@ -83,6 +83,7 @@ public class Scenario : MonoBehaviour
 		textInput.CrossFadeAlpha(0.0f, 0.0f, false);
 		imageAvatar.CrossFadeAlpha(0.0f, 0.0f, false);
 		textAvatar.CrossFadeAlpha(0.0f, 0.0f, false);
+		textInput.color = new Color(245,245,245);
 
         PlayerState.instance.AllowPlayerMove(false);
         PlayerState.instance.AllowPlayerShoot(false);
@@ -99,8 +100,8 @@ public class Scenario : MonoBehaviour
 		{
 			PlayerState.instance.AllowPlayerMove(true);
 			PlayerState.instance.AllowPlayerShoot(true);
-			iTween.MoveTo(startArea, iTween.Hash("position", new Vector3(-100,-100,0), "time", 8.0f));
-			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.AwakenA, true);
+			iTween.MoveTo(startArea, iTween.Hash("position", new Vector3(-100,-40,0), "time", 8.0f));
+            GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.AwakenA, true);
 			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.AwakenB, true);
 			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.Wind, true);
 		}
@@ -114,7 +115,20 @@ public class Scenario : MonoBehaviour
 			//Ring and hide title
 			textTitle.CrossFadeAlpha(0.0f, 2.5f, false);
 			AudioSource ringTone = GameAudio.instance.PlaySFxLoop(ESFx.Ring3310);
-			yield return new WaitForSeconds(4.0f);
+
+            GameObject LightPhone = GameObject.Find("LightPhone");
+            if(LightPhone)
+            {
+                SpriteRenderer Rend = LightPhone.GetComponent<SpriteRenderer>();
+                if(Rend)
+                {
+                    Color Tmp = Rend.color;
+                    Tmp.a = 1.0f;
+                    Rend.color = Tmp;
+                }
+            }
+
+            yield return new WaitForSeconds(4.0f);
 		
 			//Show input
 			waitSpacebar = true;
@@ -147,7 +161,7 @@ public class Scenario : MonoBehaviour
 
 			//Exit start area
 			textInput.CrossFadeAlpha(0.0f, 1.0f, false);
-			iTween.MoveTo(startArea, iTween.Hash("position", new Vector3(-100,-100,0), "time", 8.0f));
+			iTween.MoveTo(startArea, iTween.Hash("position", new Vector3(-100,-40,0), "time", 4.0f));
 			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.AwakenA, true);
 			yield return new WaitForSeconds(3.0f);
 		
@@ -156,6 +170,7 @@ public class Scenario : MonoBehaviour
 			PlayerState.instance.FirstShoot = true;
 			textInput.text = "Press Spacebar to attack...";
 			textInput.CrossFadeAlpha(1.0f, 1.0f, false);
+			textInput.color = new Color(0,0,0);
 			yield return PauseRoutine();
 
 			//Awaken
@@ -172,21 +187,22 @@ public class Scenario : MonoBehaviour
 		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenA, true);
 		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenB, true);
 		GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.FightA, true);
-		yield return new WaitForSeconds(20.0f);
+		yield return new WaitForSeconds(14.0f);
 		
 		SpawnerMgr.instance.SpawnWave(30, 10.0f, EPattern.RANDOMPOINT);
 		yield return new WaitForSeconds(12.0f);
 		
 		BackMgr.instance.SetBack(EBackground.URBAN);
 		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.SIN_RIGHT_TO_LEFT);
-		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.RANDOMPOINT);
+		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED);
+		//SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.RANDOMPOINT);
 		yield return new WaitForSeconds(3.0f);
 
 		//////// Boss 1 ////////
 
 		//Fight boss
-		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.FightA, true);
-		GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.BossA, true);
+		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.FightA, false);
+		GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.BossA, false);
 		yield return PauseRoutine();
 	}
 
