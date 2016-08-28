@@ -38,23 +38,28 @@ public class EnnemyBehavior : MonoBehaviour {
         switch(CurrentPattern)
         {
             case EPattern.SIN_RIGHT_TO_LEFT:
-                DoSinRightToLeft();
+                DoSinRightToLeft(false);
+                break;
+            case EPattern.SIN_RIGHT_TO_LEFT_REVERSED:
+                DoSinRightToLeft(true);
                 break;
             case EPattern.RANDOMPOINT:
                 RandomPoint();
                 break;
             default:
-                DoSinRightToLeft();
+                DoSinRightToLeft(false);
                 break;
         }
 
 
     }
 
-    void DoSinRightToLeft()
+    void DoSinRightToLeft(bool reverseY)
     {
         InitPosition += -transform.right * Time.deltaTime * MoveSpeed;
-        transform.position = InitPosition + AxisRight * Mathf.Sin(Elapsed * Frequency) * Magnitude;
+		float y = Mathf.Sin(Elapsed * Frequency);
+		if (reverseY) y = -y;
+        transform.position = InitPosition + AxisRight * y * Magnitude;
     }
 
     void RandomPoint()

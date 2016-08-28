@@ -172,21 +172,22 @@ public class Scenario : MonoBehaviour
 		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenA, true);
 		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenB, true);
 		GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.FightA, true);
-		yield return new WaitForSeconds(20.0f);
+		yield return new WaitForSeconds(14.0f);
 		
 		SpawnerMgr.instance.SpawnWave(30, 10.0f, EPattern.RANDOMPOINT);
 		yield return new WaitForSeconds(12.0f);
 		
 		BackMgr.instance.SetBack(EBackground.URBAN);
 		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.SIN_RIGHT_TO_LEFT);
-		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.RANDOMPOINT);
+		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED);
+		//SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.RANDOMPOINT);
 		yield return new WaitForSeconds(3.0f);
 
 		//////// Boss 1 ////////
 
 		//Fight boss
-		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.FightA, true);
-		GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.BossA, true);
+		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.FightA, false);
+		GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.BossA, false);
 		yield return PauseRoutine();
 	}
 

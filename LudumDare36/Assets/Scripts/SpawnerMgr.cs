@@ -5,6 +5,7 @@ using System.Collections;
 public enum EPattern
 {
     SIN_RIGHT_TO_LEFT,
+	SIN_RIGHT_TO_LEFT_REVERSED,
     RANDOMPOINT,
     COUNT,
 }
@@ -68,6 +69,7 @@ public class SpawnerMgr : MonoBehaviour {
         switch (Pattern)
         {
             case EPattern.SIN_RIGHT_TO_LEFT:
+			case EPattern.SIN_RIGHT_TO_LEFT_REVERSED:
                 StartPosition = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, 0.5f, 10));
                 StartCoroutine(SpawnEnnemies(TimeBetweenTwoEnnemies, EnnemyAmout, Pattern, StartPosition));
                 break;
