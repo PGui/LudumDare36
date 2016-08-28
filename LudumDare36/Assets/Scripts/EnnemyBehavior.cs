@@ -18,6 +18,8 @@ public class EnnemyBehavior : MonoBehaviour {
 
     private Vector3 AxisRight;
 
+    private Vector3 RandomPointOnScreen;
+
     // Use this for initialization
     void Start () {
         SpawnerMgr = Object.FindObjectOfType<SpawnerMgr>().GetComponent< SpawnerMgr>();
@@ -25,6 +27,8 @@ public class EnnemyBehavior : MonoBehaviour {
 
         AxisRight = transform.up;
         ScoreToGive = 100;
+
+        RandomPointOnScreen = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(0.4f,0.9f), Random.Range(0.1f, 0.9f), 10));
     }
 	
 	// Update is called once per frame
@@ -35,6 +39,9 @@ public class EnnemyBehavior : MonoBehaviour {
         {
             case SpawnerMgr.EPattern.SIN_RIGHT_TO_LEFT:
                 DoSinRightToLeft();
+                break;
+            case SpawnerMgr.EPattern.RANDOMPOINT:
+                RandomPoint();
                 break;
             default:
                 DoSinRightToLeft();
@@ -48,6 +55,11 @@ public class EnnemyBehavior : MonoBehaviour {
     {
         InitPosition += -transform.right * Time.deltaTime * MoveSpeed;
         transform.position = InitPosition + AxisRight * Mathf.Sin(Elapsed * Frequency) * Magnitude;
+    }
+
+    void RandomPoint()
+    {
+        transform.position = Vector3.Lerp(transform.position, RandomPointOnScreen, Time.deltaTime * Random.Range(1.0f, 5.0f));
     }
 
     void OnTriggerEnter2D(Collider2D coll)
