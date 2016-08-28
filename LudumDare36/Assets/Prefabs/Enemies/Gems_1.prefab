@@ -150,8 +150,6 @@ MonoBehaviour:
   BaseColors:
   - {r: 0.18039216, g: 1, b: 0.8666667, a: 1}
   - {r: 0.019607844, g: 1, b: 0.09019608, a: 1}
-  - {r: 1, g: 0.954, b: 0, a: 1}
-  - {r: 1, g: 0.5034602, b: 0.17647058, a: 1}
   BaseSprites:
   - {fileID: 21300000, guid: ee3c4ab33b6260248858dcd4ebd2cedf, type: 3}
   - {fileID: 21300002, guid: ee3c4ab33b6260248858dcd4ebd2cedf, type: 3}
