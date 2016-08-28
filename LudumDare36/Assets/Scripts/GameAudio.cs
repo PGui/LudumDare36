@@ -38,6 +38,8 @@ public class GameAudio : MonoBehaviour
 {
 	//--------------------------------------------------------------
 	
+	public bool debugAudio = false;
+
 	public AudioClip ambientWind;
 	
 	public AudioClip sfx3310;
@@ -66,6 +68,9 @@ public class GameAudio : MonoBehaviour
 	
 	void OnGUI()
 	{
+		if (!debugAudio)
+			return;
+
 		int x = 0;
 		int y = 0;
 		int w = 150;
@@ -408,4 +413,24 @@ public class GameAudio : MonoBehaviour
 			pSource.Stop();
 		}
 	}
+	
+	//--------------------------------------------------------------
+	
+	//Singleton variable
+    private static GameAudio s_instance = null;
+
+    //GameManager singleton declaration
+    public static GameAudio instance
+    {
+        get
+        {
+            //Get instance in current scene
+            if (s_instance == null)
+            {
+                s_instance = FindObjectOfType(typeof(GameAudio)) as GameAudio;
+            }
+
+            return s_instance;
+        }
+    }
 }
