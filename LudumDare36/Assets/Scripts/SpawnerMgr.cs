@@ -1,6 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+public enum EPattern
+{
+    SIN_RIGHT_TO_LEFT,
+    RANDOMPOINT,
+    COUNT,
+}
+
+
 public class SpawnerMgr : MonoBehaviour {
 
 
@@ -10,13 +19,6 @@ public class SpawnerMgr : MonoBehaviour {
     public Camera CameraComponent;
 
     public bool DebugSpawnEnnemy = false;
-
-    public enum EPattern
-    {
-        SIN_RIGHT_TO_LEFT,
-        RANDOMPOINT,
-        COUNT,
-    }
 
     public GameObject[] SpawnableEnnemies;
 
