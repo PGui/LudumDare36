@@ -129,10 +129,10 @@ public class GameAudio : MonoBehaviour
 		// 124 BPM
 		// 1 beat = 1 minute / 124 bpm = 
 		//const float beat1 = (1.0f * 60.0f) / 124.0f;
-		//const float beat4 = (4.0f * 60.0f) / 124.0f;
-		const float beat8 = (8.0f * 60.0f) / 124.0f;
+		const float beat4 = (4.0f * 60.0f) / 124.0f;
+		//const float beat8 = (8.0f * 60.0f) / 124.0f;
 
-		InvokeRepeating("UpdateTrack", 0.0f, beat8);
+		InvokeRepeating("UpdateTrack", 0.0f, beat4);
 	}
 
 	void UpdateTrack()
