@@ -177,6 +177,7 @@ public class Scenario : MonoBehaviour
 		SpawnerMgr.instance.SpawnWave(30, 10.0f, EPattern.RANDOMPOINT);
 		yield return new WaitForSeconds(12.0f);
 		
+		BackMgr.instance.SetBack(EBackground.URBAN);
 		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.SIN_RIGHT_TO_LEFT);
 		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.RANDOMPOINT);
 		yield return new WaitForSeconds(3.0f);

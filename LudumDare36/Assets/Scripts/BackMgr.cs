@@ -2,16 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public enum EBackground
+{
+    COUNTRY,
+    SUBURB,
+    URBAN,
+    SUNSET,
+    NIGHT,
+}
+
 public class BackMgr : MonoBehaviour {
 
-    public enum EBackground
-    {
-        COUNTRY,
-        SUBURB,
-        URBAN,
-        SUNSET,
-        NIGHT,
-    }
 
     public List<GameObject> Backgrounds;
     
