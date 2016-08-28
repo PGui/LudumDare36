@@ -61,7 +61,13 @@ public class Scenario : MonoBehaviour
 		textInput.CrossFadeAlpha(0.0f, 0.0f, false);
 		imageAvatar.CrossFadeAlpha(0.0f, 0.0f, false);
 		textAvatar.CrossFadeAlpha(0.0f, 0.0f, false);
-	}
+        PlayerState.instance.AllowPlayerMove(false);
+        PlayerState.instance.AllowPlayerShoot(false);
+        PlayerState.instance.InitialLife = 100.0f;
+        PlayerState.instance.CurrentState = PlayerState.EPlayerState.ALIVE;
+        PlayerState.instance.FirstShoot = true;
+        PlayerState.instance.FirstMove = true;
+    }
 
 	IEnumerator PlayScenarioRoutine()
 	{

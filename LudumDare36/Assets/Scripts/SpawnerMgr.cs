@@ -9,6 +9,8 @@ public class SpawnerMgr : MonoBehaviour {
     bool CanSpawn = true;
     public Camera CameraComponent;
 
+    public bool DebugSpawnEnnemy = false;
+
     public enum EPattern
     {
         SIN_RIGHT_TO_LEFT,
@@ -28,7 +30,7 @@ public class SpawnerMgr : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-        if(CanSpawn)
+        if(CanSpawn && DebugSpawnEnnemy)
         {
             CanSpawn = false;
             StartCoroutine(ManageSpawn());
@@ -58,7 +60,6 @@ public class SpawnerMgr : MonoBehaviour {
 
     public void SpawnWave(int EnnemyAmout, float SpawnDuration, EPattern Pattern)
     {
-        
         int EnnemiesPerSecond = EnnemyAmout / (int)SpawnDuration;
         float TimeBetweenTwoEnnemies = 1.0f / (float)EnnemiesPerSecond;
         Vector3 StartPosition;
@@ -76,6 +77,24 @@ public class SpawnerMgr : MonoBehaviour {
                 break;
         }
         
+    }
+
+    //Singleton variable
+    private static SpawnerMgr s_instance = null;
+
+    //GameManager singleton declaration
+    public static SpawnerMgr instance
+    {
+        get
+        {
+            //Get instance in current scene
+            if (s_instance == null)
+            {
+                s_instance = FindObjectOfType(typeof(SpawnerMgr)) as SpawnerMgr;
+            }
+
+            return s_instance;
+        }
     }
 
 

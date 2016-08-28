@@ -385,12 +385,12 @@ Prefab:
     - target: {fileID: 114000010506555510, guid: 1ec4f9bcef8b04c4e9f1ec1ddedc4676,
         type: 2}
       propertyPath: CanMove
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000010156171918, guid: 1ec4f9bcef8b04c4e9f1ec1ddedc4676,
         type: 2}
       propertyPath: AllowShoot
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ec4f9bcef8b04c4e9f1ec1ddedc4676, type: 2}
@@ -1270,6 +1270,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DurationBetweenTwoSpawn: 40
   CameraComponent: {fileID: 0}
-  DebugSpawnEnnemy: 0
+  DebugSpawnEnnemy: 1
   SpawnableEnnemies:
   - {fileID: 1000011892488962, guid: 8159bcc7c12d20e4e80a706d18f4671c, type: 2}

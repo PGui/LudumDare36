@@ -20,6 +20,10 @@ public class CharacterAction : MonoBehaviour {
     public GameObject ArmsFront;
     public GameObject ArmsBack;
 
+    public bool AllowShoot = false;
+
+
+
     // Use this for initialization
     void Start () {
         
@@ -39,16 +43,24 @@ public class CharacterAction : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (CurrentPlayerState.CurrentState == PlayerState.EPlayerState.DEAD)
+        if (CurrentPlayerState.CurrentState == PlayerState.EPlayerState.DEAD || !AllowShoot)
             return;
 
         if(Input.GetButton("Fire1"))
         {
+
+
             CharacMvt.IsShooting = true;
             ArmsFront.SetActive(true);
             ArmsBack.SetActive(true);
             if (CanShoot)
             {
+                if(PlayerState.instance.FirstShoot)
+                {
+                    PlayerState.instance.FirstShoot = false;
+                    Scenario.instance.PlayNextStep();
+                }
+
                 StartCoroutine("Cooldown");
                 CanShoot = false;
                 ShootDirection = ShootDirection.normalized;

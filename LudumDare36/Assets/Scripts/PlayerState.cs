@@ -22,13 +22,26 @@ public class PlayerState : MonoBehaviour {
     private Text LifeText;
     public int KillEnnemyCount = 0;
 
+    public bool FirstShoot = false;
+    public bool FirstMove = false;
+
     public EPlayerState CurrentState { get; set; }
 
     public GameObject UI;
     private Animator AnimatorUI;
 
-	// Use this for initialization
-	void Start ()
+    public void AllowPlayerMove(bool Move = true)
+    {
+        FindObjectOfType<CharacterMovement>().GetComponent<CharacterMovement>().CanMove = Move;
+    }
+
+    public void AllowPlayerShoot(bool Shoot = true)
+    {
+        FindObjectOfType<CharacterAction>().GetComponent<CharacterAction>().AllowShoot = Shoot;
+    }
+
+    // Use this for initialization
+    void Start ()
     {
         CurrentState = EPlayerState.ALIVE;
         ScoreText = UIScore.GetComponent<Text>();
@@ -36,6 +49,8 @@ public class PlayerState : MonoBehaviour {
         LifeText = UILife.GetComponent<Text>();
         LifeText.text = InitialLife.ToString();
         AnimatorUI = UI.GetComponent<Animator>();
+        FirstShoot = false;
+        FirstMove = false;
     }
 	
 	// Update is called once per frame
@@ -85,6 +100,24 @@ public class PlayerState : MonoBehaviour {
             AnimatorUI.SetTrigger("BigScore");
             Camera.main.GetComponent<ScreenshakeMgr>().StartShake(0.4f, 3.5f, 4.0f);
             Camera.main.GetComponent<FreezeFrameMgr>().FreezeFrame(0.5f, 0.2f, 0.2f);
+        }
+    }
+
+    //Singleton variable
+    private static PlayerState s_instance = null;
+
+    //GameManager singleton declaration
+    public static PlayerState instance
+    {
+        get
+        {
+            //Get instance in current scene
+            if (s_instance == null)
+            {
+                s_instance = FindObjectOfType(typeof(PlayerState)) as PlayerState;
+            }
+
+            return s_instance;
         }
     }
 }
