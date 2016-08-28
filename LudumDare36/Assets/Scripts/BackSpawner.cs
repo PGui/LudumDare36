@@ -22,8 +22,14 @@ public class BackSpawner : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        NextSpawn = 0.0f;
+        ComputeNextSpawn();
+    }
 
-        if (Enable) {
+    public void InitialSpawn()
+    {
+        if (Enable)
+        {
 
             float x = -40.0f;
             while (x < transform.position.x)
@@ -34,10 +40,8 @@ public class BackSpawner : MonoBehaviour {
                 x += Random.Range(MinDist, MaxDist);
             }
         }
-
-        NextSpawn = 0.0f;
-        ComputeNextSpawn();
     }
+
     void SpawnItem(Vector3 NewPos) {
         int Item = Random.Range(0, ToSpawn.Count);
         GameObject NewObj = Instantiate(ToSpawn[Item], NewPos, Quaternion.identity) as GameObject;

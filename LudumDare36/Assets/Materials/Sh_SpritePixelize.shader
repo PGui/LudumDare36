@@ -3,6 +3,8 @@
 Properties {
 	_MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
 	_NoiseTex("Noise (RGBA)", 2D) = "white" {}
+	_PixelFactor("PixelFactor", Range(0,256)) = 96
+	_Color("Tint", Color) = (1,1,1,1)
 }
 SubShader {
 	Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
@@ -41,6 +43,8 @@ SubShader {
 			float4 _NoiseTex_ST;
 
 			fixed4 _Color;
+			float _PixelFactor;
+			fixed4 RetroMul = fixed4(1,1,1,1);
 
 			v2f vert (appdata_t v)
 			{
@@ -62,7 +66,7 @@ SubShader {
 				float Blend = saturate((i.screen.x-0.3f - 0.2f + nois.x*0.4)*5.0f);
 
 				float2 uv = i.texcoord;
-				float ppix = 96.0f;
+				float ppix = _PixelFactor; // 96.0f;
 				float2 uv2 = floor(uv * ppix + 0.5f) / ppix;
 				
 				float ed = 1.0f-saturate(dot(saturate((abs(uv - uv2)*ppix-(1-Blend)*0.5f)*1000.0f),1.0f));
@@ -89,8 +93,11 @@ SubShader {
 
 				float3 retro = lerp(float3(0.16, 0.25, 0), float3(0.6, 0.77, 0)*0.5f + 0.5f, avgcol);
 				retro *= Assom;
+				retro *= RetroMul.rgb;
 				
 				col2.rgb = retro*i.color.rgb;
+
+				col.rgb = col.rgb / _Color.a - 1.0 + _Color.rgb;
 
 				float deg = 1.0f - saturate(abs((i.screen.y - 0.5)*2.0f));
 				float3 cdeg = lerp(0.8, float3(0.75, 0.95, 0.92), deg);
