@@ -80,7 +80,7 @@ public class SpawnerMgr : MonoBehaviour {
         //CanSpawn = true;
     }
 
-    IEnumerator SpawnEnnemies(EEnemyType type, float TimeBetweenTwoEnnemies , int EnnemyAmout, EPattern Pattern, Vector3 SpawnPosition)
+    IEnumerator SpawnEnnemies(EEnemyType type, float moveSpeed, float TimeBetweenTwoEnnemies , int EnnemyAmout, EPattern Pattern, Vector3 SpawnPosition)
     {
         int EnnemiesSpawned = 0;
         while(EnnemiesSpawned != EnnemyAmout)
@@ -102,13 +102,14 @@ public class SpawnerMgr : MonoBehaviour {
 
             GameObject NewEnnemy = GameObject.Instantiate(GoToSpawn, SpawnPosition, Quaternion.identity) as GameObject;
             NewEnnemy.GetComponent<EnnemyBehavior>().CurrentPattern = Pattern;
+            NewEnnemy.GetComponent<EnnemyBehavior>().MoveSpeed = moveSpeed;
             ++EnnemiesSpawned;
             yield return new WaitForSeconds(TimeBetweenTwoEnnemies);
         }
 
     }
 
-    public void SpawnWave(EEnemyType type, int EnnemyAmout, float SpawnDuration, EPattern Pattern, ESpawnLocation location)
+    public void SpawnWave(EEnemyType type, float moveSpeed, int EnnemyAmout, float SpawnDuration, EPattern Pattern, ESpawnLocation location)
     {
         int EnnemiesPerSecond = EnnemyAmout / (int)SpawnDuration;
         float TimeBetweenTwoEnnemies = 1.0f / (float)EnnemiesPerSecond;
@@ -131,7 +132,7 @@ public class SpawnerMgr : MonoBehaviour {
                 break;
 		}
 
-        StartCoroutine(SpawnEnnemies(type, TimeBetweenTwoEnnemies, EnnemyAmout, Pattern, StartPosition));
+        StartCoroutine(SpawnEnnemies(type, moveSpeed, TimeBetweenTwoEnnemies, EnnemyAmout, Pattern, StartPosition));
 
         /*switch (Pattern)
         {

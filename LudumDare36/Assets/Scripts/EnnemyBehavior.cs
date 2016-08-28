@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnnemyBehavior : MonoBehaviour {
-
-
+public class EnnemyBehavior : MonoBehaviour
+{
     public int ScoreToGive {get; set;}
     //private SpawnerMgr SpawnerMgr;
     private float Elapsed = 0.0f;
-    public EPattern CurrentPattern;
 
     private Vector3 InitPosition;
+
+	[HideInInspector]
+    public EPattern CurrentPattern;
+
+	[HideInInspector]
     public float MoveSpeed = 5.0f;
+
     public float Frequency = 20.0f;  // Speed of sine movement
     public float Magnitude = 0.5f;   // Size of sine movement
 
