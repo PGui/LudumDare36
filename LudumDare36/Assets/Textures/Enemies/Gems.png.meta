@@ -1,12 +1,20 @@
 fileFormatVersion: 2
 guid: ee3c4ab33b6260248858dcd4ebd2cedf
-timeCreated: 1472407942
+timeCreated: 1472415447
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Gems_0
     21300002: Gems_1
     21300004: Gems_2
+    21300006: Gems_3
+    21300008: Gems_4
+    21300010: Gems_5
+    21300012: Gems_6
+    21300014: Gems_7
+    21300016: Gems_8
+    21300018: Gems_9
+    21300020: Gems_10
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -94,6 +102,110 @@ TextureImporter:
         y: 1633
         width: 296
         height: 364
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gems_3
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 1207
+        width: 304
+        height: 304
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gems_4
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 1135
+        width: 345
+        height: 351
+      alignment: 9
+      pivot: {x: 0.3923423, y: 0.43650952}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gems_5
+      rect:
+        serializedVersion: 2
+        x: 1077
+        y: 1141
+        width: 283
+        height: 395
+      alignment: 9
+      pivot: {x: 0.48250124, y: 0.46238783}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gems_6
+      rect:
+        serializedVersion: 2
+        x: 1532
+        y: 1160
+        width: 239
+        height: 385
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gems_7
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 653
+        width: 368
+        height: 410
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gems_8
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 565
+        width: 339
+        height: 491
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gems_9
+      rect:
+        serializedVersion: 2
+        x: 1181
+        y: 703
+        width: 322
+        height: 306
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gems_10
+      rect:
+        serializedVersion: 2
+        x: 1703
+        y: 615
+        width: 174
+        height: 425
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
