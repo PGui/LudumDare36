@@ -19,7 +19,6 @@ public class CharacterAction : MonoBehaviour {
 
     public GameObject ArmsFront;
     public GameObject ArmsBack;
-
     public bool AllowShoot = false;
 
 
@@ -53,6 +52,7 @@ public class CharacterAction : MonoBehaviour {
             CharacMvt.IsShooting = true;
             ArmsFront.SetActive(true);
             ArmsBack.SetActive(true);
+
             if (CanShoot)
             {
                 if(PlayerState.instance.FirstShoot)
@@ -72,6 +72,7 @@ public class CharacterAction : MonoBehaviour {
 
         if (Input.GetButtonUp("Fire1"))
         {
+
             CharacMvt.IsShooting = false;
             ArmsFront.SetActive(false);
             ArmsBack.SetActive(false);
