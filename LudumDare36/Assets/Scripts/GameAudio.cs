@@ -63,6 +63,9 @@ public class GameAudio : MonoBehaviour
 	private float fadeInTime = 1.5f;
 	private float fadeOutTime = 1.5f;
 
+	private float beatDuration = 1.0f;
+	private float timeSinceBeat = 0.0f;
+
 	//--------------------------------------------------------------
 
 	private List<AudioSource> listSfx;
@@ -128,15 +131,22 @@ public class GameAudio : MonoBehaviour
 	{
 		// 124 BPM
 		// 1 beat = 1 minute / 124 bpm = 
-		//const float beat1 = (1.0f * 60.0f) / 124.0f;
-		const float beat4 = (4.0f * 60.0f) / 124.0f;
-		//const float beat8 = (8.0f * 60.0f) / 124.0f;
+		//const float beat = (1.0f * 60.0f) / 124.0f;
+		//const float beat = (4.0f * 60.0f) / 124.0f;
+		const float beat = (8.0f * 60.0f) / 124.0f;
+		beatDuration = beat;
+		InvokeRepeating("UpdateTrack", 0.0f, beat);
+	}
 
-		InvokeRepeating("UpdateTrack", 0.0f, beat4);
+	public float GetTimeUntilBeat()
+	{
+		return Mathf.Max(0.0f, beatDuration - timeSinceBeat);
 	}
 
 	void UpdateTrack()
 	{
+		timeSinceBeat = 0.0f;
+
 		foreach (AudioLayer layer in layers)
 		{
 			if (layer.command == EAudioLayerState.Undefined)
@@ -170,6 +180,8 @@ public class GameAudio : MonoBehaviour
 	
 	void Update()
 	{
+		timeSinceBeat += Time.deltaTime;
+
 		foreach (AudioLayer layer in layers)
 		{
 			if (layer.state == EAudioLayerState.FadeIn)
