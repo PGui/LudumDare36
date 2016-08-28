@@ -59,7 +59,7 @@ SubShader {
 				
 				float4 nois = tex2D(_NoiseTex, i.screen.xy*float2(2.0f,1.0f) - float2(0.0f,_Time.x*1.0f));
 
-				float Blend = saturate((i.screen.x-0.6f + nois.x*0.4)*5.0f);
+				float Blend = saturate((i.screen.x-0.3f - 0.2f + nois.x*0.4)*5.0f);
 
 				float2 uv = i.texcoord;
 				float ppix = 96.0f;
@@ -92,7 +92,9 @@ SubShader {
 				
 				col2.rgb = retro*i.color.rgb;
 
-				col.rgb = lerp(col.rgb, 0.8, 0.5);
+				float deg = 1.0f - saturate(abs((i.screen.y - 0.5)*2.0f));
+				float3 cdeg = lerp(0.8, float3(0.75, 0.95, 0.92), deg);
+				col.rgb = lerp(col.rgb, cdeg, deg*0.8);
 								
 				col = lerp(col, col2, ed);
 				//col = ed;

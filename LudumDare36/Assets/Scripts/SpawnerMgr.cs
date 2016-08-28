@@ -12,6 +12,8 @@ public class SpawnerMgr : MonoBehaviour {
     public enum EPattern
     {
         SIN_RIGHT_TO_LEFT,
+        RANDOMPOINT,
+        COUNT,
     }
 
     public GameObject[] SpawnableEnnemies;
@@ -30,7 +32,7 @@ public class SpawnerMgr : MonoBehaviour {
         {
             CanSpawn = false;
             StartCoroutine(ManageSpawn());
-            SpawnWave(Random.Range(20,30), Random.Range(5.0f, 15.0f), EPattern.SIN_RIGHT_TO_LEFT);
+            SpawnWave(Random.Range(20,30), Random.Range(5.0f, 15.0f), (EPattern)Random.Range((int)EPattern.SIN_RIGHT_TO_LEFT, (int)EPattern.COUNT));
         }
 	}
 
@@ -59,10 +61,15 @@ public class SpawnerMgr : MonoBehaviour {
         
         int EnnemiesPerSecond = EnnemyAmout / (int)SpawnDuration;
         float TimeBetweenTwoEnnemies = 1.0f / (float)EnnemiesPerSecond;
+        Vector3 StartPosition;
         switch (Pattern)
         {
             case EPattern.SIN_RIGHT_TO_LEFT:
-                Vector3 StartPosition = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, 0.5f, 10));
+                StartPosition = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, 0.5f, 10));
+                StartCoroutine(SpawnEnnemies(TimeBetweenTwoEnnemies, EnnemyAmout, Pattern, StartPosition));
+                break;
+            case EPattern.RANDOMPOINT:
+                StartPosition = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, Random.Range(0.0f,1.0f), 10));
                 StartCoroutine(SpawnEnnemies(TimeBetweenTwoEnnemies, EnnemyAmout, Pattern, StartPosition));
                 break;
             default:

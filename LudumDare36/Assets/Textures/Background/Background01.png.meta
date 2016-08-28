@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5d993bb0b73c7ec4d8b0fdb0f4500890
-timeCreated: 1472326155
+timeCreated: 1472376773
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -15,6 +15,16 @@ TextureImporter:
     21300016: Background01_8
     21300018: Background01_9
     21300020: Background01_10
+    21300022: Background01_11
+    21300024: Background01_12
+    21300026: Background01_13
+    21300028: Background01_14
+    21300030: Background01_15
+    21300032: Background01_16
+    21300034: Background01_17
+    21300036: Background01_18
+    21300038: Background01_19
+    21300040: Background01_20
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -111,10 +121,10 @@ TextureImporter:
       name: Background01_3
       rect:
         serializedVersion: 2
-        x: 1619
-        y: 1787
-        width: 181
-        height: 187
+        x: 1365
+        y: 1808
+        width: 193
+        height: 201
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,10 +134,10 @@ TextureImporter:
       name: Background01_4
       rect:
         serializedVersion: 2
-        x: 1621
-        y: 1370
-        width: 181
-        height: 182
+        x: 1602
+        y: 1814
+        width: 192
+        height: 196
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,10 +147,10 @@ TextureImporter:
       name: Background01_5
       rect:
         serializedVersion: 2
-        x: 1624
-        y: 918
-        width: 198
-        height: 196
+        x: 1826
+        y: 1806
+        width: 208
+        height: 208
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,6 +218,136 @@ TextureImporter:
         height: 158
       alignment: 9
       pivot: {x: 0.49999994, y: 0.35568663}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_11
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 314
+        width: 282
+        height: 326
+      alignment: 9
+      pivot: {x: 0.49999955, y: 0.11819973}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_12
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 286
+        width: 452
+        height: 488
+      alignment: 9
+      pivot: {x: 0.518512, y: 0.06704937}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 198
+        height: 274
+      alignment: 9
+      pivot: {x: 0.5528252, y: 0.12972198}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_14
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 278
+        width: 292
+        height: 220
+      alignment: 9
+      pivot: {x: 0.51074594, y: 0.32884592}
+      border: {x: 2, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_15
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 15
+        width: 123
+        height: 241
+      alignment: 9
+      pivot: {x: 0.61054635, y: 0.13978016}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_16
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 10
+        width: 148
+        height: 232
+      alignment: 9
+      pivot: {x: 0.52120125, y: 0.17088963}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_17
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 279
+        width: 219
+        height: 202
+      alignment: 9
+      pivot: {x: 0.51432794, y: 0.36019626}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_18
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 288
+        width: 230
+        height: 240
+      alignment: 9
+      pivot: {x: 0.55911833, y: 0.29081193}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_19
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 102
+        width: 493
+        height: 44
+      alignment: 9
+      pivot: {x: 0.5031943, y: 0.85790116}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Background01_20
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 48
+        width: 390
+        height: 86
+      alignment: 9
+      pivot: {x: 0.4986541, y: 0.9150547}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

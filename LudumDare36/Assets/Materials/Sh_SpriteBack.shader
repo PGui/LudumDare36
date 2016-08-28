@@ -29,7 +29,6 @@ SubShader {
 				float4 vertex : SV_POSITION;
 				half2 texcoord : TEXCOORD0;
 				float4 screen : TEXCOORD1;
-				float4 color : TEXCOORD2;
 				UNITY_FOG_COORDS(1)
 			};
 
@@ -51,10 +50,10 @@ SubShader {
 			fixed4 frag (v2f i) : SV_Target
 			{
 				
-				float Blend = saturate((i.screen.x-0.4f)*5.0f);
+				float Blend = saturate((i.screen.x-0.3f)*5.0f);
 
 				float2 uv = i.texcoord;
-				fixed4 col2 = tex2Dlod(_MainTex, float4(uv,0,0));
+				fixed4 col = tex2Dlod(_MainTex, float4(uv,0,0));
 
 				float2 CenterDir = (i.screen - 0.5f) * float2(2.2f, 2.1f);
 
@@ -62,22 +61,24 @@ SubShader {
 				float Assom = 1.0f - saturate(CenterDir.x*CenterDir.x - 0.8f);
 				Assom *= 1.0f - saturate(CenterDir.y*CenterDir.y - 0.8f);
 
-				float avgcol = dot(col2.rgb, 0.333);
+				float avgcol = dot(col.rgb, 0.333);
 				avgcol = saturate((avgcol - 0.01f)*1000.0f); // 0.7f
 
-				col2.rgb = lerp(col2.rgb, 0.8, 0.5);
+				float deg = 1.0f - saturate(abs((i.screen.y - 0.5)*2.0f));
+				float3 cdeg = lerp(0.8, float3(0.75, 0.95, 0.92), deg);
+				col.rgb = lerp(col.rgb, cdeg, deg*0.8);
 
 				float3 retro = lerp(float3(0.16, 0.25, 0), float3(0.6, 0.77, 0)*0.5f+0.5f, avgcol);
 				retro *= Assom;
-				col2.rgb = lerp(retro, col2.rgb, Blend);
+				col.rgb = lerp(retro, col.rgb, Blend);
 							
 								
 				//clip(col.a - _Cutoff);
-				UNITY_APPLY_FOG(i.fogCoord, col2);
+				UNITY_APPLY_FOG(i.fogCoord, col);
 
-				//col.xyz = col2.xyz;
+				//col.xyz = col.xyz;
 
-				return col2;
+				return col;
 			}
 		ENDCG
 	}
