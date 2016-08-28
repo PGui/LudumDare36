@@ -50,12 +50,12 @@ public class EnnemyDisplay : MonoBehaviour {
 	void Update () {
 
         float CurTime = Time.time;
-        if(BackLight)
+        /*if(BackLight)
         {
             float Angle = CurTime*5.0f + RandOff*2.0f;
             float Dist = Mathf.Sin(Angle*0.2f) * 0.2f + 0.5f;
             BackLight.transform.localPosition = new Vector3(Mathf.Cos(Angle)*Dist, Mathf.Sin(Angle)*Dist, 0.0f);
-        }
+        }*/
         if (HighLight)
         {
             float Angle = CurTime * 0.7f + RandOff;
