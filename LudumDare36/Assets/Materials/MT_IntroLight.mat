@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MT_SpritePix3
-  m_Shader: {fileID: 4800000, guid: e221864f707f9c9478954a1319a2e755, type: 3}
+  m_Name: MT_IntroLight
+  m_Shader: {fileID: 4800000, guid: 10b14a43dd1127a479dcb00727d72bfe, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,19 +48,13 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 5d993bb0b73c7ec4d8b0fdb0f4500890, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MetallicGlossMap
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _NoiseTex
-      second:
-        m_Texture: {fileID: 2800000, guid: f79b5e37b13867642ac7e950093328e1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -76,6 +70,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - first:
+        name: Brightness
+      second: 7.74
+    - first:
+        name: PixelSnap
+      second: 0
     - first:
         name: _BumpScale
       second: 1
@@ -110,9 +110,6 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
-        name: _PixelFactor
-      second: 141
-    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
@@ -125,15 +122,15 @@ Material:
         name: _UVSec
       second: 0
     - first:
-        name: _UsePixel
-      second: 1
-    - first:
         name: _ZWrite
       second: 1
     m_Colors:
     - first:
+        name: Contrast
+      second: {r: 0.041749004, g: 0.044827584, b: 0.031782757, a: 1}
+    - first:
         name: _Color
-      second: {r: 0.85172415, g: 0.85172415, b: 0.85172415, a: 0.978}
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}

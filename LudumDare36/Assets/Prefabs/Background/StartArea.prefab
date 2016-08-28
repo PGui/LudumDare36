@@ -154,6 +154,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000010163042524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010215107354}
+  - 212: {fileID: 212000013884899538}
+  m_Layer: 0
+  m_Name: LightPhone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000010164430988
 GameObject:
   m_ObjectHideFlags: 1
@@ -2949,7 +2965,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1000014134069956
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -2957,7 +2973,7 @@ GameObject:
   - 4: {fileID: 4000013150724664}
   - 212: {fileID: 212000012654458336}
   m_Layer: 0
-  m_Name: LightPhone
+  m_Name: SubLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3159,6 +3175,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000012802138704}
   m_RootOrder: 4
+--- !u!4 &4000010215107354
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010163042524}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.66, y: 9.73, z: -5.254757}
+  m_LocalScale: {x: 8.502389, y: 8.380649, z: 11.797091}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 4000013150724664}
+  m_Father: {fileID: 4000012528911332}
+  m_RootOrder: 14
 --- !u!4 &4000010238288198
 Transform:
   m_ObjectHideFlags: 1
@@ -4549,7 +4579,7 @@ Transform:
   - {fileID: 4000012802138704}
   - {fileID: 4000010341778622}
   - {fileID: 4000011904453804}
-  - {fileID: 4000013150724664}
+  - {fileID: 4000010215107354}
   - {fileID: 4000012548786140}
   - {fileID: 4000012711657060}
   - {fileID: 4000010147822128}
@@ -5024,12 +5054,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014134069956}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.252732, y: 8.873573, z: -5.254757}
-  m_LocalScale: {x: 8.502389, y: 8.380649, z: 11.797091}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 4000012528911332}
-  m_RootOrder: 14
+  m_Father: {fileID: 4000010215107354}
+  m_RootOrder: 0
 --- !u!4 &4000013184161414
 Transform:
   m_ObjectHideFlags: 1
@@ -9391,7 +9421,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: ee28802a04987234e8c4326ce61c631e, type: 2}
+  - {fileID: 2100000, guid: 3fe62dd3f91dab7479dd6a6dcace7e98, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -9406,9 +9436,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: -3
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f0a56fbc38ea020498a319b50754176d, type: 3}
-  m_Color: {r: 0.7016652, g: 1, b: 0.3455882, a: 0}
+  m_Color: {r: 0.19849506, g: 0.33231032, b: 0.14660749, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212000012667910142
@@ -10762,6 +10792,39 @@ SpriteRenderer:
   m_SortingOrder: -3
   m_Sprite: {fileID: 21300004, guid: 028e43457689f404d874032ae49685ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+--- !u!212 &212000013884899538
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010163042524}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 0a6ce1c38d3fc66499966360301ae2c6, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 1
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: -3
+  m_Sprite: {fileID: 21300000, guid: f0a56fbc38ea020498a319b50754176d, type: 3}
+  m_Color: {r: 0.48323056, g: 0.809, b: 0.35691178, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212000013902490110
