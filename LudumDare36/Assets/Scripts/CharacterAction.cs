@@ -79,6 +79,13 @@ public class CharacterAction : MonoBehaviour {
         }
 
         PlayerAnimator.SetBool("Shooting", CharacMvt.IsShooting);
+
+        //if(CharacMvt.PlayerAnimator.GetInteger("Direction") == 1 && CharacMvt.IsShooting)
+        //{
+        //    float offsetX = 5.0f;
+        //    Vector3 newArmBackPosWithOffset = new Vector3(ArmsBack.transform.position.x - offsetX, ArmsBack.transform.position.y, ArmsBack.transform.position.z);
+        //    Vector3 newArmFrontPosWithOffset = new Vector3(ArmsFront.transform.position.x - offsetX, ArmsFront.transform.position.y, ArmsFront.transform.position.z);
+        //}
     }
 
     IEnumerator Cooldown()

@@ -14,7 +14,7 @@ public class CharacterMovement : MonoBehaviour {
 
     public bool IsShooting { get; set; }
     public float ShootingDiviser = 2.0f;
-    private Animator PlayerAnimator;
+    public Animator PlayerAnimator { get; set; }
 
     private Vector3 PreviousPosition;
 
