@@ -99,8 +99,8 @@ public class Scenario : MonoBehaviour
 		{
 			PlayerState.instance.AllowPlayerMove(true);
 			PlayerState.instance.AllowPlayerShoot(true);
-			iTween.MoveTo(startArea, iTween.Hash("position", new Vector3(-100,-100,0), "time", 8.0f));
-			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.AwakenA, true);
+			iTween.MoveTo(startArea, iTween.Hash("position", new Vector3(-100,-40,0), "time", 8.0f));
+            GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.AwakenA, true);
 			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.AwakenB, true);
 			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.Wind, true);
 		}
@@ -114,7 +114,20 @@ public class Scenario : MonoBehaviour
 			//Ring and hide title
 			textTitle.CrossFadeAlpha(0.0f, 2.5f, false);
 			AudioSource ringTone = GameAudio.instance.PlaySFxLoop(ESFx.Ring3310);
-			yield return new WaitForSeconds(4.0f);
+
+            GameObject LightPhone = GameObject.Find("LightPhone");
+            if(LightPhone)
+            {
+                SpriteRenderer Rend = LightPhone.GetComponent<SpriteRenderer>();
+                if(Rend)
+                {
+                    Color Tmp = Rend.color;
+                    Tmp.a = 1.0f;
+                    Rend.color = Tmp;
+                }
+            }
+
+            yield return new WaitForSeconds(4.0f);
 		
 			//Show input
 			waitSpacebar = true;
@@ -147,7 +160,7 @@ public class Scenario : MonoBehaviour
 
 			//Exit start area
 			textInput.CrossFadeAlpha(0.0f, 1.0f, false);
-			iTween.MoveTo(startArea, iTween.Hash("position", new Vector3(-100,-100,0), "time", 8.0f));
+			iTween.MoveTo(startArea, iTween.Hash("position", new Vector3(-100,-40,0), "time", 8.0f));
 			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.AwakenA, true);
 			yield return new WaitForSeconds(3.0f);
 		
