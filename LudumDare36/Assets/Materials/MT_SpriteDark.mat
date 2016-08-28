@@ -111,7 +111,7 @@ Material:
       second: 0.02
     - first:
         name: _PixelFactor
-      second: 146
+      second: 96
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -133,7 +133,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.541, g: 0.541, b: 0.541, a: 0.978}
+      second: {r: 0.92068964, g: 0.92068964, b: 0.92068964, a: 0.978}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}

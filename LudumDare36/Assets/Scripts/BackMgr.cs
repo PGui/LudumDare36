@@ -9,14 +9,12 @@ public class BackMgr : MonoBehaviour {
         COUNTRY,
         SUBURB,
         URBAN,
+        SUNSET,
+        NIGHT,
     }
 
     public List<GameObject> Backgrounds;
-
-    public GameObject Ground;
-    public GameObject Transition;
-    public GameObject Sky;
-
+    
     public List<Color> GroundColors;
     public List<Color> TransitionColors;
     public List<Color> SkyColors;
@@ -28,6 +26,8 @@ public class BackMgr : MonoBehaviour {
     private Color RetroCurrent;
 
     private int RetroID;
+    private int GlobalID;
+    private int SkyID;
 
     private EBackground CurrentBack = EBackground.COUNTRY;
     public EBackground NextBack = EBackground.COUNTRY;
@@ -98,10 +98,13 @@ public class BackMgr : MonoBehaviour {
             }
         }
 
-        GroundCurrent = UpdateColor(GroundColors, Ground, GroundCurrent, Force);
-        TransitionCurrent = UpdateColor(TransitionColors, Transition, TransitionCurrent, Force);
-        SkyCurrent = UpdateColor(SkyColors, Sky, SkyCurrent, Force);
+        GroundCurrent = UpdateColor(GroundColors, null, GroundCurrent, Force);
+        TransitionCurrent = UpdateColor(TransitionColors, null, TransitionCurrent, Force);
+        SkyCurrent = UpdateColor(SkyColors, null, SkyCurrent, Force);
         RetroCurrent = UpdateColor(RetroColors, null, RetroCurrent, Force);
+
+        Shader.SetGlobalColor(GlobalID, GroundCurrent);
+        Shader.SetGlobalColor(SkyID, SkyCurrent);
         Shader.SetGlobalColor(RetroID, RetroCurrent);
 
     }
@@ -109,6 +112,8 @@ public class BackMgr : MonoBehaviour {
     // Use this for initialization
     void Start () {
         RetroID = Shader.PropertyToID("RetroMul");
+        GlobalID = Shader.PropertyToID("GlobalColor");
+        SkyID = Shader.PropertyToID("SkyColor");
         UpdateBack(true);
     }
 	

@@ -40,6 +40,8 @@ SubShader {
 			fixed _Cutoff;
 			fixed4 _Color;
 			fixed4 RetroMul = fixed4(1, 1, 1, 1);
+			fixed4 GlobalColor = fixed4(0.8, 0.8, 0.8, 1);
+			fixed4 SkyColor = fixed4(0.75, 0.95, 0.92,1);
 
 			v2f vert (appdata_t v)
 			{
@@ -71,9 +73,10 @@ SubShader {
 				avgcol = saturate((avgcol - 0.01f)*1000.0f); // 0.7f
 
 				col.rgb *= i.color.rgb;
+				col.rgb *= GlobalColor.rgb;
 
 				float deg = 1.0f - saturate(abs((i.screen.y - 0.5)*2.0f));
-				float3 cdeg = lerp(0.8, float3(0.75, 0.95, 0.92), deg);
+				float3 cdeg = lerp(GlobalColor, SkyColor, deg);
 				col.rgb = lerp(col.rgb, cdeg, deg*0.8);
 
 				float3 retro = lerp(float3(0.16, 0.25, 0), float3(0.6, 0.77, 0)*0.5f+0.5f, avgcol);
