@@ -11,7 +11,7 @@ public class CharacterAction : MonoBehaviour {
     public GameObject Camera;
     private ScreenshakeMgr SSMgr = null;
     private CharacterMovement CharacMvt= null;
-    private FreezeFrameMgr FreezeFrameMgr = null;
+    //private FreezeFrameMgr FreezeFrameMgr = null;
 
     private Animator PlayerAnimator;
 
@@ -30,7 +30,7 @@ public class CharacterAction : MonoBehaviour {
         if(Camera)
         {
             SSMgr = Camera.GetComponent<ScreenshakeMgr>();
-            FreezeFrameMgr = Camera.GetComponent<FreezeFrameMgr>();
+            //FreezeFrameMgr = Camera.GetComponent<FreezeFrameMgr>();
         }
 
         CharacMvt = GetComponent<CharacterMovement>();
@@ -64,7 +64,8 @@ public class CharacterAction : MonoBehaviour {
                 StartCoroutine("Cooldown");
                 CanShoot = false;
                 ShootDirection = ShootDirection.normalized;
-                GameObject Projectile = GameObject.Instantiate(ObjectToShoot, this.transform.position, Quaternion.identity) as GameObject;
+				GameObject.Instantiate(ObjectToShoot, this.transform.position, Quaternion.identity);
+                //GameObject Projectile = GameObject.Instantiate(ObjectToShoot, this.transform.position, Quaternion.identity) as GameObject;
                 //Projectile.GetComponent<Rigidbody2D>().AddForce(ShootDirection * Force, ForceMode2D.Impulse);
                 SSMgr.StartShake(0.3f, 0.8f, 2.0f);
             }

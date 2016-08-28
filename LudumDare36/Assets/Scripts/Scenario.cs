@@ -114,6 +114,10 @@ public class Scenario : MonoBehaviour
             GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.AwakenA, true);
 			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.AwakenB, true);
 			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.Wind, true);
+			
+            if (Intro3310) Intro3310.SetActive(false);
+            if (PlayerRend) PlayerRend.enabled = true;
+            if (LightPhone) LightPhone.SetActive(false);
 		}
 		else
 		{
@@ -161,12 +165,12 @@ public class Scenario : MonoBehaviour
 			yield return PauseRoutine();
 
             //Exit start area
-
             if (Intro3310) Intro3310.SetActive(false);
             if (PlayerRend) PlayerRend.enabled = true;
             if (LightPhone) LightPhone.SetActive(false);
 
             textInput.CrossFadeAlpha(0.0f, 1.0f, false);
+			//ScreenshakeMgr.instance.StartShake(1.0f, 3.0f, 40.0f);
 			iTween.MoveTo(startArea, iTween.Hash("position", new Vector3(-100,-40,0), "time", 8.0f));
 			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.AwakenA, true);
 			yield return new WaitForSeconds(3.0f);
@@ -192,28 +196,31 @@ public class Scenario : MonoBehaviour
 		//SpawnerMgr.instance.SpawnWave(Random.Range(20,30), Random.Range(5.0f, 15.0f), (EPattern)Random.Range((int)EPattern.SIN_RIGHT_TO_LEFT, (int)EPattern.COUNT));
 		//SpawnerMgr.instance.SpawnEggs(2, 10.0f);
 
-		SpawnerMgr.instance.SpawnWave(30, 10.0f, EPattern.SIN_RIGHT_TO_LEFT);
 		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenA, true);
 		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenB, true);
 		GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.FightA, true);
-		yield return new WaitForSeconds(20.0f);
+
+		SpawnerMgr.instance.SpawnWave(10, 10.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
+		yield return new WaitForSeconds(5.0f);
 		
-		SpawnerMgr.instance.SpawnWave(30, 10.0f, EPattern.RANDOMPOINT);
-		yield return new WaitForSeconds(12.0f);
+		SpawnerMgr.instance.SpawnWave(10, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.CENTER);
+		yield return new WaitForSeconds(5.0f);
 		
 		BackMgr.instance.SetBack(EBackground.URBAN);
-		SpawnerMgr.instance.SpawnEggs(2, 10.0f);
-		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.SIN_RIGHT_TO_LEFT);
-		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED);
-		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.RANDOMPOINT);
+		//SpawnerMgr.instance.SpawnEggs(2, 10.0f);
+		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.TOP);
+		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.BOTTOM);
+		yield return new WaitForSeconds(3.0f);
+
+		SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
 		yield return new WaitForSeconds(3.0f);
 
 		//////// Boss 1 ////////
 
 		//Fight boss
-		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.FightA, true);
-		GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.BossA, true);
-		yield return PauseRoutine();
+		//GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.FightA, true);
+		//GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.BossA, true);
+		//yield return PauseRoutine();
 	}
 
 	IEnumerator PauseRoutine()

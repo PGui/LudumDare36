@@ -10,13 +10,21 @@ public enum EPattern
     COUNT,
 }
 
+public enum ESpawnLocation
+{
+	RANDOM,
+	CENTER,
+	TOP,
+	BOTTOM,
+}
+
 
 public class SpawnerMgr : MonoBehaviour {
 
 
     public float DurationBetweenTwoSpawn = 10.0f;
-    float Elapsed = 0.0f;
-    bool CanSpawn = true;
+    //float Elapsed = 0.0f;
+    //bool CanSpawn = true;
     public Camera CameraComponent;
 
     public bool DebugSpawnEnnemy = false;
@@ -36,18 +44,18 @@ public class SpawnerMgr : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-        if(CanSpawn && DebugSpawnEnnemy)
+        /*if(CanSpawn && DebugSpawnEnnemy)
         {
             CanSpawn = false;
             StartCoroutine(ManageSpawn());
             SpawnWave(Random.Range(20,30), Random.Range(5.0f, 15.0f), (EPattern)Random.Range((int)EPattern.SIN_RIGHT_TO_LEFT, (int)EPattern.COUNT));
-        }
+        }*/
 	}
 
     IEnumerator ManageSpawn()
     {
         yield return new WaitForSeconds(DurationBetweenTwoSpawn);
-        CanSpawn = true;
+        //CanSpawn = true;
     }
 
     IEnumerator SpawnEnnemies(float TimeBetweenTwoEnnemies , int EnnemyAmout, EPattern Pattern, Vector3 SpawnPosition)
@@ -64,26 +72,41 @@ public class SpawnerMgr : MonoBehaviour {
 
     }
 
-    public void SpawnWave(int EnnemyAmout, float SpawnDuration, EPattern Pattern)
+    public void SpawnWave(int EnnemyAmout, float SpawnDuration, EPattern Pattern, ESpawnLocation location)
     {
         int EnnemiesPerSecond = EnnemyAmout / (int)SpawnDuration;
         float TimeBetweenTwoEnnemies = 1.0f / (float)EnnemiesPerSecond;
         Vector3 StartPosition;
+
+		switch (location)
+		{
+			default:
+			case ESpawnLocation.CENTER:
+                StartPosition = Camera.main.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 10));
+                break;
+			case ESpawnLocation.TOP:
+                StartPosition = Camera.main.ViewportToWorldPoint(new Vector3(1.0f, 0.75f, 10));
+                break;
+			case ESpawnLocation.BOTTOM:
+                StartPosition = Camera.main.ViewportToWorldPoint(new Vector3(1.0f, 0.25f, 10));
+                break;
+			case ESpawnLocation.RANDOM:
+                StartPosition = Camera.main.ViewportToWorldPoint(new Vector3(1.0f, Random.Range(0.0f,1.0f), 10));
+                break;
+		}
+
         switch (Pattern)
         {
             case EPattern.SIN_RIGHT_TO_LEFT:
 			case EPattern.SIN_RIGHT_TO_LEFT_REVERSED:
-                StartPosition = Camera.main.ViewportToWorldPoint(new Vector3(1.0f, 0.5f, 10));
                 StartCoroutine(SpawnEnnemies(TimeBetweenTwoEnnemies, EnnemyAmout, Pattern, StartPosition));
                 break;
             case EPattern.RANDOMPOINT:
-                StartPosition = Camera.main.ViewportToWorldPoint(new Vector3(1.0f, Random.Range(0.0f,1.0f), 10));
                 StartCoroutine(SpawnEnnemies(TimeBetweenTwoEnnemies, EnnemyAmout, Pattern, StartPosition));
                 break;
             default:
                 break;
         }
-        
     }
 
     IEnumerator SpawnEggsCouroutine(float TimeBetweenTwoEggs, int EggsAmout)
@@ -98,7 +121,8 @@ public class SpawnerMgr : MonoBehaviour {
                 yield return null;
             }
 
-            GameObject NewEgg = GameObject.Instantiate(Egg, SpawnPosition, Quaternion.identity) as GameObject;
+            //GameObject NewEgg = GameObject.Instantiate(Egg, SpawnPosition, Quaternion.identity) as GameObject;
+            GameObject.Instantiate(Egg, SpawnPosition, Quaternion.identity);
             ++EggsSpawned;
             yield return new WaitForSeconds(TimeBetweenTwoEggs);
         }
