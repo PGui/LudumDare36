@@ -6,6 +6,7 @@ using System.Collections;
 public class HandleEgg : MonoBehaviour {
 
     public EEggBonus Bonus;
+    public float Timer = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -14,8 +15,11 @@ public class HandleEgg : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (Timer > 0.0f)
+        {
+            Timer -= Time.deltaTime;
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -28,8 +32,13 @@ public class HandleEgg : MonoBehaviour {
         }
         else if (other.tag == "Ennemy")
         {
-			if (other.gameObject.GetComponent<EnnemyBehavior>())
-	            other.gameObject.GetComponent<EnnemyBehavior>().DestroyEnnemy(null);
+            if (Timer <= 0.0f)
+            {
+                Timer = 0.5f;
+
+                if (other.gameObject.GetComponent<EnnemyBehavior>())
+                    other.gameObject.GetComponent<EnnemyBehavior>().DestroyEnnemy(null);
+            }
         }
     }
 }
