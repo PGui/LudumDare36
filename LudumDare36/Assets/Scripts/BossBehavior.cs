@@ -111,8 +111,8 @@ public class BossBehavior : MonoBehaviour
 				int WaveSelect = Random.Range(0,5);
 				EEnemyType EneSelect = (EEnemyType)Random.Range(0,(int)EEnemyType.COUNT);
 				EEnemyType EneSelect2 = (EEnemyType)Random.Range(0,(int)EEnemyType.COUNT);
-
-				switch(WaveSelect) {
+                
+                switch (WaveSelect) {
 					case 0:
 						SpawnerMgr.instance.SpawnWave(EEnemyType.BossAttack1, 5.0f, 30, WaveDur, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
 						SpawnerMgr.instance.SpawnWave(EEnemyType.BossAttack1, 5.0f, 30, WaveDur, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);

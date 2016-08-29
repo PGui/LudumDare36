@@ -63,7 +63,7 @@ Properties{
 
 			float2 uv = i.texcoord.xy;
 
-			uv += nois.xy*0.3f;
+			uv += (nois.xy-0.5f)*0.3f;
 
 			float2 Dir = uv - 0.5f;
 			float Dist = sqrt(dot(Dir, Dir));
@@ -76,8 +76,10 @@ Properties{
 			refrColor.rgb = lerp(refrColor.rgb, i.color.rgb, Fact);
 
 			//col.xyz = col.xyz;
-			//refrColor = 0;
+			//refrColor = Dist;// float4(Dir, 0, 0);
 			//refrColor.xy = Dir.xy;
+
+			clip(0.25f-Dist);
 			
 			return float4(refrColor.rgb,1.0f);
 		}
