@@ -64,7 +64,9 @@ public class PlayerState : MonoBehaviour {
 			LastHitDuration = Mathf.Max(LastHitDuration - Time.deltaTime, 0.0f);
 			Rend.color = Color.Lerp(Color.white, Color.red, Mathf.Clamp01(LastHitDuration));
 		}
-	}
+
+        ScoreText.text = Score.ToString();
+    }
 
     IEnumerator CooldownInvincible()
     {

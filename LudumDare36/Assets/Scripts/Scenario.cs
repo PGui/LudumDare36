@@ -115,6 +115,8 @@ public class Scenario : MonoBehaviour
         PlayerState.instance.FirstShoot = true;
         PlayerState.instance.FirstMove = true;
 
+        PlayerState.instance.Score = 0;
+
         GameObject Intro3310 = GameObject.Find("3310_Intro");
         GameObject IntroLight3310 = GameObject.Find("3310_IntroLight");
         GameObject LightPhone = GameObject.Find("LightPhone");
