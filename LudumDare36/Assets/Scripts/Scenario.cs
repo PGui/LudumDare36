@@ -292,6 +292,19 @@ public class Scenario : MonoBehaviour
 		}
 		
 		//////// Boss 1 ////////
+		/// 
+		///
+
+		// Clear Enemies
+		EnnemyBehavior[] Enemies = GameObject.FindObjectsOfType<EnnemyBehavior>();
+		int EnemyCount = Enemies.GetLength(0);
+		for(int i=0; i<EnemyCount; ++i) {
+			EnnemyBehavior CurEnemy = Enemies[i];
+			if(CurEnemy) {
+				CurEnemy.DestroyEnnemy(null, false);
+			}
+		}
+		SpawnerMgr.instance.BlockSpawning = true;
 		
 		BackMgr.instance.SetBack(EBackground.NIGHT);
 		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.FightA, true);
@@ -299,6 +312,8 @@ public class Scenario : MonoBehaviour
 		yield return new WaitForSeconds(GameAudio.instance.GetTimeUntilBeat());
 		
 		yield return new WaitForSeconds(0.5f);
+
+		SpawnerMgr.instance.BlockSpawning = false;
 
 		//Fight boss
 
@@ -319,7 +334,10 @@ public class Scenario : MonoBehaviour
 		//////// Ending ////////
 		
 		BackMgr.instance.SetBack(EBackground.SUNSET);
+
 		yield return new WaitForSeconds(15.0f);
+
+		BackMgr.instance.SetBack(EBackground.COUNTRY);
 
 		restart = true;
 	}

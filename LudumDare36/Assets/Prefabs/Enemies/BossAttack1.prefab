@@ -119,7 +119,8 @@ MonoBehaviour:
   MoveSpeed: 8
   Frequency: 1
   Magnitude: 10
-  DestructionParticles: {fileID: 0}
+  DestructionParticles: {fileID: 1000012944991680, guid: e9bf3b9079366704aacd311ae1e40863,
+    type: 2}
 --- !u!114 &114000012484647054
 MonoBehaviour:
   m_ObjectHideFlags: 1
