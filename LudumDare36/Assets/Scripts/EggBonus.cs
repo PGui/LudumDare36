@@ -16,7 +16,7 @@ public class EggBonus : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        Bonus = (EEggBonus)Random.Range((int)EEggBonus.SPEED, (int)EEggBonus.COUNT);
+        Bonus = EEggBonus.SPEED;// (EEggBonus)Random.Range((int)EEggBonus.SPEED, (int)EEggBonus.COUNT);
     }
 	
 	// Update is called once per frame

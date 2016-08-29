@@ -76,7 +76,7 @@ public class EnnemyBehavior : MonoBehaviour
         InitPosition += -transform.right * Time.deltaTime * MoveSpeed;
 		float y = Mathf.Cos(Elapsed * Frequency);
 		if (reverseY) y = -y;
-        transform.position = InitPosition + AxisRight * y * Magnitude;
+        transform.position = InitPosition + AxisRight * y * (Magnitude * 0.5f);
     }
 
     void RandomPoint()

@@ -47,8 +47,6 @@ public class CharacterAction : MonoBehaviour {
 
         if(Input.GetButton("Fire1"))
         {
-
-
             CharacMvt.IsShooting = true;
             ArmsFront.SetActive(true);
             ArmsBack.SetActive(true);

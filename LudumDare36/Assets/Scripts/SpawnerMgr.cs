@@ -157,30 +157,34 @@ public class SpawnerMgr : MonoBehaviour {
 
     IEnumerator SpawnEggsCouroutine(float TimeBetweenTwoEggs, int EggsAmout)
     {
+		float spawnTime = 1.0f;
+
         int EggsSpawned = 0;
         while (EggsSpawned != EggsAmout)
         {
             Vector3 SpawnPosition = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(0.3f, 0.8f), Random.Range(0.1f, 0.9f), 10));
             GameObject FXEggSpawned = GameObject.Instantiate(FXEggSpawn, SpawnPosition, Quaternion.identity) as GameObject;
-            while(FXEggSpawned)
-            {
-                yield return null;
-            }
+            //while(FXEggSpawned)
+            //{
+            //    yield return null;
+            //}
+
+            yield return new WaitForSeconds(spawnTime);
 
             //GameObject NewEgg = GameObject.Instantiate(Egg, SpawnPosition, Quaternion.identity) as GameObject;
             GameObject.Instantiate(Egg, SpawnPosition, Quaternion.identity);
             ++EggsSpawned;
-            yield return new WaitForSeconds(TimeBetweenTwoEggs);
+            yield return new WaitForSeconds(Mathf.Max(0.0f, TimeBetweenTwoEggs - spawnTime));
         }
 
     }
 
     public void SpawnEggs(int EggsAmount, float SpawnDuration)
     {
-        int EggsPerSecond = EggsAmount / (int)SpawnDuration;
-        float TimeBetweenTwoEggs = 1.0f / (float)EggsPerSecond;
+        //int EggsPerSecond = EggsAmount / (int)SpawnDuration;
+        //float TimeBetweenTwoEggs = 1.0f / (float)EggsPerSecond;
         
-        StartCoroutine(SpawnEggsCouroutine(TimeBetweenTwoEggs, EggsAmount));
+        StartCoroutine(SpawnEggsCouroutine(SpawnDuration, EggsAmount));
     }
 
     //Singleton variable
