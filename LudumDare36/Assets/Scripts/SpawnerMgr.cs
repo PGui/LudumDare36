@@ -90,8 +90,8 @@ public class SpawnerMgr : MonoBehaviour {
 
 	public GameObject SpawnBoss(Vector3 SpawnPosition)
 	{
+		print("BOSS");
 		GameObject NewBoss = GameObject.Instantiate(Boss, SpawnPosition, Quaternion.identity) as GameObject;
-
 		return NewBoss;
 	}
 
@@ -174,7 +174,8 @@ public class SpawnerMgr : MonoBehaviour {
         while (EggsSpawned != EggsAmout)
         {
             Vector3 SpawnPosition = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(0.3f, 0.8f), Random.Range(0.1f, 0.9f), 10));
-            GameObject FXEggSpawned = GameObject.Instantiate(FXEggSpawn, SpawnPosition, Quaternion.identity) as GameObject;
+            GameObject.Instantiate(FXEggSpawn, SpawnPosition, Quaternion.identity);
+            //GameObject FXEggSpawned = GameObject.Instantiate(FXEggSpawn, SpawnPosition, Quaternion.identity) as GameObject;
             //while(FXEggSpawned)
             //{
             //    yield return null;
