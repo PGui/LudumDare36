@@ -20,6 +20,8 @@ public class SnakeMovement : MonoBehaviour {
 
     public bool TargetChanged = false;
 
+    public bool SnakeStarted = false;
+
     // Use this for initialization
     void Start ()
     {
@@ -39,7 +41,7 @@ public class SnakeMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(CanMove)
+	    if(CanMove && SnakeStarted)
         {
             TargetChanged = false;
             CanMove = false;
@@ -108,7 +110,6 @@ public class SnakeMovement : MonoBehaviour {
             }
             else if (!CanMoveX && CanMoveY)
             {
-                
                 for (int i = BodyParts.Count - 1; i >= 1; --i)
                 {
                     BodyParts[i].transform.position = BodyParts[i - 1].transform.position;
@@ -220,6 +221,26 @@ public class SnakeMovement : MonoBehaviour {
 
         yield return null;
 
+    }
+
+    private static SnakeMovement s_instance = null;
+    public static SnakeMovement instance
+    {
+        get
+        {
+            //Get instance in current scene
+            if (s_instance == null)
+            {
+                s_instance = FindObjectOfType(typeof(SnakeMovement)) as SnakeMovement;
+            }
+
+            return s_instance;
+        }
+    }
+
+    public void StartSnake()
+    {
+        SnakeStarted = true;
     }
 }
 
