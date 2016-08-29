@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010603495594}
-  - 114: {fileID: 114000013869507344}
   - 50: {fileID: 50000012736023100}
   - 212: {fileID: 212000012140022052}
   - 60: {fileID: 60000010749949122}
@@ -210,18 +209,6 @@ MonoBehaviour:
   MoveSpeed: 5
   DestructionParticles: {fileID: 1000012944991680, guid: e9bf3b9079366704aacd311ae1e40863,
     type: 2}
---- !u!114 &114000013869507344
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014148670260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cebc574d6c24a24abbb0e84489bad64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LifetimeValue: 30
 --- !u!212 &212000012140022052
 SpriteRenderer:
   m_ObjectHideFlags: 1

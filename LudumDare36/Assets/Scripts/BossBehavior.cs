@@ -15,7 +15,7 @@ public class BossBehavior : MonoBehaviour
 
 	private float WaveTimer = 2.0f;
 
-	private float Dammage = 20.0f;
+	private float Dammage = 2.0f;
 
 	[HideInInspector]
     public float MoveSpeed = 5.0f;
@@ -43,15 +43,25 @@ public class BossBehavior : MonoBehaviour
 	void Update () {
 		Elapsed += Time.deltaTime;
 
+		SpriteRenderer Rend = gameObject.GetComponent<SpriteRenderer>();
+
+		float SpeedRot = IsDying ? 10.0f : 2.0f;
+
 		Vector3 NewPos = Vector3.Lerp(transform.position, FirstGoal, Mathf.Min(1.0f, Elapsed*0.1f));
-		NewPos.y = Mathf.Sin(Elapsed * 0.5f) *9.0f;
+		if(IsDying)
+		{
+			NewPos.y = transform.position.y-Time.deltaTime * 3.0f;
+		}
+		else
+		{
+			NewPos.y = Mathf.Sin(Elapsed * 0.5f) *9.0f;
+		}
 		transform.position = NewPos;
 
 		Quaternion NewRot = new Quaternion();
-		NewRot.eulerAngles = new Vector3(0,0,Mathf.Sin(Elapsed * 2.0f)*35.0f-10.0f);
+		NewRot.eulerAngles = new Vector3(0,0,Mathf.Sin(Elapsed * SpeedRot)*35.0f-10.0f);
 		transform.localRotation = NewRot;
 
-		SpriteRenderer Rend = gameObject.GetComponent<SpriteRenderer>();
 		if(Rend)
 		{
 			LastHitDuration = Mathf.Max(LastHitDuration - Time.deltaTime, 0.0f);
@@ -60,15 +70,14 @@ public class BossBehavior : MonoBehaviour
 
 		if(IsDying)
 		{
-			float DeathDuration = 5.0f;
+			float DeathDuration = 3.0f;
 			DeathTimer += Time.deltaTime;
 			if(Rend)
 			{
 				Rend.color = Color.Lerp(Color.white, Color.red, Mathf.Clamp01(DeathTimer/2.0f));
 			}
 			if(DeathTimer > DeathDuration) {
-				DestroyEnnemy(gameObject, true);
-
+				
 				EnnemyBehavior[] Enemies = GameObject.FindObjectsOfType<EnnemyBehavior>();
 				int EnemyCount = Enemies.GetLength(0);
 				for(int i=0; i<EnemyCount; ++i) {
@@ -77,6 +86,8 @@ public class BossBehavior : MonoBehaviour
 						CurEnemy.DestroyEnnemy(null, true);
 					}
 				}
+
+				DestroyEnnemy(gameObject, true);
 
 				return;
 			}
@@ -97,8 +108,22 @@ public class BossBehavior : MonoBehaviour
 				float WaveDur = Random.Range(5.0f,10.0f);
 				WaveTimer = WaveDur;
 
-				SpawnerMgr.instance.SpawnWave(EEnemyType.JewelC, 5.0f, 30, WaveDur, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
-				SpawnerMgr.instance.SpawnWave(EEnemyType.JewelD, 5.0f, 30, WaveDur, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
+				int WaveSelect = Random.Range(0,3);
+
+				switch(WaveSelect) {
+					case 0:
+						SpawnerMgr.instance.SpawnWave(EEnemyType.BossAttack1, 5.0f, 30, WaveDur, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
+						SpawnerMgr.instance.SpawnWave(EEnemyType.BossAttack1, 5.0f, 30, WaveDur, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
+						break;
+					case 1:
+						SpawnerMgr.instance.SpawnWave(EEnemyType.JewelC, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
+						SpawnerMgr.instance.SpawnWave(EEnemyType.JewelD, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
+						break;
+					case 2:
+						SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonB, 5.0f, 30, 5.0f, EPattern.RANDOMPOINT, ESpawnLocation.CENTER);
+						break;
+				}
+
 			}
 		}
     }
@@ -114,6 +139,9 @@ public class BossBehavior : MonoBehaviour
 
 			if(Life<=0.0f) {
 				IsDying = true;
+
+				SpawnerMgr.instance.BlockSpawning = true;
+
 				Scenario.instance.PlayNextStep();
 			}
 			else

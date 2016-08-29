@@ -1806,6 +1806,7 @@ MonoBehaviour:
   CameraComponent: {fileID: 0}
   DebugSpawnEnnemy: 0
   TimeBetweenTwoEggs: 10
+  BlockSpawning: 0
   SpawnableEnnemies:
   - {fileID: 1000011892488962, guid: 8159bcc7c12d20e4e80a706d18f4671c, type: 2}
   JewelA: {fileID: 1000013009657162, guid: ef5da5eb3dca96842968e8152ad10012, type: 2}
@@ -1817,6 +1818,8 @@ MonoBehaviour:
   BonbonC: {fileID: 1000013009657162, guid: 1b2edaef5ea895048bf846bfbd94ed19, type: 2}
   BonbonD: {fileID: 1000013009657162, guid: c598058fdf84dd04cb890041c63c5b6a, type: 2}
   Boss: {fileID: 1000014148670260, guid: c9cfa85edff00a247b7219dabed21e40, type: 2}
+  BossAttack1: {fileID: 1000013009657162, guid: 4d270d3eb8995ae42bf3025aaa652858,
+    type: 2}
   Egg: {fileID: 1000013635487484, guid: 6e3b180b227c6d44eaa1beff6c5e9b08, type: 2}
   FXEggSpawn: {fileID: 1000012953100052, guid: ad8bbe408f8eff143853469e385a94df, type: 2}
 --- !u!114 &1838031206

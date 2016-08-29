@@ -114,6 +114,8 @@ public class Scenario : MonoBehaviour
         SpriteRenderer PlayerRend = PlayerState.instance.GetComponent<SpriteRenderer>();
         if (PlayerRend) PlayerRend.enabled = false;
 
+		SpawnerMgr.instance.BlockSpawning = false;
+
         //////// Tutorial ////////
         if (skipTutorial)
 		{
@@ -300,9 +302,13 @@ public class Scenario : MonoBehaviour
 
 		//Fight boss
 
+		PlayerState.instance.FirstShoot = false;
+		waitSpacebar = false;
 		SpawnerMgr.instance.SpawnBoss(new Vector3(46,8,0));
 
 		yield return PauseRoutine();
+
+		immediateBoss = false;
 
 		//SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 20, 3.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
 		//GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.FightA, true);
@@ -312,7 +318,7 @@ public class Scenario : MonoBehaviour
 		//////// Ending ////////
 		
 		BackMgr.instance.SetBack(EBackground.SUNSET);
-		yield return new WaitForSeconds(6.0f);
+		yield return new WaitForSeconds(15.0f);
 
 		restart = true;
 	}

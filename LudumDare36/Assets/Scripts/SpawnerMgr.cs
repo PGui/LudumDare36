@@ -12,6 +12,7 @@ public enum EEnemyType
 	BonbonB,
 	BonbonC,
 	BonbonD,
+	BossAttack1,
 }
 
 public enum EPattern
@@ -45,6 +46,8 @@ public class SpawnerMgr : MonoBehaviour {
 
     public float TimeBetweenTwoEggs = 10.0f;
 
+	public bool BlockSpawning = false;
+
     public GameObject[] SpawnableEnnemies;
     public GameObject JewelA;
     public GameObject JewelB;
@@ -55,6 +58,7 @@ public class SpawnerMgr : MonoBehaviour {
     public GameObject BonbonC;
     public GameObject BonbonD;
 	public GameObject Boss;
+	public GameObject BossAttack1;
     public GameObject Egg;
     public GameObject FXEggSpawn;
 
@@ -106,12 +110,15 @@ public class SpawnerMgr : MonoBehaviour {
 				case EEnemyType.BonbonB: GoToSpawn = BonbonB; break;
 				case EEnemyType.BonbonC: GoToSpawn = BonbonC; break;
 				case EEnemyType.BonbonD: GoToSpawn = BonbonD; break;
+				case EEnemyType.BossAttack1: GoToSpawn = BossAttack1; break;
 			}
 
-            GameObject NewEnnemy = GameObject.Instantiate(GoToSpawn, SpawnPosition, Quaternion.identity) as GameObject;
-            NewEnnemy.GetComponent<EnnemyBehavior>().CurrentPattern = Pattern;
-            NewEnnemy.GetComponent<EnnemyBehavior>().MoveSpeed = moveSpeed;
-            ++EnnemiesSpawned;
+			if(!BlockSpawning) {
+	            GameObject NewEnnemy = GameObject.Instantiate(GoToSpawn, SpawnPosition, Quaternion.identity) as GameObject;
+	            NewEnnemy.GetComponent<EnnemyBehavior>().CurrentPattern = Pattern;
+	            NewEnnemy.GetComponent<EnnemyBehavior>().MoveSpeed = moveSpeed;
+	            ++EnnemiesSpawned;
+			}
             yield return new WaitForSeconds(TimeBetweenTwoEnnemies);
         }
 
