@@ -66,24 +66,22 @@ public class PlayerState : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-
         if ((other.tag == "Ennemy" || other.tag == "ennemyprojectile") && CurrentState == EPlayerState.ALIVE)
         {
+			//Legu : Mighty 3310 is unbreakable !
 
-            InitialLife -= 10.0f;
-            InitialLife = InitialLife < 0 ? 0 : InitialLife;
-            LifeText.text = InitialLife.ToString();
+            //InitialLife -= 10.0f;
+            //InitialLife = InitialLife < 0 ? 0 : InitialLife;
+            //LifeText.text = InitialLife.ToString();
 
-            CurrentState = InitialLife == 0 ? EPlayerState.DEAD : EPlayerState.INVINCIBLE;
-            if(CurrentState == EPlayerState.INVINCIBLE)
-            {
+            //CurrentState = InitialLife == 0 ? EPlayerState.DEAD : EPlayerState.INVINCIBLE;
+            //if(CurrentState == EPlayerState.INVINCIBLE)
+            //{
                 //RemoveLife
-                StartCoroutine(CooldownInvincible());
-            }
+                //StartCoroutine(CooldownInvincible());
+            //}
 
             other.gameObject.GetComponent<EnnemyBehavior>().DestroyEnnemy(null);
-
-
         }
     }
 

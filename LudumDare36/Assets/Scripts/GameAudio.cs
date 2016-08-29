@@ -107,7 +107,7 @@ public class GameAudio : MonoBehaviour
 
 		//SFx
 		listSfx = new List<AudioSource>();
-		for (int i = 0; i < 32; ++i)
+		for (int i = 0; i < 16; ++i)
 		{
 			GameObject pObjectSFx = new GameObject("SFx_"+i);
 			AudioSource pAudioSFx = pObjectSFx.AddComponent<AudioSource>();
