@@ -40,6 +40,8 @@ public class SnakeMovement : MonoBehaviour {
 	
 	public void Restart()
 	{
+        TimeBetweenTwoMove = 0.5f;
+
         List<Transform> BodyParts = GetSnakeParts();
         for (int i = BodyParts.Count - 1; i >= 1; --i)
         {
@@ -153,7 +155,6 @@ public class SnakeMovement : MonoBehaviour {
 
     IEnumerator Move()
     {
-
         yield return new WaitForSeconds(TimeBetweenTwoMove);
         CanMove = true;
     }
@@ -201,7 +202,7 @@ public class SnakeMovement : MonoBehaviour {
     {
         TimeBetweenTwoMove /= 2.0f;
         yield return new WaitForSeconds(DurationSpeedBonus);
-        TimeBetweenTwoMove *= 2.0f;
+        TimeBetweenTwoMove = Mathf.Max(TimeBetweenTwoMove*1.8f, 0.005f);
     }
 
     IEnumerator ShieldBonus()
