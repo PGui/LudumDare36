@@ -57,6 +57,12 @@ public class EnnemyBehavior : MonoBehaviour
             case EPattern.RANDOMPOINT:
                 RandomPoint();
                 break;
+			case EPattern.LASER:
+				DoLaser(false);
+				break;
+			case EPattern.SPIRAL:
+				DoSpiral(false);
+				break;
             default:
                 DoSinRightToLeft(false);
                 break;
@@ -83,6 +89,25 @@ public class EnnemyBehavior : MonoBehaviour
     {
         transform.position = Vector3.Lerp(transform.position, RandomPointOnScreen, Time.deltaTime * Random.Range(1.0f, 5.0f));
     }
+
+	void DoLaser(bool reverseY)
+	{
+		float x = -Mathf.Abs(Mathf.Cos(Time.time * Frequency));
+		float y = Mathf.Sin(Time.time * Frequency)*0.3f;
+		if (reverseY) y = -y;
+		float Dist = (Magnitude * MoveSpeed * Time.deltaTime + Mathf.Sin(Elapsed*10.0f));
+		transform.position += transform.right * x * Dist + AxisRight * y * Dist;
+	}
+
+	void DoSpiral(bool reverseY)
+	{
+		float Angle = Time.time * Frequency + Mathf.Sin(Elapsed*1.0f);
+		float x = -Mathf.Abs(Mathf.Cos(Angle));
+		float y = Mathf.Sin(Angle)*0.3f;
+		if (reverseY) y = -y;
+		float Dist = (Magnitude * MoveSpeed * Elapsed);
+		transform.position = InitPosition + transform.right * x * Dist + AxisRight * y * Dist;
+	}
 
     void OnTriggerEnter2D(Collider2D coll)
     {

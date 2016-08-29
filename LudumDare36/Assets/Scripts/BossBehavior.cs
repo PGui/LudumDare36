@@ -105,10 +105,12 @@ public class BossBehavior : MonoBehaviour
 		{
 			WaveTimer -= Time.deltaTime;
 			if(WaveTimer<=0.0f) {
-				float WaveDur = Random.Range(5.0f,10.0f);
-				WaveTimer = WaveDur;
+				float WaveDur = Random.Range(3.0f,5.0f);
+				WaveTimer = WaveDur + 1.0f;
 
-				int WaveSelect = Random.Range(0,3);
+				int WaveSelect = Random.Range(0,5);
+				EEnemyType EneSelect = (EEnemyType)Random.Range(0,(int)EEnemyType.COUNT);
+				EEnemyType EneSelect2 = (EEnemyType)Random.Range(0,(int)EEnemyType.COUNT);
 
 				switch(WaveSelect) {
 					case 0:
@@ -116,11 +118,17 @@ public class BossBehavior : MonoBehaviour
 						SpawnerMgr.instance.SpawnWave(EEnemyType.BossAttack1, 5.0f, 30, WaveDur, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
 						break;
 					case 1:
-						SpawnerMgr.instance.SpawnWave(EEnemyType.JewelC, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
-						SpawnerMgr.instance.SpawnWave(EEnemyType.JewelD, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
+					SpawnerMgr.instance.SpawnWave(EneSelect, 2.0f, 40, WaveDur, EPattern.SPIRAL, ESpawnLocation.CENTER);
 						break;
 					case 2:
-						SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonB, 5.0f, 30, 5.0f, EPattern.RANDOMPOINT, ESpawnLocation.CENTER);
+					SpawnerMgr.instance.SpawnWave(EneSelect, 2.0f, 40, WaveDur, EPattern.LASER, ESpawnLocation.CENTER);
+						break;
+					case 3:
+					SpawnerMgr.instance.SpawnWave(EneSelect, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
+					SpawnerMgr.instance.SpawnWave(EneSelect2, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
+						break;
+					case 4:
+					SpawnerMgr.instance.SpawnWave(EneSelect, 5.0f, 30, 5.0f, EPattern.RANDOMPOINT, ESpawnLocation.CENTER);
 						break;
 				}
 

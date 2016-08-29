@@ -13,6 +13,7 @@ public enum EEnemyType
 	BonbonC,
 	BonbonD,
 	BossAttack1,
+	COUNT,
 }
 
 public enum EPattern
@@ -22,6 +23,8 @@ public enum EPattern
     COS_RIGHT_TO_LEFT,
 	COS_RIGHT_TO_LEFT_REVERSED,
     RANDOMPOINT,
+	LASER,
+	SPIRAL,
     COUNT,
 }
 

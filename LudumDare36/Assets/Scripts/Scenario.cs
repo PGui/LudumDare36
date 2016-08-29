@@ -303,6 +303,7 @@ public class Scenario : MonoBehaviour
 		//Fight boss
 
 		PlayerState.instance.FirstShoot = false;
+		PlayerState.instance.FirstMove = false;
 		waitSpacebar = false;
 		SpawnerMgr.instance.SpawnBoss(new Vector3(46,8,0));
 
