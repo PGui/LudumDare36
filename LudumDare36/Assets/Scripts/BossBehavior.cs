@@ -29,7 +29,7 @@ public class BossBehavior : MonoBehaviour
     // Use this for initialization
     void Start ()
 	{
-        ScoreToGive = 100;
+        ScoreToGive = 5000;
 
 		FirstGoal = Camera.main.ViewportToWorldPoint(new Vector3(0.8f, 0.5f, 10));
     }
