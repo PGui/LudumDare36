@@ -20,15 +20,23 @@ Platform assembly: D:\GameJams\LudumDare36_Nokia3310\LudumDare36\LudumDare36\Bui
 Loading D:\GameJams\LudumDare36_Nokia3310\LudumDare36\LudumDare36\BuildWin32\Mighty3310_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: D:\GameJams\LudumDare36_Nokia3310\LudumDare36\LudumDare36\BuildWin32\Mighty3310_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading D:\GameJams\LudumDare36_Nokia3310\LudumDare36\LudumDare36\BuildWin32\Mighty3310_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.235 seconds
+- Completed reload, in  0.241 seconds
 Platform assembly: D:\GameJams\LudumDare36_Nokia3310\LudumDare36\LudumDare36\BuildWin32\Mighty3310_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: D:\GameJams\LudumDare36_Nokia3310\LudumDare36\LudumDare36\BuildWin32\Mighty3310_Data\Managed\System.dll (this message is harmless)
 desktop: 1680x1050 60Hz; virtual: 3600x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.686495 ms
+UnloadTime: 1.028424 ms
+first spacebar
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Boss death
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
 Setting up 3 worker threads for Enlighten.
-  Thread -> id: 4a10 -> priority: 1 
-  Thread -> id: 4a14 -> priority: 1 
-  Thread -> id: 4a18 -> priority: 1 
+  Thread -> id: 2e90 -> priority: 1 
+  Thread -> id: 1008 -> priority: 1 
+  Thread -> id: 19a8 -> priority: 1 
