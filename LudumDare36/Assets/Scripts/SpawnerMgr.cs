@@ -116,13 +116,14 @@ public class SpawnerMgr : MonoBehaviour {
 				case EEnemyType.BossAttack1: GoToSpawn = BossAttack1; break;
 			}
 
+			++EnnemiesSpawned;
 			if(!BlockSpawning) {
 	            GameObject NewEnnemy = GameObject.Instantiate(GoToSpawn, SpawnPosition, Quaternion.identity) as GameObject;
 	            NewEnnemy.GetComponent<EnnemyBehavior>().CurrentPattern = Pattern;
 	            NewEnnemy.GetComponent<EnnemyBehavior>().MoveSpeed = moveSpeed;
-	            ++EnnemiesSpawned;
+
+				yield return new WaitForSeconds(TimeBetweenTwoEnnemies);
 			}
-            yield return new WaitForSeconds(TimeBetweenTwoEnnemies);
         }
 
     }

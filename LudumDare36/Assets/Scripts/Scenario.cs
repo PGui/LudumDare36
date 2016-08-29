@@ -325,6 +325,7 @@ public class Scenario : MonoBehaviour
 		yield return PauseRoutine();
 
 		immediateBoss = false;
+		skipTutorial = true;
 
 		//SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 20, 3.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
 		//GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.FightA, true);
