@@ -52,7 +52,7 @@ Properties{
 			o.vertex = UnityObjectToClipPos(v.vertex);
 			o.texcoord = v.texcoord;
 			o.screen = 0.0f;
-			o.screen.xy = o.vertex.xy/ o.vertex.w *float2(0.5f,-0.5f)+0.5f;
+			o.screen = ComputeGrabScreenPos(o.vertex);
 			o.color = v.color;
 			return o;
 		}

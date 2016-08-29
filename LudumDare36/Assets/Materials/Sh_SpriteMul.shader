@@ -69,7 +69,8 @@ Shader "Sprites/SpriteMul"
 				OUT.vertex = UnityPixelSnap (OUT.vertex);
 				#endif
 				OUT.screen = 0.0f;
-				OUT.screen.xy = OUT.vertex.xy / OUT.vertex.w *float2(0.5f, -0.5f) + 0.5f;
+				//OUT.screen.xy = OUT.vertex.xy / OUT.vertex.w *float2(0.5f, -0.5f) + 0.5f;
+				OUT.screen = ComputeGrabScreenPos(OUT.vertex);
 
 				return OUT;
 			}
