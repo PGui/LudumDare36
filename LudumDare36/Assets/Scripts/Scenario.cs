@@ -335,7 +335,13 @@ public class Scenario : MonoBehaviour
 		
 		BackMgr.instance.SetBack(EBackground.SUNSET);
 
-		yield return new WaitForSeconds(15.0f);
+		yield return new WaitForSeconds(5.0f);
+
+		FadeMgr.instance.FadeOut(0.015f);
+
+		yield return new WaitForSeconds(6.0f);
+
+		FadeMgr.instance.FadeIn(0.03f);
 
 		BackMgr.instance.SetBack(EBackground.COUNTRY);
 
