@@ -141,4 +141,24 @@ public class CharacterMovement : MonoBehaviour {
         PreviousPosition = this.transform.position;
 
     }
+
+	
+    //Singleton variable
+    private static CharacterMovement s_instance = null;
+
+    //GameManager singleton declaration
+    public static CharacterMovement instance
+    {
+        get
+        {
+            //Get instance in current scene
+            if (s_instance == null)
+            {
+                s_instance = FindObjectOfType(typeof(CharacterMovement)) as CharacterMovement;
+            }
+
+            return s_instance;
+        }
+    }
+
 }

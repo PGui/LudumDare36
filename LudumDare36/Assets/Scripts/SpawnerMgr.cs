@@ -90,7 +90,6 @@ public class SpawnerMgr : MonoBehaviour {
 
 	public GameObject SpawnBoss(Vector3 SpawnPosition)
 	{
-		print("BOSS");
 		GameObject NewBoss = GameObject.Instantiate(Boss, SpawnPosition, Quaternion.identity) as GameObject;
 		return NewBoss;
 	}

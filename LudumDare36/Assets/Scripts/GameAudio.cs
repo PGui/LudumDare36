@@ -17,6 +17,7 @@ public enum EAudioLayer
 	AwakenB,
 	FightA,
 	BossA,
+	Final,
 }
 
 public enum EAudioLayerState
@@ -35,6 +36,7 @@ public class AudioLayer
 	public AudioClip clip;
 	public AudioSource source = null;
 	public float maxVolume = 1.0f;
+	public bool loop = true;
 
 	public EAudioLayerState command = EAudioLayerState.Idle;
 	public EAudioLayerState state = EAudioLayerState.Idle;
@@ -57,13 +59,14 @@ public class GameAudio : MonoBehaviour
 	public AudioClip trackAwakenB;
 	public AudioClip trackFightA;
 	public AudioClip trackBossA;
+	public AudioClip trackFinal;
 
 	private List<AudioLayer> layers = new List<AudioLayer>();
 
 	private float fadeInTime = 1.5f;
 	private float fadeOutTime = 1.5f;
 
-	private float beatDuration = 1.0f;
+	public float beatDuration = 1.0f;
 	private float timeSinceBeat = 0.0f;
 
 	//--------------------------------------------------------------
@@ -85,6 +88,7 @@ public class GameAudio : MonoBehaviour
 		layers.Add(new AudioLayer() { layer = EAudioLayer.AwakenB, clip = trackAwakenB } );
 		layers.Add(new AudioLayer() { layer = EAudioLayer.FightA, clip = trackFightA } );
 		layers.Add(new AudioLayer() { layer = EAudioLayer.BossA, clip = trackBossA } );
+		layers.Add(new AudioLayer() { layer = EAudioLayer.Final, clip = trackFinal, loop = false } );
 
 		listSfxConst = new List<AudioSource>();
 		for (int i = 0; i < 16; ++i)
@@ -99,7 +103,7 @@ public class GameAudio : MonoBehaviour
 			{
 				layers[i].source = pAudioSFx;
 				pAudioSFx.clip = layers[i].clip;
-				pAudioSFx.loop = true;
+				pAudioSFx.loop = layers[i].loop;
 				pAudioSFx.playOnAwake = false;
 				pAudioSFx.volume = 0.0f;
 			}

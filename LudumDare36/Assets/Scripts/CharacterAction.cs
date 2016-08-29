@@ -43,7 +43,12 @@ public class CharacterAction : MonoBehaviour {
 	void Update () {
 
         if (CurrentPlayerState.CurrentState == PlayerState.EPlayerState.DEAD || !AllowShoot)
+		{
+	        PlayerAnimator.SetBool("Shooting", false);
+            ArmsFront.SetActive(false);
+            ArmsBack.SetActive(false);
             return;
+		}
 
         if(Input.GetButton("Fire1"))
         {

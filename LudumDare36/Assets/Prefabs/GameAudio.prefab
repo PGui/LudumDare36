@@ -60,3 +60,4 @@ MonoBehaviour:
   trackAwakenB: {fileID: 8300000, guid: b87f13ffdb117b841adbe39bfc9eafb5, type: 3}
   trackFightA: {fileID: 8300000, guid: f62f66a6aa3dba740a7f74bdcb4f9da1, type: 3}
   trackBossA: {fileID: 8300000, guid: dd4ecf3cccb62794e9d1590fb1dc4fb6, type: 3}
+  trackFinal: {fileID: 8300000, guid: 06d7de9035f90b54bb0facff9fb58bd0, type: 3}

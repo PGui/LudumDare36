@@ -21,6 +21,8 @@ public class Scenario : MonoBehaviour
 	public Text textInput;
 	public Image imageAvatar;
 	public Text textAvatar;
+	public Text textFinalScore;
+	public Text textCredits;
 
 	//--------------------------------------------------------------
 	
@@ -58,6 +60,9 @@ public class Scenario : MonoBehaviour
 	
 	void Update ()
 	{
+		if (Input.GetKey("escape"))
+            Application.Quit();
+
 		if (restart)
 		{
 			PlayScenario();
@@ -66,6 +71,7 @@ public class Scenario : MonoBehaviour
 		{
 			if (waitSpacebar && Input.GetButtonDown("Fire1"))
 			{
+				print("first spacebar");
 				waitSpacebar = false;
 				PlayNextStep();
 			}
@@ -104,6 +110,8 @@ public class Scenario : MonoBehaviour
 		textInput.CrossFadeAlpha(0.0f, 0.0f, false);
 		imageAvatar.CrossFadeAlpha(0.0f, 0.0f, false);
 		textAvatar.CrossFadeAlpha(0.0f, 0.0f, false);
+		textFinalScore.CrossFadeAlpha(0.0f, 0.0f, false);
+		textCredits.CrossFadeAlpha(0.0f, 0.0f, false);
 
 		textInput.color = new Color(245,245,245);
 		textAvatar.color = new Color(245,245,245);
@@ -159,6 +167,7 @@ public class Scenario : MonoBehaviour
 		{
 			//Show Title
 			textTitle.CrossFadeAlpha(1.0f, 1.5f, false);
+			textCredits.CrossFadeAlpha(1.0f, 2.0f, false);
 			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.Wind, true);
 			yield return new WaitForSeconds(3.0f);
 
@@ -180,6 +189,7 @@ public class Scenario : MonoBehaviour
 			yield return new WaitForSeconds(1.0f);
 		
 			//Dialogue
+			textCredits.CrossFadeAlpha(0.0f, 1.0f, false);
 			textAvatar.text = "Finally, my people need me again. Time to settle who's the best phone in town.";
 			textAvatar.CrossFadeAlpha(1.0f, 1.0f, false);
 			imageAvatar.CrossFadeAlpha(1.0f, 1.0f, false);
@@ -335,13 +345,45 @@ public class Scenario : MonoBehaviour
 		
 		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.BossA, true);
 		yield return new WaitForSeconds(GameAudio.instance.GetTimeUntilBeat());
+		
+		//yield return new WaitForSeconds(GameAudio.instance.GetTimeUntilBeat());
+		
+		yield return new WaitForSeconds(3.0f);
 
+		GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.Final, true);
+		yield return new WaitForSeconds(GameAudio.instance.GetTimeUntilBeat());
+		
 		BackMgr.instance.SetBack(EBackground.SUNSET);
-		yield return new WaitForSeconds(4.0f);
+		yield return new WaitForSeconds(GameAudio.instance.beatDuration);
+		
+		//yield return new WaitForSeconds(GameAudio.instance.GetTimeUntilBeat());
 
+		CharacterMovement.instance.PlayerAnimator.SetInteger("Direction", 0);
+		PlayerState.instance.AllowPlayerMove(false);
+		PlayerState.instance.AllowPlayerShoot(false);
+		iTween.MoveTo(PlayerState.instance.gameObject, iTween.Hash("position", new Vector3(-15,-8,0), "time", 2.0f));
+		textAvatar.text = "My work here is done. I hope next generation will bring some challenge...";
+		textAvatar.CrossFadeAlpha(1.0f, 1.0f, false);
+		textAvatar.color = new Color(0,0,0);
+		yield return new WaitForSeconds(GameAudio.instance.beatDuration);
+		
+		yield return new WaitForSeconds(GameAudio.instance.beatDuration);
+		//yield return new WaitForSeconds(GameAudio.instance.GetTimeUntilBeat());
+		//yield return new WaitForSeconds(GameAudio.instance.GetTimeUntilBeat());
+		
+		CharacterMovement.instance.PlayerAnimator.SetInteger("Direction", 2);
+		iTween.MoveTo(PlayerState.instance.gameObject, iTween.Hash("position", new Vector3(50,50,0), "time", 24.0f));
+		textAvatar.CrossFadeAlpha(0.0f, 1.0f, false);
 		FadeMgr.instance.FadeOut(0.015f);
 		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.Wind, true);
+		yield return new WaitForSeconds(4.0f);
+
+		textFinalScore.CrossFadeAlpha(1.0f, 1.0f, false);
+		textFinalScore.text = "Score : " + PlayerState.instance.Score;
 		yield return new WaitForSeconds(6.0f);
+		
+		textFinalScore.CrossFadeAlpha(0.0f, 1.0f, false);
+		yield return new WaitForSeconds(4.0f);
 
 		restart = true;
 	}
@@ -373,3 +415,4 @@ public class Scenario : MonoBehaviour
         }
     }
 }
+

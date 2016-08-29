@@ -87,6 +87,9 @@ public class BossBehavior : MonoBehaviour
 					}
 				}
 
+				print("Boss death");
+				Scenario.instance.PlayNextStep();
+
 				DestroyEnnemy(gameObject, true);
 
 				return;
@@ -150,7 +153,7 @@ public class BossBehavior : MonoBehaviour
 
 				SpawnerMgr.instance.BlockSpawning = true;
 
-				Scenario.instance.PlayNextStep();
+				//Scenario.instance.PlayNextStep();
 			}
 			else
 			{
