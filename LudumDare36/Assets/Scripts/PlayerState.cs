@@ -78,6 +78,8 @@ public class PlayerState : MonoBehaviour {
         {
 			//Legu : Mighty 3310 is unbreakable !
 
+			LastHitDuration = 1.0f;
+
             //InitialLife -= 10.0f;
             //InitialLife = InitialLife < 0 ? 0 : InitialLife;
             //LifeText.text = InitialLife.ToString();

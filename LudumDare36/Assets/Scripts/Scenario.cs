@@ -216,17 +216,17 @@ public class Scenario : MonoBehaviour
 			yield return new WaitForSeconds(5.0f);
 			
 			SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonA, 5.0f, 10, 2.0f, EPattern.RANDOMPOINT, ESpawnLocation.CENTER);
-		yield return new WaitForSeconds(5.0f);
+			yield return new WaitForSeconds(5.0f);
+				
+			//Snake call
+			SpawnerMgr.instance.SpawnEggs(20, 5.0f);
+			textAvatar.text = "Mighty Snake, answer my call !";
+			textAvatar.CrossFadeAlpha(1.0f, 1.0f, false);
+			textAvatar.color = new Color(0,0,0);
+			yield return new WaitForSeconds(4.0f);
 			
-		//Snake call
-		SpawnerMgr.instance.SpawnEggs(20, 5.0f);
-		textAvatar.text = "Mighty Snake, answer my call !";
-		textAvatar.CrossFadeAlpha(1.0f, 1.0f, false);
-		textAvatar.color = new Color(0,0,0);
-		yield return new WaitForSeconds(4.0f);
-		
-		textAvatar.CrossFadeAlpha(0.0f, 1.0f, false);
-		imageAvatar.CrossFadeAlpha(0.0f, 1.0f, false);
+			textAvatar.CrossFadeAlpha(0.0f, 1.0f, false);
+			imageAvatar.CrossFadeAlpha(0.0f, 1.0f, false);
 			BackMgr.instance.SetBack(EBackground.SUBURB);
 			GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenA, true);
 			GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenB, true);
@@ -253,43 +253,41 @@ public class Scenario : MonoBehaviour
 			BackMgr.instance.SetBack(EBackground.URBAN);
 			yield return new WaitForSeconds(5.0f);
 
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 3.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 8.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 3.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 8.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
 			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelC, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.TOP);
 			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelD, 6.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.BOTTOM);
 			//SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 20, 3.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
-		yield return new WaitForSeconds(5.0f);
+			yield return new WaitForSeconds(5.0f);
 
-		SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonC, 1.0f, 30, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
-		yield return new WaitForSeconds(3.0f);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonC, 1.0f, 30, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
+			yield return new WaitForSeconds(3.0f);
+
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 6.0f, 100, 20.0f, EPattern.COS_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelD, 6.0f, 100, 20.0f, EPattern.COS_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
+			yield return new WaitForSeconds(4.0f);
+			
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 6.0f, 60, 16.0f, EPattern.COS_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.TOP);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 6.0f, 60, 16.0f, EPattern.COS_RIGHT_TO_LEFT, ESpawnLocation.BOTTOM);
+			yield return new WaitForSeconds(4.0f);
+			
+			SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonD, 2.0f, 30, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
+			yield return new WaitForSeconds(6.0f);
+			
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 6.0f, 100, 20.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelD, 6.0f, 100, 20.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
+			yield return new WaitForSeconds(4.0f);
+			
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 6.0f, 60, 16.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.TOP);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 6.0f, 60, 16.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.BOTTOM);
+			yield return new WaitForSeconds(4.0f);
+
+			SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonA, 2.0f, 10, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.TOP);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonB, 2.0f, 10, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.CENTER);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonC, 2.0f, 10, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.CENTER);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonD, 2.0f, 10, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.BOTTOM);
+			yield return new WaitForSeconds(10.0f);
 		}
-
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 6.0f, 100, 20.0f, EPattern.COS_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelD, 6.0f, 100, 20.0f, EPattern.COS_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
-		yield return new WaitForSeconds(4.0f);
-		
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 6.0f, 60, 16.0f, EPattern.COS_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.TOP);
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 6.0f, 60, 16.0f, EPattern.COS_RIGHT_TO_LEFT, ESpawnLocation.BOTTOM);
-		yield return new WaitForSeconds(4.0f);
-		
-		SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonD, 2.0f, 30, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
-		yield return new WaitForSeconds(6.0f);
-		
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 6.0f, 100, 20.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelD, 6.0f, 100, 20.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
-		yield return new WaitForSeconds(4.0f);
-		
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 6.0f, 60, 16.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.TOP);
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 6.0f, 60, 16.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.BOTTOM);
-		yield return new WaitForSeconds(4.0f);
-
-		SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonA, 2.0f, 10, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.TOP);
-		SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonB, 2.0f, 10, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.CENTER);
-		SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonC, 2.0f, 10, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.CENTER);
-		SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonD, 2.0f, 10, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.BOTTOM);
-		yield return new WaitForSeconds(10.0f);
-
-		yield return new WaitForSeconds(12.0f);
 		
 		//////// Boss 1 ////////
 		

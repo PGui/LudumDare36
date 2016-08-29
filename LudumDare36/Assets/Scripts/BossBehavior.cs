@@ -15,7 +15,7 @@ public class BossBehavior : MonoBehaviour
 
 	private float WaveTimer = 2.0f;
 
-	private float Dammage = 2.0f;
+	private float Dammage = 20.0f;
 
 	[HideInInspector]
     public float MoveSpeed = 5.0f;

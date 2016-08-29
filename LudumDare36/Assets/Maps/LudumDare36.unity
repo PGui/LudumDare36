@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugRoutine: 0
-  skipTutorial: 0
+  skipTutorial: 1
   immediateBoss: 0
   startArea: {fileID: 1823311497}
   textTitle: {fileID: 179923708}
