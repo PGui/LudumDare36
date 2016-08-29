@@ -28,7 +28,8 @@ public class HandleEgg : MonoBehaviour {
         }
         else if (other.tag == "Ennemy")
         {
-            other.gameObject.GetComponent<EnnemyBehavior>().DestroyEnnemy(null);
+			if (other.gameObject.GetComponent<EnnemyBehavior>())
+	            other.gameObject.GetComponent<EnnemyBehavior>().DestroyEnnemy(null);
         }
     }
 }

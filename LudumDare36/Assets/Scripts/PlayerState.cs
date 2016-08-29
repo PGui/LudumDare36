@@ -91,7 +91,8 @@ public class PlayerState : MonoBehaviour {
                 //StartCoroutine(CooldownInvincible());
             //}
 
-            other.gameObject.GetComponent<EnnemyBehavior>().DestroyEnnemy(null);
+			if (other.gameObject.GetComponent<EnnemyBehavior>())
+	            other.gameObject.GetComponent<EnnemyBehavior>().DestroyEnnemy(null);
         }
     }
 

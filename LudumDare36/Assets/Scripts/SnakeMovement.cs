@@ -36,9 +36,27 @@ public class SnakeMovement : MonoBehaviour {
         {
             Target = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 10));
         }
-
     }
 	
+	public void Restart()
+	{
+        List<Transform> BodyParts = GetSnakeParts();
+        for (int i = BodyParts.Count - 1; i >= 1; --i)
+        {
+			if (Head != BodyParts[i].gameObject && BodyToSpawn != BodyParts[i].gameObject)
+				DestroyObject(BodyParts[i].gameObject);
+        }
+
+		for (int i = 0; i < 3; ++i)
+        {
+			if (BodyToSpawn != null)
+			{
+	            GameObject newBody = GameObject.Instantiate(BodyToSpawn, Head.position, Quaternion.identity) as GameObject;
+		        newBody.transform.parent = this.transform;
+			}
+        }
+	}
+
 	// Update is called once per frame
 	void Update () {
 	    if(CanMove && SnakeStarted)
@@ -129,7 +147,6 @@ public class SnakeMovement : MonoBehaviour {
             //child is your child transform
             Children.Add(child);
         }
-
 
         return Children;
     }
@@ -238,9 +255,9 @@ public class SnakeMovement : MonoBehaviour {
         }
     }
 
-    public void StartSnake()
+    public void SetSnakeStarted(bool value)
     {
-        SnakeStarted = true;
+        SnakeStarted = value;
     }
 }
 

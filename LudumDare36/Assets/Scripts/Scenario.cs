@@ -12,6 +12,10 @@ public class Scenario : MonoBehaviour
 	public bool immediateBoss = false;
 
 	public GameObject startArea;
+	private Vector3 posStartArea;
+	
+	private Vector3 posSnake;
+	private Vector3 posPlayer;
 
 	public Text textTitle;
 	public Text textInput;
@@ -42,9 +46,12 @@ public class Scenario : MonoBehaviour
 	
 	void Start ()
 	{
+		posStartArea = startArea.transform.position;
+		posSnake = SnakeMovement.instance.Head.transform.position;
+		posPlayer = PlayerState.instance.transform.position;
+
 		if (!debugRoutine)
 		{
-			ResetScenario();
 			PlayScenario();
 		}
 	}
@@ -53,8 +60,6 @@ public class Scenario : MonoBehaviour
 	{
 		if (restart)
 		{
-			restart = false;
-			ResetScenario();
 			PlayScenario();
 		}
 		else if (!debugRoutine)
@@ -75,17 +80,25 @@ public class Scenario : MonoBehaviour
 
 			if (Input.GetButtonDown("Fire2"))
 			{
-				ResetScenario();
 				PlayScenario();
 			}
 			//DEBUG
 		}
 	}
 
-	public void ResetScenario()
+	IEnumerator PlayScenarioRoutine()
 	{
 		pauseRoutine = false;
 		waitSpacebar = false;
+		
+		BackMgr.instance.SetBack(EBackground.COUNTRY);
+		startArea.transform.position = posStartArea;
+		
+		SnakeMovement.instance.SetSnakeStarted(false);
+		SnakeMovement.instance.Head.transform.position = posSnake;
+		SnakeMovement.instance.Restart();
+
+		PlayerState.instance.transform.position = posPlayer;
 
 		textTitle.CrossFadeAlpha(0.0f, 0.0f, false);
 		textInput.CrossFadeAlpha(0.0f, 0.0f, false);
@@ -101,20 +114,29 @@ public class Scenario : MonoBehaviour
         PlayerState.instance.CurrentState = PlayerState.EPlayerState.ALIVE;
         PlayerState.instance.FirstShoot = true;
         PlayerState.instance.FirstMove = true;
-    }
 
-	IEnumerator PlayScenarioRoutine()
-	{
-        GameObject LightPhone = GameObject.Find("LightPhone");
         GameObject Intro3310 = GameObject.Find("3310_Intro");
+        GameObject IntroLight3310 = GameObject.Find("3310_IntroLight");
+        GameObject LightPhone = GameObject.Find("LightPhone");
         SpriteRenderer IntroRend = Intro3310 ? Intro3310.GetComponent<SpriteRenderer>() : null;
-        if (LightPhone) LightPhone.SetActive(false);
-        if (Intro3310) Intro3310.SetActive(true);
-        if (IntroRend) IntroRend.enabled = true;
+		SpriteRenderer IntroLightRend = IntroLight3310 ? IntroLight3310.GetComponent<SpriteRenderer>() : null;
+		SpriteRenderer LightPhoneRend = LightPhone ? LightPhone.GetComponent<SpriteRenderer>() : null;
         SpriteRenderer PlayerRend = PlayerState.instance.GetComponent<SpriteRenderer>();
+        if (IntroRend) IntroRend.enabled = true;
+		if (IntroLightRend) IntroLightRend.enabled = true;
+		if (LightPhoneRend) LightPhoneRend.enabled = false;
         if (PlayerRend) PlayerRend.enabled = false;
 
 		SpawnerMgr.instance.BlockSpawning = false;
+
+		if (restart)
+		{
+			skipTutorial = false;
+			immediateBoss = false;
+
+			restart = false;
+			FadeMgr.instance.FadeIn(0.03f);
+		}
 
         //////// Tutorial ////////
         if (skipTutorial)
@@ -126,10 +148,10 @@ public class Scenario : MonoBehaviour
 			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.AwakenB, true);
 			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.Wind, true);
 			
-            if (Intro3310) Intro3310.SetActive(false);
+			if (IntroRend) IntroRend.enabled = false;
+			if (IntroLightRend) IntroLightRend.enabled = false;
+			if (LightPhoneRend) LightPhoneRend.enabled = false;
             if (PlayerRend) PlayerRend.enabled = true;
-            if (LightPhone) LightPhone.SetActive(false);
-
 		}
 		else
 		{
@@ -141,11 +163,9 @@ public class Scenario : MonoBehaviour
 			//Ring and hide title
 			AudioSource ringTone = GameAudio.instance.PlaySFxLoop(ESFx.Ring3310);
 
-            if (LightPhone) LightPhone.SetActive(true);
             if (IntroRend) IntroRend.enabled = false;
+			if (LightPhoneRend) LightPhoneRend.enabled = true;
 
-            //yield return new WaitForSeconds(4.0f);
-		
 			//Show input
 			waitSpacebar = true;
 			textInput.text = "Press Spacebar to answer the phone...";
@@ -177,13 +197,11 @@ public class Scenario : MonoBehaviour
 			yield return PauseRoutine();
 
             //Exit start area
-            if (Intro3310) Intro3310.SetActive(false);
+			if (IntroLightRend) IntroLightRend.enabled = false;
+			if (LightPhoneRend) LightPhoneRend.enabled = false;
             if (PlayerRend) PlayerRend.enabled = true;
-            if (LightPhone) LightPhone.SetActive(false);
 
             textInput.CrossFadeAlpha(0.0f, 1.0f, false);
-			//ScreenshakeMgr.instance.StartShake(1.0f, 3.0f, 10.0f);
-			//ScreenshakeMgr.instance.StartShake(0.3f, 0.8f, 2.0f);
 			iTween.MoveTo(startArea, iTween.Hash("position", new Vector3(-100,-40,0), "time", 8.0f));
 			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.AwakenA, true);
 			yield return new WaitForSeconds(GameAudio.instance.GetTimeUntilBeat());
@@ -209,11 +227,17 @@ public class Scenario : MonoBehaviour
 		//BackMgr.instance.SetBack(EBackground.URBAN);
 		//SpawnerMgr.instance.SpawnEggs(2, 10.0f);
 		
-		yield return new WaitForSeconds(0.5f);
-
-		if(!immediateBoss)
+		if (immediateBoss)
 		{
+			GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenA, true);
+			GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenB, true);
+			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.FightA, true);
 
+			SnakeMovement.instance.SetSnakeStarted(true);
+			yield return new WaitForSeconds(0.5f);
+		}
+		else
+		{
 			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 5.0f, 10, 4.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
 			yield return new WaitForSeconds(5.0f);
 			
@@ -221,6 +245,7 @@ public class Scenario : MonoBehaviour
 			yield return new WaitForSeconds(5.0f);
 				
 			//Snake call
+			SnakeMovement.instance.SetSnakeStarted(true);
 			SpawnerMgr.instance.SpawnEggs(20, 5.0f);
 			textAvatar.text = "Mighty Snake, answer my call !";
 			textAvatar.CrossFadeAlpha(1.0f, 1.0f, false);
@@ -259,7 +284,6 @@ public class Scenario : MonoBehaviour
 			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 8.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
 			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelC, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.TOP);
 			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelD, 6.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.BOTTOM);
-			//SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 20, 3.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
 			yield return new WaitForSeconds(5.0f);
 
 			SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonC, 1.0f, 30, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
@@ -289,22 +313,11 @@ public class Scenario : MonoBehaviour
 			SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonC, 2.0f, 10, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.CENTER);
 			SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonD, 2.0f, 10, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.BOTTOM);
 			yield return new WaitForSeconds(10.0f);
+			
+			yield return new WaitForSeconds(12.0f);
 		}
 		
 		//////// Boss 1 ////////
-		/// 
-		///
-
-		// Clear Enemies
-		EnnemyBehavior[] Enemies = GameObject.FindObjectsOfType<EnnemyBehavior>();
-		int EnemyCount = Enemies.GetLength(0);
-		for(int i=0; i<EnemyCount; ++i) {
-			EnnemyBehavior CurEnemy = Enemies[i];
-			if(CurEnemy) {
-				CurEnemy.DestroyEnnemy(null, false);
-			}
-		}
-		SpawnerMgr.instance.BlockSpawning = true;
 		
 		BackMgr.instance.SetBack(EBackground.NIGHT);
 		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.FightA, true);
@@ -313,38 +326,20 @@ public class Scenario : MonoBehaviour
 		
 		yield return new WaitForSeconds(0.5f);
 
-		SpawnerMgr.instance.BlockSpawning = false;
-
-		//Fight boss
-
-		PlayerState.instance.FirstShoot = false;
-		PlayerState.instance.FirstMove = false;
-		waitSpacebar = false;
 		SpawnerMgr.instance.SpawnBoss(new Vector3(46,8,0));
-
 		yield return PauseRoutine();
-
-		immediateBoss = false;
-		skipTutorial = true;
-
-		//SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 20, 3.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
-		//GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.FightA, true);
-		//GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.BossA, true);
-		//yield return PauseRoutine();
 		
 		//////// Ending ////////
 		
-		BackMgr.instance.SetBack(EBackground.SUNSET);
+		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.BossA, true);
+		yield return new WaitForSeconds(GameAudio.instance.GetTimeUntilBeat());
 
-		yield return new WaitForSeconds(5.0f);
+		BackMgr.instance.SetBack(EBackground.SUNSET);
+		yield return new WaitForSeconds(4.0f);
 
 		FadeMgr.instance.FadeOut(0.015f);
-
+		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.Wind, true);
 		yield return new WaitForSeconds(6.0f);
-
-		FadeMgr.instance.FadeIn(0.03f);
-
-		BackMgr.instance.SetBack(EBackground.COUNTRY);
 
 		restart = true;
 	}
