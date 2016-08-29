@@ -9,6 +9,7 @@ public class Scenario : MonoBehaviour
 	public bool debugRoutine = false;
 
 	public bool skipTutorial = false;
+	public bool immediateBoss = false;
 
 	public GameObject startArea;
 
@@ -118,6 +119,7 @@ public class Scenario : MonoBehaviour
             if (Intro3310) Intro3310.SetActive(false);
             if (PlayerRend) PlayerRend.enabled = true;
             if (LightPhone) LightPhone.SetActive(false);
+
 		}
 		else
 		{
@@ -199,47 +201,51 @@ public class Scenario : MonoBehaviour
 		
 		yield return new WaitForSeconds(0.5f);
 
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 5.0f, 10, 4.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
-		yield return new WaitForSeconds(5.0f);
-		
-		SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonA, 5.0f, 10, 2.0f, EPattern.RANDOMPOINT, ESpawnLocation.CENTER);
-		yield return new WaitForSeconds(3.0f);
-		
-		BackMgr.instance.SetBack(EBackground.SUBURB);
-		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenA, true);
-		GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenB, true);
-		GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.FightA, true);
-		yield return new WaitForSeconds(GameAudio.instance.GetTimeUntilBeat());
-		
-		yield return new WaitForSeconds(0.5f);
+		if(!immediateBoss)
+		{
 
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelC, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelD, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
-		yield return new WaitForSeconds(12.0f);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 5.0f, 10, 4.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
+			yield return new WaitForSeconds(5.0f);
+			
+			SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonA, 5.0f, 10, 2.0f, EPattern.RANDOMPOINT, ESpawnLocation.CENTER);
+			yield return new WaitForSeconds(3.0f);
+			
+			BackMgr.instance.SetBack(EBackground.SUBURB);
+			GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenA, true);
+			GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.AwakenB, true);
+			GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.FightA, true);
+			yield return new WaitForSeconds(GameAudio.instance.GetTimeUntilBeat());
+			
+			yield return new WaitForSeconds(0.5f);
 
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 8.0f, 30, 8.0f, EPattern.COS_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
-		yield return new WaitForSeconds(4.0f);
-		
-		SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonB, 5.0f, 30, 5.0f, EPattern.RANDOMPOINT, ESpawnLocation.CENTER);
-		yield return new WaitForSeconds(8.0f);
-		
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.TOP);
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelC, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.BOTTOM);
-		yield return new WaitForSeconds(12.0f);
-		
-		BackMgr.instance.SetBack(EBackground.URBAN);
-		yield return new WaitForSeconds(5.0f);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelC, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelD, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
+			yield return new WaitForSeconds(12.0f);
 
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 8.0f, 30, 8.0f, EPattern.COS_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelC, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.TOP);
-		SpawnerMgr.instance.SpawnWave(EEnemyType.JewelD, 6.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.BOTTOM);
-		//SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 20, 3.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
-		yield return new WaitForSeconds(17.0f);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 8.0f, 30, 8.0f, EPattern.COS_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.CENTER);
+			yield return new WaitForSeconds(4.0f);
+			
+			SpawnerMgr.instance.SpawnWave(EEnemyType.BonbonB, 5.0f, 30, 5.0f, EPattern.RANDOMPOINT, ESpawnLocation.CENTER);
+			yield return new WaitForSeconds(8.0f);
+			
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.TOP);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelC, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.BOTTOM);
+			yield return new WaitForSeconds(12.0f);
+			
+			BackMgr.instance.SetBack(EBackground.URBAN);
+			yield return new WaitForSeconds(5.0f);
 
-		//SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
-		//yield return new WaitForSeconds(3.0f);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelB, 8.0f, 30, 8.0f, EPattern.COS_RIGHT_TO_LEFT, ESpawnLocation.CENTER);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelC, 5.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT_REVERSED, ESpawnLocation.TOP);
+			SpawnerMgr.instance.SpawnWave(EEnemyType.JewelD, 6.0f, 30, 8.0f, EPattern.SIN_RIGHT_TO_LEFT, ESpawnLocation.BOTTOM);
+			//SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 20, 3.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
+			yield return new WaitForSeconds(17.0f);
+
+			//SpawnerMgr.instance.SpawnWave(50, 10.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
+			//yield return new WaitForSeconds(3.0f);
+		}
 
 		//////// Boss 1 ////////
 		
@@ -253,6 +259,11 @@ public class Scenario : MonoBehaviour
 		yield return new WaitForSeconds(0.5f);
 
 		//Fight boss
+
+		SpawnerMgr.instance.SpawnBoss(new Vector3(46,8,0));
+
+		yield return PauseRoutine();
+
 		//SpawnerMgr.instance.SpawnWave(EEnemyType.JewelA, 20, 3.0f, EPattern.RANDOMPOINT, ESpawnLocation.RANDOM);
 		//GameAudio.instance.StopLayerOnBeatSync(EAudioLayer.FightA, true);
 		//GameAudio.instance.PlayLayerOnBeatSync(EAudioLayer.BossA, true);
@@ -261,7 +272,7 @@ public class Scenario : MonoBehaviour
 		//////// Ending ////////
 		
 		BackMgr.instance.SetBack(EBackground.SUNSET);
-		yield return new WaitForSeconds(2.0f);
+		yield return new WaitForSeconds(10.0f);
 	}
 
 	IEnumerator PauseRoutine()

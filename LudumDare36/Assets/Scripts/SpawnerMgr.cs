@@ -54,6 +54,7 @@ public class SpawnerMgr : MonoBehaviour {
     public GameObject BonbonB;
     public GameObject BonbonC;
     public GameObject BonbonD;
+	public GameObject Boss;
     public GameObject Egg;
     public GameObject FXEggSpawn;
 
@@ -79,6 +80,13 @@ public class SpawnerMgr : MonoBehaviour {
         yield return new WaitForSeconds(DurationBetweenTwoSpawn);
         //CanSpawn = true;
     }
+
+	public GameObject SpawnBoss(Vector3 SpawnPosition)
+	{
+		GameObject NewBoss = GameObject.Instantiate(Boss, SpawnPosition, Quaternion.identity) as GameObject;
+
+		return NewBoss;
+	}
 
     IEnumerator SpawnEnnemies(EEnemyType type, float moveSpeed, float TimeBetweenTwoEnnemies , int EnnemyAmout, EPattern Pattern, Vector3 SpawnPosition)
     {

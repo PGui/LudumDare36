@@ -12,6 +12,7 @@ public class PlayerState : MonoBehaviour {
     }
 
     public float InitialLife = 100.0f;
+	public bool GodMode = true;
     public bool InvicibilityFrame = false;
     public float InvicibilityFrameDuration = 0.5f;
 
@@ -21,6 +22,8 @@ public class PlayerState : MonoBehaviour {
     private Text ScoreText;
     private Text LifeText;
     public int KillEnnemyCount = 0;
+
+	private float LastHitDuration = -1000.0f;
 
     public bool FirstShoot = false;
     public bool FirstMove = false;
@@ -55,7 +58,12 @@ public class PlayerState : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		SpriteRenderer Rend = gameObject.GetComponent<SpriteRenderer>();
+		if(Rend)
+		{
+			LastHitDuration = Mathf.Max(LastHitDuration - Time.deltaTime, 0.0f);
+			Rend.color = Color.Lerp(Color.white, Color.red, Mathf.Clamp01(LastHitDuration));
+		}
 	}
 
     IEnumerator CooldownInvincible()
@@ -69,10 +77,14 @@ public class PlayerState : MonoBehaviour {
 
         if ((other.tag == "Ennemy" || other.tag == "ennemyprojectile") && CurrentState == EPlayerState.ALIVE)
         {
-
-            InitialLife -= 10.0f;
+			if(!GodMode) 
+			{
+            	InitialLife -= 10.0f;
+			}
             InitialLife = InitialLife < 0 ? 0 : InitialLife;
             LifeText.text = InitialLife.ToString();
+
+			LastHitDuration = 1.0f;
 
             CurrentState = InitialLife == 0 ? EPlayerState.DEAD : EPlayerState.INVINCIBLE;
             if(CurrentState == EPlayerState.INVINCIBLE)
